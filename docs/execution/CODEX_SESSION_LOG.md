@@ -4,6 +4,22 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-19 — completed saved-item treatment
+
+- Session ID: `TBD` (supporting home-screen state clarity)
+- Objective: Make completed intentions visibly distinct in the saved-items list.
+- Codex contributions:
+  - Added a muted line-through treatment only to completed task titles.
+  - Preserved the existing status badges so completion is not communicated by styling alone.
+  - Added regression coverage proving postponed titles remain uncrossed.
+- Human product and design decisions preserved:
+  - Victoria requested completed saved items be crossed out.
+- Verification:
+  - Server-rendered component coverage proves completed titles receive muted line-through classes and postponed titles do not.
+  - No local user task was mutated solely to manufacture a visual test state.
+  - 28 test files and 86 tests, lint, and production build pass.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
 ## 2026-07-19 — matching recommendation actions
 
 - Session ID: `TBD` (supporting home-screen interaction refinement)

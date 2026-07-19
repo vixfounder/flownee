@@ -262,7 +262,7 @@ function UpcomingCard({ state, onManage }: { state: HomeState; onManage?: (taskI
   );
 }
 
-function SavedItemsCard({ tasks, onManage }: { tasks: Task[]; onManage: (taskId: string) => void }) {
+export function SavedItemsCard({ tasks, onManage }: { tasks: Task[]; onManage: (taskId: string) => void }) {
   if (tasks.length === 0) return null;
   return (
     <Card className="mt-5 gap-3 py-5 shadow-none">
@@ -275,7 +275,15 @@ function SavedItemsCard({ tasks, onManage }: { tasks: Task[]; onManage: (taskId:
           {tasks.map((task) => (
             <li key={task.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
               <Badge variant="outline">{task.status === "completed" ? "Done" : "Later"}</Badge>
-              <span className="min-w-0 flex-1 truncate text-sm font-medium">{task.title}</span>
+              <span
+                className={`min-w-0 flex-1 truncate text-sm font-medium ${
+                  task.status === "completed"
+                    ? "text-muted-foreground line-through decoration-2"
+                    : ""
+                }`}
+              >
+                {task.title}
+              </span>
               <Button variant="ghost" size="icon-sm" aria-label={`Manage ${task.title}`} onClick={() => onManage(task.id)}>
                 <MoreHorizontal aria-hidden="true" />
               </Button>
