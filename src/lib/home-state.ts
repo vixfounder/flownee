@@ -55,7 +55,7 @@ export const sampleHomeState: PlanHomeState = {
     {
       id: "sample-gift",
       title: "Check the gift deadline and buy the present",
-      estimatedEffortMinutes: 25,
+      estimatedEffortMinutes: 30,
     },
     {
       id: "sample-call",

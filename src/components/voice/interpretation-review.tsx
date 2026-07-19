@@ -1,11 +1,14 @@
 "use client";
 
-import { CircleAlert, Clock3, Info, ListChecks } from "lucide-react";
+import { CircleAlert, ListChecks } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { EffortSelector } from "@/components/ui/effort-selector";
+import { Input } from "@/components/ui/input";
 import type { InterpretationDraft } from "@/lib/ai/planning-commit";
 import type { PlanningOutput } from "@/lib/ai/planning-contract";
+import { isEffortOption } from "@/lib/effort-options";
 
 type InterpretationReviewProps = {
   drafts: InterpretationDraft[];
@@ -37,9 +40,7 @@ export function InterpretationReview({
   const hasInvalidDraft = drafts.some(
     (draft) =>
       draft.title.trim().length === 0 ||
-      !Number.isInteger(draft.effortMinutes) ||
-      draft.effortMinutes < 1 ||
-      draft.effortMinutes > 480,
+      !isEffortOption(draft.effortMinutes),
   );
 
   function updateDraft(index: number, next: InterpretationDraft) {
@@ -55,8 +56,7 @@ export function InterpretationReview({
             {drafts.length} {drafts.length === 1 ? "intention" : "intentions"} found
           </p>
           <p className="mt-1 text-sm leading-6 text-muted-foreground">
-            Review the titles, notes, estimates, and important assumptions before
-            they are saved to your flow.
+            Check the action and time estimate before adding it to your flow.
           </p>
         </div>
       </div>
@@ -67,112 +67,44 @@ export function InterpretationReview({
           return (
             <fieldset key={draft.taskRef} className="rounded-xl border p-4">
               <legend className="px-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-                Item {index + 1}
+                Intention {index + 1}
               </legend>
-              <label className="block text-sm font-semibold">
-                Action
-                <input
-                  value={draft.title}
-                  onChange={(event) =>
-                    updateDraft(index, { ...draft, title: event.target.value })
+              <Input
+                aria-label={`Intention ${index + 1} action`}
+                value={draft.title}
+                onChange={(event) =>
+                  updateDraft(index, { ...draft, title: event.target.value })
+                }
+                disabled={isSaving}
+                maxLength={180}
+                className="text-base"
+              />
+              <div className="mt-4">
+                <EffortSelector
+                  name={`effort-${draft.taskRef}`}
+                  value={isEffortOption(draft.effortMinutes) ? draft.effortMinutes : null}
+                  onChange={(effortMinutes) =>
+                    updateDraft(index, { ...draft, effortMinutes })
                   }
                   disabled={isSaving}
-                  maxLength={180}
-                  className="mt-2 w-full rounded-lg border bg-card px-3 py-2.5 text-base outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                  legend="Choose time effort"
                 />
-              </label>
-              <label className="mt-4 block text-sm font-semibold">
-                Notes <span className="font-normal text-muted-foreground">(optional)</span>
-                <textarea
-                  value={draft.notes}
-                  onChange={(event) =>
-                    updateDraft(index, { ...draft, notes: event.target.value })
-                  }
-                  disabled={isSaving}
-                  maxLength={1_000}
-                  rows={2}
-                  className="mt-2 w-full resize-y rounded-lg border bg-card px-3 py-2.5 text-sm leading-6 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                />
-              </label>
-              <div className="mt-4 flex flex-wrap items-center gap-3">
-                <label className="flex items-center gap-2 text-sm font-semibold">
-                  <Clock3 aria-hidden="true" className="size-4 text-primary" />
-                  Effort
-                  <input
-                    type="number"
-                    min={1}
-                    max={480}
-                    step={1}
-                    value={draft.effortMinutes}
-                    onChange={(event) =>
-                      updateDraft(index, {
-                        ...draft,
-                        effortMinutes: Number(event.target.value),
-                      })
-                    }
-                    disabled={isSaving}
-                    className="w-20 rounded-lg border bg-card px-2 py-1.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                  />
-                  min
-                </label>
-                <Badge variant="outline">
-                  {source.effort.source === "user-stated"
-                    ? "You stated this"
-                    : "AI estimate"}
-                </Badge>
                 {source.statedDeadline.value && (
-                  <Badge variant="secondary">Deadline you stated</Badge>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <Badge variant="secondary">Deadline you stated</Badge>
+                  </div>
                 )}
               </div>
 
-              {draft.assumptions.length > 0 && (
-                <div className="mt-4 rounded-lg bg-muted/55 p-3">
-                  <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-                    <Info aria-hidden="true" className="size-3.5" />
-                    Assumptions
-                  </p>
-                  <div className="mt-2 space-y-2">
-                    {draft.assumptions.map((assumption, assumptionIndex) => (
-                      <label
-                        key={assumption.key}
-                        className="flex items-start gap-2 text-sm leading-5"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={assumption.accepted}
-                          disabled={isSaving || !assumption.required}
-                          onChange={(event) => {
-                            const assumptions = draft.assumptions.map((item, itemIndex) =>
-                              itemIndex === assumptionIndex
-                                ? { ...item, accepted: event.target.checked }
-                                : item,
-                            );
-                            updateDraft(index, { ...draft, assumptions });
-                          }}
-                          className="mt-0.5 size-4 accent-[var(--primary)]"
-                        />
-                        <span>
-                          {assumption.text}
-                          {!assumption.required && (
-                            <span className="ml-1 text-xs text-muted-foreground">
-                              (low impact)
-                            </span>
-                          )}
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              )}
             </fieldset>
           );
         })}
       </div>
 
       {output.clarifications.length > 0 && (
-        <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
+        <div className="mt-4 rounded-xl border border-warning/35 bg-warning/12 p-4">
           <p className="flex items-center gap-2 font-semibold">
-            <CircleAlert aria-hidden="true" className="size-4 text-amber-700" />
+            <CircleAlert aria-hidden="true" className="size-4 text-warning-foreground" />
             A detail may need clarification
           </p>
           {output.clarifications.map((clarification) => (
@@ -186,8 +118,21 @@ export function InterpretationReview({
         </div>
       )}
 
+      {hasUnconfirmedAssumption && (
+        <div className="mt-4 rounded-xl border border-warning/35 bg-warning/12 p-4">
+          <p className="flex items-center gap-2 font-semibold">
+            <CircleAlert aria-hidden="true" className="size-4 text-warning-foreground" />
+            More detail is needed
+          </p>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            Revise the transcript with the missing detail before adding this to
+            your flow.
+          </p>
+        </div>
+      )}
+
       {errorMessage && (
-        <p className="mt-3 flex items-start gap-2 text-sm text-destructive" role="alert">
+        <p className="mt-3 flex items-start gap-2 text-sm text-error-foreground" role="alert">
           <CircleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
           {errorMessage}
         </p>
@@ -203,7 +148,7 @@ export function InterpretationReview({
             hasInvalidDraft
           }
         >
-          {isSaving ? "Saving your flow…" : "Add and update my flow"}
+          {isSaving ? "Saving your flow…" : "Add to my flow"}
         </Button>
         <Button variant="outline" onClick={onReviseTranscript} disabled={isSaving}>
           Revise transcript
@@ -211,9 +156,7 @@ export function InterpretationReview({
       </div>
       {(hasBlockingClarification || hasUnconfirmedAssumption) && (
         <p className="mt-2 text-xs leading-5 text-muted-foreground">
-          {hasBlockingClarification
-            ? "Revise the transcript with the missing detail before saving."
-            : "Confirm the important assumption to continue."}
+          Revise the transcript with the missing detail before saving.
         </p>
       )}
     </div>

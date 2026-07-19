@@ -2,16 +2,17 @@ import { HomeShell } from "@/components/home/home-shell";
 import { getHomeStateForDemo } from "@/lib/home-state";
 
 type HomePageProps = {
-  searchParams: Promise<{ demo?: string }>;
+  searchParams: Promise<{ demo?: string; privacy?: string }>;
 };
 
 export default async function Home({ searchParams }: HomePageProps) {
-  const { demo } = await searchParams;
+  const { demo, privacy } = await searchParams;
 
   return (
     <HomeShell
       state={getHomeStateForDemo(demo)}
       useLocalData={demo === undefined}
+      initialPrivacyOpen={demo === undefined && privacy === "1"}
     />
   );
 }

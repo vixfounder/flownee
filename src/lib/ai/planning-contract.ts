@@ -1,4 +1,5 @@
 import type { EffortSource, TaskAssumption } from "@/lib/storage/schema";
+import { isEffortOption, type EffortMinutes } from "@/lib/effort-options";
 
 export const FLOWNEE_PLANNING_SCHEMA_VERSION = 1 as const;
 export const FLOWNEE_PLANNING_MODEL = "gpt-5.6-sol" as const;
@@ -44,7 +45,7 @@ export type NewTaskOutput = {
     source: "user-stated" | "none";
   };
   effort: {
-    minutes: number;
+    minutes: EffortMinutes;
     source: "user-stated" | "ai-estimate";
     rationale: string;
   };
@@ -167,7 +168,7 @@ const newTaskSchema = strictObject({
     source: { type: "string", enum: ["user-stated", "none"] },
   }),
   effort: strictObject({
-    minutes: { type: "integer", minimum: 1, maximum: 480 },
+    minutes: { type: "integer", enum: [5, 10, 15, 30, 60, 120] },
     source: { type: "string", enum: ["user-stated", "ai-estimate"] },
     rationale: { type: "string" },
   }),
@@ -419,13 +420,8 @@ function parseNewTask(value: unknown, index: number): NewTaskOutput {
   }
   const effort = record(task.effort, `${label} effort`);
   exactKeys(effort, ["minutes", "source", "rationale"], `${label} effort`);
-  if (
-    typeof effort.minutes !== "number" ||
-    !Number.isInteger(effort.minutes) ||
-    effort.minutes < 1 ||
-    effort.minutes > 480
-  ) {
-    fail(`${label} effort must be 1-480 whole minutes.`);
+  if (!isEffortOption(effort.minutes)) {
+    fail(`${label} effort must be one of 5, 10, 15, 30, 60, or 120 minutes.`);
   }
   if (effort.source !== "user-stated" && effort.source !== "ai-estimate") {
     fail(`${label} effort source is invalid.`);

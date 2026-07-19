@@ -4,6 +4,211 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-19 — Settings app version
+
+- Session ID: `TBD` (supporting Settings refinement)
+- Objective: Show the current application version in the About Flownee section.
+- Codex contributions:
+  - Passed the repository version from the server-rendered Settings route into the client Settings screen.
+  - Added a separated `App version 0.1.0` line to the existing About Flownee card.
+  - Used `package.json` as the single source of truth so future release-version changes update the UI automatically.
+  - Added a regression assertion that the rendered About version matches package metadata.
+- Human product decision preserved:
+  - Victoria requested the app version in About Flownee and approved using the existing repository version `0.1.0`.
+- Verification:
+  - Settings at `390x844` displays `App version 0.1.0` with zero horizontal overflow.
+  - 24 test files and 80 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — Help and Settings screens
+
+- Session ID: `TBD` (supporting navigation and product-guidance session)
+- Objective: Add focused Help and Settings destinations and make them accessible from every shared header.
+- Codex contributions:
+  - Added active, accessible Help and Settings icon links to the shared header while preserving the privacy and theme controls.
+  - Replaced the long saved-on-device header label with the same status as a compact titled dot so all controls fit the fixed `430px` shell.
+  - Added a reusable internal-page shell matching Flownee's mobile-first layout.
+  - Built `/help` with the product journey, voice tips, correction guidance, recording diagnostics, and privacy summary.
+  - Built `/settings` with synchronized light/dark controls, local-data and privacy access, AI-processing boundaries, and product information.
+  - Added a server-driven privacy deep link that opens the existing dialog and clears its query when closed, without duplicating or weakening the confirmed delete flow.
+  - Added route, navigation, active-state, content, and settings-control coverage.
+- Human product and design decisions preserved:
+  - Victoria requested two new screens and matching Help and Settings icons on the header's right side.
+  - Victoria approved the exact screen scope and shared-header implementation plan before development.
+- Verification:
+  - Home at `390x844`: Help, Settings, privacy, and theme controls each measure `36x36`; the logo link remains `155x44`; no horizontal overflow.
+  - Help: `/help`, `Using Flownee` heading, active Help icon, microphone diagnostic link, and no overflow.
+  - Settings: `/settings`, `Your preferences` heading, active Settings icon, synchronized appearance buttons, privacy deep link, and no overflow.
+  - Privacy deep link opens the existing `privacy-title` dialog; closing it returns to `/` with no query and no data deletion.
+  - Desktop `1024x900`: all four home controls remain visible with no header or document overflow.
+  - 24 test files and 80 tests pass; lint and production build pass; `/help` and `/settings` are statically generated.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — interpretation-review label refinement
+
+- Session ID: `TBD` (supporting interaction-design session)
+- Objective: Remove the remaining redundant labels and provenance badges from the simplified interpretation review.
+- Codex contributions:
+  - Renamed each review card from `Item N` to `Intention N`.
+  - Removed the visible `Action` label while adding a per-intention accessible name to the editable title input.
+  - Consolidated `Choose one` and the selector's `Time effort` legend into one `Choose time effort` legend.
+  - Removed all effort-provenance badges from the review while retaining provenance in the task commit model.
+  - Preserved the stated-deadline badge because it represents an explicit user constraint.
+  - Expanded review-component tests to assert the new wording, removed copy, and accessible input name.
+- Human product and design decisions preserved:
+  - Victoria selected the exact `Intention N` and `Choose time effort` wording and removed visible action and provenance labels.
+  - Victoria approved the refinement plan before implementation.
+- Verification:
+  - Static rendering includes `Intention 1`, `Choose time effort`, and `aria-label="Intention 1 action"`.
+  - Static rendering excludes visible `Action`, `Choose one`, `Time effort`, `AI estimate`, `Changed by you`, and `You stated this` copy.
+  - 22 test files and 77 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — simplified interpretation review
+
+- Session ID: `TBD` (supporting interaction-design session)
+- Objective: Reduce the post-interpretation review to the few decisions that require user attention.
+- Codex contributions:
+  - Removed the optional-notes editor while preserving automatic AI-generated notes through the existing commit path.
+  - Removed assumption headings, text, and checkboxes from the review surface.
+  - Preserved safety by keeping important uncertainty blocking and replacing assumption confirmation with one concise `More detail is needed` message and transcript-revision path.
+  - Shortened the primary confirmation from `Add and update my flow` to `Add to my flow`.
+  - Added focused component coverage for the simplified surface and hidden-safety behavior, plus commit coverage proving automatic notes still persist.
+- Human product and design decisions preserved:
+  - Victoria identified the review as too complicated and explicitly removed optional notes and assumption controls.
+  - Victoria selected the shorter `Add to my flow` action and approved the simplification plan before implementation.
+- Verification:
+  - Static component rendering contains action editing, effort selection, and `Add to my flow`; it contains no Notes label, Assumptions label, assumption text, checkbox, or former primary-action copy.
+  - A required uncertainty renders the generic blocker, keeps the save button disabled, and retains `Revise transcript`; no important assumption is silently accepted.
+  - AI-generated notes are still committed automatically when present.
+  - Mobile `390x844` and desktop `1024x900` app-shell checks retain the header and voice action with zero horizontal overflow; no paid AI request was made for visual verification.
+  - 22 test files and 77 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — second approved wave-logo replacement
+
+- Session ID: `TBD` (supporting brand-integration session)
+- Objective: Replace the shared Flownee mark with the newly supplied blue/cyan/violet wave while preserving its exact artwork on both themes.
+- Codex contributions:
+  - Confirmed that the `1536x1024` source was an opaque RGB image with a subtly varying near-white background.
+  - Attempted a preservation-locked background extraction, inspected the result, and rejected it because it contained a baked checkerboard instead of alpha.
+  - Extracted the background deterministically from the original pixels using edge-connected background segmentation, retaining exact opaque artwork pixels and a 24 px transparent margin.
+  - Added the cache-safe `/flownee-mark-v2.png` asset URL and corrected intrinsic dimensions for the mark's wider aspect ratio.
+  - Reused the shared header and design-system integration without changing the wordmark, theme control, privacy action, header height, or square PWA icon.
+- Human product and design decisions preserved:
+  - Victoria supplied the replacement artwork and approved the background-removal and integration plan before implementation.
+  - The new horizontal mark replaces only the product-header treatment; the installed square icon remains unchanged.
+- Verification:
+  - Final asset: `1389x381`, `Format32bppArgb`, transparent corners, 24 px safety margin, and `513374` bytes.
+  - Header: `80x22`; design-system reference: `116x32`; optimized image requests load from the versioned source at the correct aspect ratio.
+  - Light and dark previews show no white rectangle, visible halo, or distortion.
+  - Mobile and centered-desktop app checks show zero horizontal overflow; the home link remains approximately `155px` wide and the shield/theme alignment is unchanged.
+  - 21 test files and 75 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — persistent header theme switch
+
+- Session ID: `TBD` (supporting interaction and accessibility session)
+- Objective: Make light and dark modes directly selectable from every app header using compact sun and moon icons.
+- Codex contributions:
+  - Added one reusable header theme control backed by the document theme as an external React store.
+  - Added device-preference fallback, safe browser persistence, same-tab notification, and cross-tab storage synchronization.
+  - Added an early root-theme initializer to avoid displaying the wrong theme before hydration.
+  - Removed the duplicate design-system-only text toggle so the shared header remains the single theme control.
+  - Added pure theme-resolution tests and shared-header accessibility coverage.
+- Human product and design decisions preserved:
+  - Victoria requested icon-only sun/moon switching in the header beside the privacy shield and approved the plan before implementation.
+  - The existing header size, logo, privacy action, color tokens, and mobile-shell width remain unchanged.
+- Verification:
+  - Home at `390x844`: privacy and theme controls are adjacent `36px` targets, with the theme control immediately to the shield's right; horizontal overflow is zero.
+  - Light selection applies `#F8FAFC`, exposes `Switch to dark mode`, and remains selected after a full navigation reload.
+  - Dark selection applies `#10152B` and exposes `Switch to light mode`.
+  - Design-system page contains exactly one theme control and no former `Show light/dark mode` text button.
+  - Desktop and mobile checks show zero horizontal overflow.
+  - 21 test files and 75 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — approved wave-logo integration
+
+- Session ID: `TBD` (supporting brand-integration session)
+- Objective: Integrate the supplied Flownee wave mark into the shared application identity without changing the installed PWA icon.
+- Codex contributions:
+  - Inspected the source PNG's alpha channel and visible pixel bounds before implementation.
+  - Preserved the supplied artwork exactly and removed only excess transparent canvas, retaining a transparent safety margin in `public/flownee-mark.png`.
+  - Replaced the shared header's previous square symbol with the horizontal mark while retaining the Flownee wordmark, accessible home link, page actions, and responsive header structure.
+  - Added the mark to the design-system reference and updated component coverage.
+- Human product and design decisions preserved:
+  - Victoria supplied the exact logo artwork and approved the integration plan before implementation.
+  - The new horizontal mark is used for product branding; the existing square icon remains the installed PWA and favicon asset until a dedicated square composition is approved.
+- Verification:
+  - Cropped asset: `530x171`, transparent ARGB PNG, with transparent corners and unchanged visible artwork.
+  - Mobile `390x844`: header mark renders at `80x26`, the design-system example at approximately `116x37`, all image requests load, and horizontal overflow is zero.
+  - Desktop `1024x900`: centered app shell renders the `80x26` mark; the linked home target is approximately `155x44`; horizontal overflow is zero.
+  - Light and dark design-system previews both retain a clear logo treatment.
+  - 20 test files and 72 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — Flownee color system
+
+- Session ID: `TBD` (supporting product-design and frontend-system session)
+- Objective: Integrate a calm, functional violet/teal/blue brand palette without sacrificing readability or over-coloring the product.
+- Codex contributions:
+  - Centralized raw brand, neutral, semantic, component, gradient, overlay, light-mode, and dark-mode tokens and exposed them through Tailwind v4.
+  - Added accessible reusable variants for buttons, badges, task cards, inputs, textareas, navigation, effort selection, voice states, warnings, and errors.
+  - Applied restrained status accents to the real home hierarchy and added gradient motion only to recording, AI processing, onboarding, and reference examples.
+  - Updated the owned logo, PWA colors, dialogs, and voice action while preserving product behavior.
+  - Added the no-index `/design-system` reference page and `docs/design/COLOR_SYSTEM.md`.
+- Human product and design decisions preserved:
+  - Victoria supplied the exact brand and neutral palettes, semantic roles, approximate usage ratio, gradient restrictions, dark-mode direction, component rules, and accessibility requirements.
+  - Victoria approved the implementation plan before code changes began.
+  - Bottom navigation is demonstrated as a reusable pattern but not inserted into the current product shell because Flownee has no real navigation destinations and the voice panel owns the bottom action area.
+- Accessibility evidence:
+  - White on primary violet: `4.92:1`; navy on teal: `6.46:1`; navy on light blue: `10.17:1`; primary navy on the light background: `15.14:1`; neutral secondary text on white: `4.97:1`.
+  - White on raw error red was insufficient at `4.31:1`, so destructive controls use the derived `#C7354F` at `5.18:1` while preserving `#D6455D` as the raw error token.
+  - Muted blue is not used for important small text on white; gradient text is placed on an accessible surface; animation stops under reduced-motion preference.
+- Verification:
+  - Desktop design-system page: nine component sections, all four task tones, all badge roles, shared inputs, and active navigation present; computed primary button is `#525AFF` with white text.
+  - Dark preview: background `#10152B`, surface border `#2A3452`, text `#F5F7FF`, adapted active navigation `#737BFF`, and zero overflow.
+  - Mobile `390x844`: home voice action remains flush to the bottom, the next-task card uses the dark surface with violet accent, effort prime notation remains intact, and both home and design-system pages have zero horizontal overflow.
+  - 20 test files and 72 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — discrete time-effort controls
+
+- Session ID: `TBD` (supporting product and interaction-design session)
+- Objective: Replace arbitrary minute entry with consistent, low-friction effort categories selected by AI and adjustable by the user.
+- Codex contributions:
+  - Added the approved `5`, `10`, `15`, `30`, `60`, and `120` minute contract, presented consistently as `5′`, `10′`, `15′`, `30′`, `60′`, and `120′+`.
+  - Constrained the GPT-5.6 schema and parser to reject all other new-task effort values and added conservative upward mapping instructions for spoken in-between durations.
+  - Built one accessible six-option radio selector for interpretation review and later task editing, with no number or text input.
+  - Preserved AI, user-stated, and user-edited provenance and retained legacy custom values until the user explicitly chooses a new option.
+  - Centralized effort display labels throughout the home screen.
+- Human product decision preserved:
+  - Victoria required small single-choice buttons, automatic AI selection, colored selection state, and manual changes by tapping another option.
+  - Victoria approved the implementation plan before any code changes began.
+- Verification:
+  - Static component coverage confirms six radio inputs, exactly one checked option, and no numeric input.
+  - Contract and commit tests reject unsupported values such as `20` minutes.
+  - Local sample UI displays `About 10′`, `Estimated 5′`, and `Estimated 30′`; old `min`, `hour`, and `hours` effort labels are absent and horizontal overflow is zero.
+  - 18 test files and 66 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
+## 2026-07-19 — shared application header
+
+- Session ID: `TBD` (supporting design session)
+- Objective: Give every rendered Flownee page a consistent header with the product logo.
+- Codex contributions:
+  - Extracted a reusable application-header component with the owned Flownee SVG logo and linked wordmark.
+  - Preserved the home privacy action and added the shared header to the recording diagnostic.
+  - Added component coverage for branding, home navigation, and optional page actions.
+- Human design decision preserved:
+  - Victoria required a plan-and-approval gate before implementation and approved the shared-header proposal before code changes began.
+- Verification:
+  - Narrow viewport: header approximately `64px` high, logo `36x36px`, privacy action retained, and no overflow.
+  - Desktop diagnostic: header content and page content both measure `896px` and share the same left and right alignment.
+  - 16 test files and 61 tests pass; lint and production build pass.
+  - Production deployment intentionally awaits separate product-owner approval.
+
 ## 2026-07-19 — cross-capture task batching
 
 - Session ID: `TBD` (supporting planning-quality session)

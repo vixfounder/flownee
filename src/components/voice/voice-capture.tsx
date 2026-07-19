@@ -15,6 +15,7 @@ import {
 
 import { InterpretationReview } from "@/components/voice/interpretation-review";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import {
   buildPlanningCommit,
   createInterpretationDrafts,
@@ -399,22 +400,22 @@ export function VoiceCapture({
       <div className="fixed bottom-0 left-1/2 z-20 w-full max-w-[430px] -translate-x-1/2 border-x border-t border-border/80 bg-background/90 pt-10 backdrop-blur-xl">
         <Button
           size="lg"
-          className="relative mx-auto flex h-[calc(5rem+max(1rem,env(safe-area-inset-bottom)))] w-full flex-col gap-0.5 rounded-none px-6 pb-[max(1rem,env(safe-area-inset-bottom))] pt-5 shadow-[0_14px_35px_-14px_rgba(31,103,58,0.8)]"
+          className="relative mx-auto flex h-[calc(5rem+max(1rem,env(safe-area-inset-bottom)))] w-full flex-col gap-0.5 rounded-none px-6 pb-[max(1rem,env(safe-area-inset-bottom))] pt-5 shadow-[0_14px_35px_-14px_rgb(82_90_255_/_0.8)]"
           aria-label="Add an intention by voice"
           onClick={() => void beginRecording()}
         >
-          <span className="absolute left-1/2 top-0 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary-foreground/25 bg-primary text-primary-foreground ring-4 ring-background">
+          <span className="absolute left-1/2 top-0 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-flow/70 bg-action text-action-foreground ring-4 ring-background shadow-[0_0_28px_var(--voice-glow)]">
             <Mic aria-hidden="true" className="size-7" />
           </span>
           <span className="mt-5 text-base leading-5 font-semibold">Add by voice</span>
-          <span className="text-xs font-normal text-primary-foreground/80">
+          <span className="text-xs font-normal text-action-foreground/80">
             Tap once and speak naturally
           </span>
         </Button>
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 z-40 flex items-end bg-foreground/25 p-0 backdrop-blur-sm sm:items-center sm:justify-center sm:p-6">
+        <div className="fixed inset-0 z-40 flex items-end bg-[var(--overlay)] p-0 backdrop-blur-sm sm:items-center sm:justify-center sm:p-6">
           <section
             aria-labelledby="voice-capture-title"
             aria-modal="true"
@@ -478,9 +479,10 @@ export function VoiceCapture({
 
               {state === "recording" && (
                 <div className="flex flex-col items-center py-6 text-center">
-                  <span className="relative flex size-20 items-center justify-center rounded-full bg-destructive text-white">
-                    <span className="absolute inset-0 animate-ping rounded-full bg-destructive/25 motion-reduce:animate-none" />
-                    <Mic aria-hidden="true" className="relative size-8" />
+                  <span className="animate-flownee-gradient animate-flownee-glow flex size-20 items-center justify-center rounded-full bg-flownee-gradient p-1">
+                    <span className="flex size-full items-center justify-center rounded-full bg-action text-action-foreground">
+                      <Mic aria-hidden="true" className="size-8" />
+                    </span>
                   </span>
                   <p className="mt-5 text-lg font-semibold">Listening…</p>
                   <p className="mt-1 text-sm text-muted-foreground">
@@ -502,7 +504,7 @@ export function VoiceCapture({
                 <div className="flex flex-col items-center py-8 text-center">
                   <LoaderCircle
                     aria-hidden="true"
-                    className="size-9 animate-spin text-primary motion-reduce:animate-none"
+                    className="size-9 animate-spin text-flow motion-reduce:animate-none"
                   />
                   <p className="mt-4 font-semibold">Turning your voice into text</p>
                   <p className="mt-1 text-sm text-muted-foreground">
@@ -516,20 +518,20 @@ export function VoiceCapture({
                   <label htmlFor="transcript-review" className="text-sm font-semibold">
                     Transcript
                   </label>
-                  <textarea
+                  <Textarea
                     id="transcript-review"
                     value={transcript}
                     onChange={(event) => setTranscript(event.target.value)}
                     maxLength={12_000}
                     rows={7}
-                    className="mt-2 w-full resize-y rounded-xl border bg-card px-4 py-3 text-base leading-7 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:opacity-60"
+                    className="mt-2 rounded-xl px-4 py-3 text-base leading-7"
                   />
                   <p className="mt-2 text-xs text-muted-foreground">
                     Correct transcription mistakes here. This does not add new
                     text-based task capture.
                   </p>
                   {errorMessage && (
-                    <p className="mt-3 flex items-start gap-2 text-sm text-destructive" role="alert">
+                    <p className="mt-3 flex items-start gap-2 text-sm text-error-foreground" role="alert">
                       <CircleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
                       {errorMessage}
                     </p>
@@ -554,9 +556,10 @@ export function VoiceCapture({
 
               {state === "planning" && (
                 <div className="flex flex-col items-center py-8 text-center">
-                  <span className="relative flex size-16 items-center justify-center rounded-2xl bg-secondary text-primary">
-                    <span className="absolute inset-0 animate-ping rounded-2xl bg-primary/10 motion-reduce:animate-none" />
-                    <Brain aria-hidden="true" className="relative size-7" />
+                  <span className="animate-flownee-gradient flex size-16 items-center justify-center rounded-2xl bg-flownee-gradient p-0.5">
+                    <span className="flex size-full items-center justify-center rounded-[0.65rem] bg-surface text-primary">
+                      <Brain aria-hidden="true" className="size-7" />
+                    </span>
                   </span>
                   <p className="mt-4 font-semibold">Finding the natural next steps</p>
                   <p className="mt-1 max-w-sm text-sm leading-6 text-muted-foreground">
@@ -585,8 +588,8 @@ export function VoiceCapture({
 
               {state === "planning-error" && (
                 <div className="py-4">
-                  <div className="rounded-xl border border-destructive/25 bg-destructive/5 p-4">
-                    <p className="flex items-start gap-2 font-semibold text-destructive">
+                  <div className="rounded-xl border border-error/30 bg-error/10 p-4">
+                    <p className="flex items-start gap-2 font-semibold text-error-foreground">
                       <CircleAlert aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
                       Your flow could not be updated yet
                     </p>
@@ -626,8 +629,8 @@ export function VoiceCapture({
 
               {state === "error" && (
                 <div className="py-4">
-                  <div className="rounded-xl border border-destructive/25 bg-destructive/5 p-4">
-                    <p className="flex items-start gap-2 font-semibold text-destructive">
+                  <div className="rounded-xl border border-error/30 bg-error/10 p-4">
+                    <p className="flex items-start gap-2 font-semibold text-error-foreground">
                       <CircleAlert aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
                       Voice capture needs another try
                     </p>
@@ -674,7 +677,7 @@ export function VoiceCapture({
 
               {state === "saved" && (
                 <div className="flex flex-col items-center py-8 text-center">
-                  <span className="flex size-16 items-center justify-center rounded-full bg-secondary text-primary">
+                  <span className="flex size-16 items-center justify-center rounded-full bg-completed text-completed-foreground">
                     <CheckCircle2 aria-hidden="true" className="size-8" />
                   </span>
                   <p className="mt-4 text-lg font-semibold">{savedMessage}</p>

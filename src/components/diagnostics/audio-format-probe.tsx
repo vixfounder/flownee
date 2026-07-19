@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { CheckCircle2, CircleAlert, Mic, ShieldCheck, Square } from "lucide-react";
 
+import { AppHeader } from "@/components/layout/app-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -82,7 +83,9 @@ export function AudioFormatProbe() {
     capabilities.hasMediaRecorder;
 
   return (
-    <main className="mx-auto min-h-svh max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
+    <>
+      <AppHeader contentClassName="max-w-4xl" />
+      <main className="mx-auto min-h-svh max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
       <div className="mb-8">
         <Badge variant="secondary" className="mb-4">Flownee diagnostic</Badge>
         <h1 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
@@ -192,7 +195,7 @@ export function AudioFormatProbe() {
             </div>
           )}
           {probe.status === "failed" && (
-            <p className="flex items-start gap-2 text-sm text-destructive" role="alert">
+            <p className="flex items-start gap-2 text-sm text-error-foreground" role="alert">
               <CircleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
               {probe.message}
             </p>
@@ -205,6 +208,7 @@ export function AudioFormatProbe() {
         actual Blob type, byte length, and pass/fail result in the compatibility
         matrix. A separate run is required on every supported device class.
       </p>
-    </main>
+      </main>
+    </>
   );
 }

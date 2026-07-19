@@ -23,7 +23,7 @@ export function PrivacyDataDialog({
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end bg-foreground/25 backdrop-blur-sm sm:items-center sm:justify-center sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-end bg-[var(--overlay)] backdrop-blur-sm sm:items-center sm:justify-center sm:p-6">
       <section
         aria-labelledby="privacy-title"
         aria-modal="true"
@@ -71,7 +71,7 @@ export function PrivacyDataDialog({
         <div className="mt-6 border-t pt-5">
           <h3 className="font-semibold">Delete all local Flownee data</h3>
           <p className="mt-1 text-sm leading-6 text-muted-foreground">This removes transcripts, tasks, plans, and revision metadata from this browser. It cannot retract requests already processed by OpenAI.</p>
-          {errorMessage && <p className="mt-3 text-sm text-destructive" role="alert">{errorMessage}</p>}
+          {errorMessage && <p className="mt-3 text-sm text-error-foreground" role="alert">{errorMessage}</p>}
           <div className="mt-4 flex flex-wrap gap-2">
             {!confirmDelete ? (
               <Button variant="outline" onClick={() => setConfirmDelete(true)} disabled={busy || !canDelete}>

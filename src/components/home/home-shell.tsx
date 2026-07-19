@@ -7,7 +7,6 @@ import {
   ChevronRight,
   CircleDot,
   Clock3,
-  Leaf,
   ListTodo,
   MoreHorizontal,
   ShieldCheck,
@@ -17,6 +16,7 @@ import {
 import { NetworkStatus } from "@/components/home/network-status";
 import { TaskActionsDialog } from "@/components/home/task-actions-dialog";
 import { PrivacyDataDialog } from "@/components/home/privacy-data-dialog";
+import { AppHeader } from "@/components/layout/app-header";
 import { VoiceCapture } from "@/components/voice/voice-capture";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -38,28 +38,19 @@ import { parsePlanningOutput } from "@/lib/ai/planning-contract";
 import { createReplanningRequest } from "@/lib/ai/planning-request";
 import { FlowneeRepository } from "@/lib/storage/database";
 import type { FlowneeSnapshot, Task } from "@/lib/storage/schema";
+import { effortLabel } from "@/lib/effort-options";
 
 type HomeShellProps = {
   state: HomeState;
   useLocalData?: boolean;
+  initialPrivacyOpen?: boolean;
 };
-
-function Brand() {
-  return (
-    <div className="flex items-center gap-2.5">
-      <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-        <Leaf aria-hidden="true" className="size-[1.15rem]" strokeWidth={2.2} />
-      </span>
-      <span className="text-lg font-semibold tracking-[-0.025em]">Flownee</span>
-    </div>
-  );
-}
 
 function EffortBadge({ minutes }: { minutes: number | null }) {
   return (
-    <Badge variant="secondary" className="gap-1.5 px-2.5 py-1 font-medium">
+    <Badge variant="scheduled" className="gap-1.5 px-2.5 py-1 font-medium">
       <Clock3 aria-hidden="true" />
-      {minutes === null ? "Estimate pending" : `About ${minutes} min`}
+      {minutes === null ? "Estimate pending" : `About ${effortLabel(minutes)}`}
     </Badge>
   );
 }
@@ -75,7 +66,7 @@ function TaskRow({
 }) {
   return (
     <li className="group flex items-center gap-3 py-3.5 first:pt-0 last:pb-0">
-      <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold text-muted-foreground">
+      <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-scheduled text-xs font-semibold text-scheduled-foreground">
         {index + 1}
       </span>
       <div className="min-w-0 flex-1">
@@ -85,7 +76,7 @@ function TaskRow({
         <p className="mt-0.5 text-xs text-muted-foreground">
           {task.estimatedEffortMinutes === null
             ? "Estimate pending"
-            : `Estimated ${task.estimatedEffortMinutes} min`}
+            : `Estimated ${effortLabel(task.estimatedEffortMinutes)}`}
         </p>
       </div>
       {onManage ? (
@@ -106,9 +97,9 @@ function TaskRow({
 
 function EmptyRecommendation() {
   return (
-    <Card className="min-h-[25rem] justify-center overflow-hidden border-border/80 shadow-[0_18px_50px_-28px_rgba(31,65,44,0.28)]">
+    <Card tone="suggested" className="min-h-[25rem] justify-center shadow-[0_18px_50px_-28px_rgb(82_90_255_/_0.28)]">
       <CardContent className="flex flex-col items-center px-6 py-8 text-center sm:px-12">
-        <span className="mb-6 flex size-16 items-center justify-center rounded-2xl bg-secondary text-primary">
+        <span className="mb-6 flex size-16 items-center justify-center rounded-2xl bg-highlight/30 text-foreground">
           <Sparkles aria-hidden="true" className="size-7" />
         </span>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
@@ -128,10 +119,10 @@ function EmptyRecommendation() {
 
 function LoadingRecommendation() {
   return (
-    <Card className="min-h-[25rem] justify-center" aria-busy="true">
+    <Card tone="suggested" className="min-h-[25rem] justify-center" aria-busy="true">
       <CardContent className="flex flex-col items-center px-8 text-center">
-        <span className="relative mb-6 flex size-16 items-center justify-center rounded-2xl bg-secondary text-primary">
-          <span className="absolute inset-0 animate-ping rounded-2xl bg-primary/10 motion-reduce:animate-none" />
+        <span className="relative mb-6 flex size-16 items-center justify-center rounded-2xl bg-scheduled text-scheduled-foreground">
+          <span className="absolute inset-0 animate-ping rounded-2xl bg-support/15 motion-reduce:animate-none" />
           <CircleDot aria-hidden="true" className="relative size-7" />
         </span>
         <h1 className="text-2xl font-semibold tracking-[-0.03em]">
@@ -147,18 +138,18 @@ function LoadingRecommendation() {
 
 function CompleteRecommendation({ count }: { count: number }) {
   return (
-    <Card className="min-h-[25rem] justify-center border-primary/20 bg-primary text-primary-foreground shadow-[0_18px_50px_-28px_rgba(31,65,44,0.5)]">
+    <Card tone="completed" className="min-h-[25rem] justify-center shadow-[0_18px_50px_-28px_rgb(74_181_181_/_0.35)]">
       <CardContent className="flex flex-col items-center px-8 text-center">
-        <span className="mb-6 flex size-16 items-center justify-center rounded-full bg-white/15">
+        <span className="mb-6 flex size-16 items-center justify-center rounded-full bg-completed text-completed-foreground">
           <CheckCircle2 aria-hidden="true" className="size-8" />
         </span>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/75">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-completed-foreground">
           All clear
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
           You’ve finished your flow.
         </h1>
-        <p className="mt-4 max-w-md leading-7 text-primary-foreground/80">
+        <p className="mt-4 max-w-md leading-7 text-muted-foreground">
           {count} {count === 1 ? "item is" : "items are"} complete. Enjoy the
           space—or add anything else that’s on your mind.
         </p>
@@ -181,16 +172,16 @@ function PlanRecommendation({
   onManage: (taskId: string) => void;
 }) {
   return (
-    <Card className="min-h-[25rem] border-primary/15 shadow-[0_18px_50px_-28px_rgba(31,65,44,0.3)]">
-      <CardHeader className="gap-3 border-b bg-secondary/45 pb-5">
+    <Card tone="next" className="min-h-[25rem] shadow-[0_18px_50px_-28px_rgb(82_90_255_/_0.3)]">
+      <CardHeader className="gap-3 border-b bg-important/55 pb-5">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge className="gap-1.5">
+          <Badge variant="important" className="gap-1.5">
             <Sparkles aria-hidden="true" />
             Do this now
           </Badge>
           {state.isUpdating && (
-            <Badge variant="outline" className="gap-1.5 bg-background/70">
-              <span className="size-1.5 animate-pulse rounded-full bg-primary motion-reduce:animate-none" />
+            <Badge variant="completed" className="gap-1.5">
+              <span className="size-1.5 animate-pulse rounded-full bg-flow motion-reduce:animate-none" />
               Updating your flow
             </Badge>
           )}
@@ -243,10 +234,10 @@ function UpcomingCard({ state, onManage }: { state: HomeState; onManage?: (taskI
   const upcoming = state.status === "plan" ? state.upcomingTasks : [];
 
   return (
-    <Card className="h-fit gap-4 py-5 shadow-none lg:sticky lg:top-6">
+    <Card tone="scheduled" className="h-fit gap-4 py-5 shadow-none lg:sticky lg:top-6">
       <CardHeader className="px-5">
         <div className="flex items-center gap-2">
-          <ListTodo aria-hidden="true" className="size-4 text-primary" />
+          <ListTodo aria-hidden="true" className="size-4 text-support" />
           <CardTitle className="text-base">Up next</CardTitle>
         </div>
         <CardDescription>
@@ -299,7 +290,11 @@ function SavedItemsCard({ tasks, onManage }: { tasks: Task[]; onManage: (taskId:
   );
 }
 
-export function HomeShell({ state: initialState, useLocalData = false }: HomeShellProps) {
+export function HomeShell({
+  state: initialState,
+  useLocalData = false,
+  initialPrivacyOpen = false,
+}: HomeShellProps) {
   const [state, setState] = useState<HomeState>(
     useLocalData ? { status: "loading" } : initialState,
   );
@@ -308,13 +303,25 @@ export function HomeShell({ state: initialState, useLocalData = false }: HomeShe
   const [actionBusy, setActionBusy] = useState(false);
   const [actionError, setActionError] = useState("");
   const [planningError, setPlanningError] = useState("");
-  const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(initialPrivacyOpen);
   const [privacyBusy, setPrivacyBusy] = useState(false);
   const [privacyError, setPrivacyError] = useState("");
   const [dataMessage, setDataMessage] = useState("");
   const [voiceCaptureKey, setVoiceCaptureKey] = useState(0);
   const replanAttemptRef = useRef(0);
   const replanAbortRef = useRef<AbortController | null>(null);
+
+  function clearPrivacyQuery() {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has("privacy")) return;
+    url.searchParams.delete("privacy");
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+  }
+
+  function closePrivacy() {
+    setPrivacyOpen(false);
+    clearPrivacyQuery();
+  }
 
   const refreshLocalState = useCallback(async () => {
     if (!useLocalData) return;
@@ -461,7 +468,7 @@ export function HomeShell({ state: initialState, useLocalData = false }: HomeShe
       setPlanningError("");
       setActionError("");
       setVoiceCaptureKey((current) => current + 1);
-      setPrivacyOpen(false);
+      closePrivacy();
       setDataMessage("All Flownee data stored in this browser was deleted.");
     } catch {
       setPrivacyError("Local data could not be deleted. Nothing was partially removed; please try again.");
@@ -476,16 +483,17 @@ export function HomeShell({ state: initialState, useLocalData = false }: HomeShe
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)) ?? [];
 
   return (
-    <div className="mx-auto min-h-svh max-w-[430px] border-x border-border/70 bg-background text-foreground shadow-[0_0_45px_-28px_rgba(31,103,58,0.45)]">
+    <div className="mx-auto min-h-svh max-w-[430px] border-x border-border/70 bg-background text-foreground shadow-[0_0_45px_-28px_rgb(82_90_255_/_0.3)]">
       <NetworkStatus />
-      <header className="border-b border-border/70 bg-background/80 px-4 backdrop-blur-lg sm:px-6">
-        <div className="mx-auto flex h-16 items-center justify-between">
-          <Brand />
-          <div className="flex items-center gap-1 sm:gap-3">
-            <div className="hidden items-center gap-2 text-xs text-muted-foreground sm:flex">
-              <span className="size-1.5 rounded-full bg-primary" />
-              <span>Saved on this device</span>
-            </div>
+      <AppHeader
+        actions={
+          <div className="flex items-center gap-1">
+            <span
+              className="size-1.5 rounded-full bg-primary"
+              title="Saved on this device"
+            >
+              <span className="sr-only">Saved on this device</span>
+            </span>
             <Button
               variant="ghost"
               size="icon-sm"
@@ -498,8 +506,8 @@ export function HomeShell({ state: initialState, useLocalData = false }: HomeShe
               <ShieldCheck aria-hidden="true" />
             </Button>
           </div>
-        </div>
-      </header>
+        }
+      />
 
       <main className="mx-auto px-4 pb-40 pt-7 sm:px-6 sm:pt-10">
         <div className="mb-7 sm:mb-9">
@@ -528,7 +536,7 @@ export function HomeShell({ state: initialState, useLocalData = false }: HomeShe
         </div>
 
         {planningError && (
-          <div className="mt-5 flex flex-wrap items-center gap-3 rounded-xl border border-destructive/25 bg-destructive/5 p-4 text-sm" role="alert">
+          <div className="mt-5 flex flex-wrap items-center gap-3 rounded-xl border border-error/30 bg-error/10 p-4 text-sm" role="alert">
             <p className="min-w-0 flex-1 text-muted-foreground">{planningError}</p>
             <Button
               variant="outline"
@@ -543,7 +551,7 @@ export function HomeShell({ state: initialState, useLocalData = false }: HomeShe
         )}
 
         {actionError && !selectedTask && (
-          <p className="mt-5 rounded-xl border border-destructive/25 bg-destructive/5 p-4 text-sm text-destructive" role="alert">
+          <p className="mt-5 rounded-xl border border-error/30 bg-error/10 p-4 text-sm text-error-foreground" role="alert">
             {actionError}
           </p>
         )}
@@ -575,7 +583,7 @@ export function HomeShell({ state: initialState, useLocalData = false }: HomeShe
           busy={privacyBusy}
           canDelete={useLocalData}
           errorMessage={privacyError}
-          onClose={() => setPrivacyOpen(false)}
+          onClose={closePrivacy}
           onDeleteAll={() => void deleteAllLocalData()}
         />
       )}
@@ -589,15 +597,14 @@ export function HomeShell({ state: initialState, useLocalData = false }: HomeShe
         onPostpone={(task) => updateStatus(task.id, "postponed")}
         onRestore={(task) => updateStatus(task.id, "active")}
         onSave={(task, changes) => {
-          const effort = changes.effort === "" ? null : Number(changes.effort);
           void mutateTask({
             kind: "upsert",
             task: {
               ...task,
               title: changes.title.trim(),
               notes: changes.notes.trim() || null,
-              estimatedEffortMinutes: effort,
-              effortSource: effort === null ? null : "user-edited",
+              estimatedEffortMinutes: changes.effortMinutes,
+              effortSource: "user-edited",
               updatedAt: new Date().toISOString(),
             },
           });

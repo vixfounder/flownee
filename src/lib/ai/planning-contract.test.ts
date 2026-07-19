@@ -115,6 +115,17 @@ describe("Flownee GPT-5.6 planning contract", () => {
     expect(parsePlanningOutput(output(), request)).toEqual(output());
   });
 
+  it("rejects effort values outside the approved options", () => {
+    const candidate = structuredClone(output()) as unknown as {
+      newTasks: Array<{ effort: { minutes: number } }>;
+    };
+    candidate.newTasks[0].effort.minutes = 20;
+
+    expect(() => parsePlanningOutput(candidate, request)).toThrow(
+      "must be one of 5, 10, 15, 30, 60, or 120 minutes",
+    );
+  });
+
   it.each([
     ["unknown plan reference", (candidate: PlanningOutput) => candidate.plan.orderedTaskRefs.splice(1, 1, "task:unknown")],
     ["duplicate plan reference", (candidate: PlanningOutput) => candidate.plan.orderedTaskRefs.splice(2, 1, "new:1")],

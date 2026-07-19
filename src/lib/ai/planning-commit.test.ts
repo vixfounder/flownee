@@ -11,14 +11,16 @@ import {
 
 describe("reviewed planning commit", () => {
   it("maps temporary references and user edits into atomic storage records", () => {
-    const drafts = createInterpretationDrafts(planningOutputFixture);
+    const output = structuredClone(planningOutputFixture);
+    output.newTasks[0].notes = "A concise detail prepared automatically.";
+    const drafts = createInterpretationDrafts(output);
     drafts[0].title = "Call Maria tonight";
     drafts[0].effortMinutes = 15;
     let sequence = 0;
 
     const commit = buildPlanningCommit({
       request: planningRequestFixture,
-      output: planningOutputFixture,
+      output,
       drafts,
       model: "gpt-5.6-sol",
       now: "2026-07-18T18:05:00.000Z",
@@ -32,6 +34,7 @@ describe("reviewed planning commit", () => {
       estimatedEffortMinutes: 15,
       effortSource: "user-edited",
       sourceTranscriptId: "transcript-1",
+      notes: "A concise detail prepared automatically.",
     });
     expect(commit.plan).toMatchObject({
       taskOrder: ["generated-1"],
@@ -57,5 +60,21 @@ describe("reviewed planning commit", () => {
         idFactory: () => crypto.randomUUID(),
       }),
     ).toThrow("Confirm each important assumption");
+  });
+
+  it("rejects a reviewed effort outside the approved options", () => {
+    const drafts = createInterpretationDrafts(planningOutputFixture);
+    drafts[0].effortMinutes = 20;
+
+    expect(() =>
+      buildPlanningCommit({
+        request: planningRequestFixture,
+        output: planningOutputFixture,
+        drafts,
+        model: "gpt-5.6-sol",
+        now: "2026-07-18T18:05:00.000Z",
+        idFactory: () => crypto.randomUUID(),
+      }),
+    ).toThrow("supported time option");
   });
 });

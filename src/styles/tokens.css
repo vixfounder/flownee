@@ -1,0 +1,165 @@
+:root,
+.light {
+  color-scheme: light;
+
+  --brand-primary: #525aff;
+  --brand-flow: #4ab5b5;
+  --brand-support: #6d8bc0;
+  --brand-highlight: #8fd9fb;
+  --flownee-gradient: linear-gradient(
+    135deg,
+    #525aff 0%,
+    #6d8bc0 38%,
+    #4ab5b5 72%,
+    #8fd9fb 100%
+  );
+
+  --background: #f8fafc;
+  --foreground: #17213f;
+  --card: #ffffff;
+  --card-foreground: #17213f;
+  --popover: #ffffff;
+  --popover-foreground: #17213f;
+  --surface: #ffffff;
+  --text-primary: #17213f;
+  --text-secondary: #667085;
+
+  --primary: #525aff;
+  --primary-foreground: #ffffff;
+  --action: #525aff;
+  --action-hover: #454ce6;
+  --action-active: #3d43d2;
+  --action-foreground: #ffffff;
+
+  --secondary: #e7f6f6;
+  --secondary-foreground: #1e5f61;
+  --muted: #f0f3f8;
+  --muted-foreground: #667085;
+  --accent: #eaf0fb;
+  --accent-foreground: #405985;
+
+  --success: #4ab5b5;
+  --success-foreground: #173f42;
+  --warning: #e9a23b;
+  --warning-foreground: #5a3700;
+  --error: #d6455d;
+  --error-foreground: #a92c43;
+  --destructive: #c7354f;
+  --destructive-foreground: #ffffff;
+
+  --important-background: #eeeefe;
+  --important-foreground: #373dc2;
+  --completed-background: #e7f6f6;
+  --completed-foreground: #1e5f61;
+  --scheduled-background: #e9eef7;
+  --scheduled-foreground: #405985;
+  --suggested-background: #eaf8fe;
+  --suggested-foreground: #17213f;
+
+  --border: #e5eaf2;
+  --input: #d7deea;
+  --ring: #525aff;
+  --voice-glow: rgb(143 217 251 / 45%);
+  --overlay: rgb(23 33 63 / 25%);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: #10152b;
+  --foreground: #f5f7ff;
+  --card: #181f38;
+  --card-foreground: #f5f7ff;
+  --popover: #181f38;
+  --popover-foreground: #f5f7ff;
+  --surface: #181f38;
+  --text-primary: #f5f7ff;
+  --text-secondary: #b7c0d8;
+
+  --primary: #737bff;
+  --primary-foreground: #10152b;
+  --action: #525aff;
+  --action-hover: #636bff;
+  --action-active: #464de6;
+  --action-foreground: #ffffff;
+
+  --secondary: #203b47;
+  --secondary-foreground: #75cfcf;
+  --muted: #202943;
+  --muted-foreground: #b7c0d8;
+  --accent: #253052;
+  --accent-foreground: #c8d5ef;
+
+  --success: #75cfcf;
+  --success-foreground: #10152b;
+  --warning: #f2ba62;
+  --warning-foreground: #2e2108;
+  --error: #ff7a90;
+  --error-foreground: #ff9aac;
+  --destructive: #c7354f;
+  --destructive-foreground: #ffffff;
+
+  --important-background: #2b3162;
+  --important-foreground: #c7caff;
+  --completed-background: #203b47;
+  --completed-foreground: #75cfcf;
+  --scheduled-background: #27344e;
+  --scheduled-foreground: #a9bfe8;
+  --suggested-background: #19354a;
+  --suggested-foreground: #c4eeff;
+
+  --border: #2a3452;
+  --input: #3a4666;
+  --ring: #737bff;
+  --voice-glow: rgb(143 217 251 / 28%);
+  --overlay: rgb(5 8 20 / 58%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+
+    --background: #10152b;
+    --foreground: #f5f7ff;
+    --card: #181f38;
+    --card-foreground: #f5f7ff;
+    --popover: #181f38;
+    --popover-foreground: #f5f7ff;
+    --surface: #181f38;
+    --text-primary: #f5f7ff;
+    --text-secondary: #b7c0d8;
+    --primary: #737bff;
+    --primary-foreground: #10152b;
+    --action: #525aff;
+    --action-hover: #636bff;
+    --action-active: #464de6;
+    --action-foreground: #ffffff;
+    --secondary: #203b47;
+    --secondary-foreground: #75cfcf;
+    --muted: #202943;
+    --muted-foreground: #b7c0d8;
+    --accent: #253052;
+    --accent-foreground: #c8d5ef;
+    --success: #75cfcf;
+    --success-foreground: #10152b;
+    --warning: #f2ba62;
+    --warning-foreground: #2e2108;
+    --error: #ff7a90;
+    --error-foreground: #ff9aac;
+    --destructive: #c7354f;
+    --destructive-foreground: #ffffff;
+    --important-background: #2b3162;
+    --important-foreground: #c7caff;
+    --completed-background: #203b47;
+    --completed-foreground: #75cfcf;
+    --scheduled-background: #27344e;
+    --scheduled-foreground: #a9bfe8;
+    --suggested-background: #19354a;
+    --suggested-foreground: #c4eeff;
+    --border: #2a3452;
+    --input: #3a4666;
+    --ring: #737bff;
+    --voice-glow: rgb(143 217 251 / 28%);
+    --overlay: rgb(5 8 20 / 58%);
+  }
+}

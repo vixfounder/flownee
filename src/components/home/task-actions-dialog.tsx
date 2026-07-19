@@ -4,6 +4,10 @@ import { useState } from "react";
 import { Check, Clock3, RotateCcw, Trash2, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { EffortSelector } from "@/components/ui/effort-selector";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { effortLabel, isEffortOption, type EffortMinutes } from "@/lib/effort-options";
 import type { Task } from "@/lib/storage/schema";
 
 type TaskActionsDialogProps = {
@@ -14,7 +18,7 @@ type TaskActionsDialogProps = {
   onComplete: (task: Task) => void;
   onPostpone: (task: Task) => void;
   onRestore: (task: Task) => void;
-  onSave: (task: Task, changes: { title: string; notes: string; effort: string }) => void;
+  onSave: (task: Task, changes: { title: string; notes: string; effortMinutes: EffortMinutes }) => void;
   onDelete: (task: Task) => void;
 };
 
@@ -31,18 +35,17 @@ export function TaskActionsDialog({
 }: TaskActionsDialogProps) {
   const [title, setTitle] = useState(() => task?.title ?? "");
   const [notes, setNotes] = useState(() => task?.notes ?? "");
-  const [effort, setEffort] = useState(() => task?.estimatedEffortMinutes?.toString() ?? "");
+  const originalEffort = task?.estimatedEffortMinutes ?? null;
+  const [effortMinutes, setEffortMinutes] = useState<EffortMinutes | null>(() =>
+    isEffortOption(originalEffort) ? originalEffort : null,
+  );
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   if (!task) return null;
-  const effortNumber = effort === "" ? null : Number(effort);
-  const editIsValid =
-    title.trim().length > 0 &&
-    (effortNumber === null ||
-      (Number.isInteger(effortNumber) && effortNumber >= 1 && effortNumber <= 480));
+  const editIsValid = title.trim().length > 0 && effortMinutes !== null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end bg-foreground/25 backdrop-blur-sm sm:items-center sm:justify-center sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-end bg-[var(--overlay)] backdrop-blur-sm sm:items-center sm:justify-center sm:p-6">
       <section
         aria-labelledby="task-actions-title"
         aria-modal="true"
@@ -83,49 +86,52 @@ export function TaskActionsDialog({
         <div className="mt-6 space-y-4 border-t pt-5">
           <div>
             <label htmlFor="task-title" className="text-sm font-semibold">Title</label>
-            <input
+            <Input
               id="task-title"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
               maxLength={160}
               disabled={busy}
-              className="mt-2 h-11 w-full rounded-lg border bg-card px-3 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+              className="mt-2"
             />
           </div>
           <div>
             <label htmlFor="task-notes" className="text-sm font-semibold">Notes</label>
-            <textarea
+            <Textarea
               id="task-notes"
               value={notes}
               onChange={(event) => setNotes(event.target.value)}
               maxLength={2_000}
               rows={3}
               disabled={busy}
-              className="mt-2 w-full resize-y rounded-lg border bg-card px-3 py-2 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+              className="mt-2"
             />
           </div>
           <div>
-            <label htmlFor="task-effort" className="text-sm font-semibold">Estimated minutes</label>
-            <input
-              id="task-effort"
-              type="number"
-              min={1}
-              max={480}
-              step={1}
-              inputMode="numeric"
-              value={effort}
-              onChange={(event) => setEffort(event.target.value)}
+            <EffortSelector
+              name={`task-effort-${task.id}`}
+              value={effortMinutes}
+              onChange={setEffortMinutes}
               disabled={busy}
-              className="mt-2 h-11 w-full rounded-lg border bg-card px-3 outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
             />
+            {originalEffort !== null && !isEffortOption(originalEffort) && (
+              <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                The previous estimate was {effortLabel(originalEffort)}. Choose one
+                of the new time options before saving.
+              </p>
+            )}
           </div>
         </div>
 
-        {errorMessage && <p className="mt-4 text-sm text-destructive" role="alert">{errorMessage}</p>}
+        {errorMessage && <p className="mt-4 text-sm text-error-foreground" role="alert">{errorMessage}</p>}
 
         <div className="mt-6 flex flex-wrap items-center gap-2">
           <Button
-            onClick={() => onSave(task, { title, notes, effort })}
+            onClick={() => {
+              if (effortMinutes !== null) {
+                onSave(task, { title, notes, effortMinutes });
+              }
+            }}
             disabled={busy || !editIsValid}
           >
             Save changes

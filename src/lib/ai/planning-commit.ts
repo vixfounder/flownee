@@ -4,6 +4,7 @@ import type {
   PlanningRequest,
 } from "@/lib/ai/planning-contract";
 import type { ExecutionPlan, Task } from "@/lib/storage/schema";
+import { isEffortOption } from "@/lib/effort-options";
 
 export type InterpretationDraft = {
   taskRef: string;
@@ -83,12 +84,10 @@ export function buildPlanningCommit({
     const title = draft.title.trim();
     const notes = draft.notes.trim();
     if (!title) throw new TypeError("Every interpreted task needs a title.");
-    if (
-      !Number.isInteger(draft.effortMinutes) ||
-      draft.effortMinutes < 1 ||
-      draft.effortMinutes > 480
-    ) {
-      throw new TypeError("Every effort estimate must be 1-480 whole minutes.");
+    if (!isEffortOption(draft.effortMinutes)) {
+      throw new TypeError(
+        "Every effort estimate must use a supported time option.",
+      );
     }
     const assumptions = task.assumptions.map((assumption) => {
       const reviewed = draft.assumptions.find((item) => item.key === assumption.key);

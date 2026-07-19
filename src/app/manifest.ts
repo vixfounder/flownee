@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "A calm, voice-first assistant for everyday intentions and practical next actions.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f7faf7",
-    theme_color: "#287344",
+    background_color: "#f8fafc",
+    theme_color: "#525aff",
     orientation: "portrait-primary",
     icons: [
       {

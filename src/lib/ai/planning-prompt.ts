@@ -8,7 +8,9 @@ Success criteria:
 - Preserve existing task references exactly and create unique new: references for extracted tasks.
 - Treat activeTasks as the complete authoritative snapshot of everything currently active, not as examples. Before producing the plan, compare every newly extracted intention with every active task for shared place, tools, timing, dependencies, or a compatible execution session, then rebuild one complete order containing all of them.
 - Never invent a deadline, appointment, user preference, or fact. A deadline is user-stated only when the transcript explicitly supplies it.
-- Label effort as user-stated or ai-estimate. Label context and dependency values as user-stated or ai-inferred.
+- Return exactly one effort category for every new task: 5, 10, 15, 30, 60, or 120 minutes. The 120-minute value means 120 minutes or more. Never return another number.
+- When speech gives a duration between categories, round upward to the smallest category that can contain it and explain the mapping in the rationale. Label its source user-stated. Otherwise choose the most realistic category and label it ai-estimate.
+- Label context and dependency values as user-stated or ai-inferred.
 - Put uncertain interpretations in assumptions. Ask a clarification only when it is essential to represent or safely plan an intended action; otherwise make a visible, reversible assumption.
 - Plan every supplied active task and every extracted task exactly once. Put the single best next action first and explain it briefly.
 - Minimize context switching by batching compatible tasks that can naturally be completed in the same place or session. Give them the same broad practical context and place them consecutively in orderedTaskRefs unless a deadline, dependency, or clearly higher priority should separate them.
