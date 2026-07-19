@@ -4,6 +4,120 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-19 — compact voice-capture dialog
+
+- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Objective: Fit the complete initial recording experience in the available viewport without an internal scrollbar.
+- Codex contributions:
+  - Removed unused square layout space around the landscape illustration without reducing its rendered width.
+  - Reduced only the vertical gaps and padding around the header, illustration, microphone, recording copy, actions, and privacy note.
+  - Preserved component sizes, wording, colors, animation, recording controls, and responsive width.
+- Human product and design decisions preserved:
+  - Victoria requested the spacing reduction and explicitly required the dialog to fit the page without scrolling.
+- Verification:
+  - At the available `1280x720` viewport, the centered `430px` dialog is approximately `587px` high; its client and scroll heights are both `585px`, so no internal scrollbar is present.
+  - The image still renders `365px` wide; measured header-to-image, image-to-microphone, and microphone-to-status gaps are `16px`, `12px`, and `8px`.
+  - No horizontal overflow was found; the recording dialog was closed without transcription or upload.
+  - 26 test files and 83 tests pass; lint and production build pass.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
+## 2026-07-19 — Flownee illustration timing refinement
+
+- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Objective: Simplify the layered illustration and slow the changing intention details.
+- Codex contributions:
+  - Removed the circular background, border, inset shadow, and circular clipping without changing artwork alignment or size.
+  - Changed the intention-layer interval from one second to two seconds and made the timing an explicitly tested constant.
+- Human product and design decisions preserved:
+  - Victoria requested the large circle be removed and selected a two-second interval between intention images.
+- Verification:
+  - Local browser measurement confirms the `365x365` artwork area now has a transparent background, `0px` border and radius, no shadow, and no clipping.
+  - Observed intention changes were approximately two seconds apart and remained in sequence.
+  - No horizontal overflow was found; the dialog was closed without transcription or upload.
+  - 26 test files and 83 tests pass; lint and production build pass.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
+## 2026-07-19 — layered Flownee intention illustration
+
+- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Objective: Replace the temporary capture-screen mock with the approved Flownee artwork and rotating intention details.
+- Codex contributions:
+  - Inspected the five supplied WebP assets and confirmed that the four intention images are transparent, aligned overlays for the fixed main illustration.
+  - Built a responsive circular composite with one fixed background layer and a one-second, four-step detail cycle.
+  - Added a short opacity transition and stopped the cycle when the illustration unmounts.
+  - Honored reduced-motion preferences by keeping the first intention layer static.
+  - Added regression coverage for asset order and cycle wraparound.
+- Human product and design decisions preserved:
+  - Victoria supplied the final artwork, selected `main.webp` as the permanent first layer, specified the four intention layers and their order, chose a one-second interval, and requested a circular presentation.
+- Verification:
+  - Local browser inspection in light and dark modes shows a responsive `365x365` circular composite with the fixed main layer and one transparent detail layer.
+  - Timing samples confirm the visible order `1 → 2 → 3 → 4 → 1`, with each change driven by the one-second interval.
+  - No horizontal overflow was found; the dialog was closed during recording without transcription or upload.
+  - 26 test files and 83 tests pass; lint and production build pass.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
+## 2026-07-19 — initial voice-capture image mock
+
+- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Objective: Simplify the initial capture hierarchy and reserve a prominent location for a future Flownee image.
+- Codex contributions:
+  - Removed the modal-only `Add by voice` eyebrow without changing the fixed bottom entry action.
+  - Reduced the dynamic capture title to `20px` and kept the existing accessible dialog label.
+  - Enlarged the mobile bottom sheet to a `90svh` minimum with a `96svh` maximum and safe vertical scrolling.
+  - Added a responsive 4:3 image placeholder beneath the title and restricted it to checking, microphone-request, and recording states.
+  - Added explicit state-visibility coverage so the placeholder cannot leak into transcription, review, planning, error, or saved states.
+- Human product and design decisions preserved:
+  - Victoria removed the redundant modal label, requested a slightly smaller title, and chose to reserve space beneath it for a future image of Flownee.
+  - Victoria explicitly approved increasing the mobile dialog so the future image can be larger.
+- Verification:
+  - Local browser inspection shows one `Tell Flownee what’s on your mind` heading at `20px`, followed by an accessible Flownee-image placeholder.
+  - At the available `1280x720` viewport, the centered sheet is `430px` wide, the placeholder is approximately `365x274px` at a 4:3 ratio, vertical overflow is safely scrollable, and there is no horizontal overflow.
+  - The sheet was closed during microphone request; no audio was stopped, transcribed, or uploaded.
+  - 26 test files and 82 tests pass; lint and production build pass.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
+## 2026-07-19 — installed-app icon alignment
+
+- Session ID: `TBD` (supporting brand and PWA refinement)
+- Objective: Make the installed desktop/PWA icon use the same approved Flownee artwork as the shared header.
+- Codex contributions:
+  - Identified the legacy `/icon.svg` as the installed-app source while the header used `/flownee-mark-v2.png`.
+  - Followed the image-preservation workflow and rejected a generative redraw in favor of deterministic scaling and centering of the exact approved pixels.
+  - Created standard `192x192` and `512x512` manifest icons, a safe-zone `512x512` maskable icon, a `512x512` Next metadata icon, and a `180x180` Apple touch icon.
+  - Updated the manifest, added icon regression coverage, removed the obsolete SVG, and versioned the service-worker icon cache.
+- Human product and design decisions preserved:
+  - Victoria required the desktop-installed icon to match the approved Flownee logo and approved a light-neutral square presentation.
+  - The wave artwork and its colors remain unchanged; only square composition, scale, background, and maskable safe margins were added.
+- Verification:
+  - All five generated assets have their exact expected dimensions and `#F8FAFC` corner/background pixels.
+  - The manifest returns HTTP 200 with two standard PNG icons and one maskable PNG icon.
+  - `/icon.png`, `/apple-icon.png`, and all three `/icons/` files return HTTP 200 with `image/png`.
+  - Rendered metadata links expose the `512x512` favicon, `180x180` Apple icon, and web manifest.
+  - 25 test files and 81 tests pass; lint and production build pass.
+  - Existing installed copies may need to be uninstalled and reinstalled after deployment because desktop launchers cache PWA icons.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
+## 2026-07-19 — Help privacy consolidation and header simplification
+
+- Session ID: `TBD` (supporting navigation and privacy refinement)
+- Objective: Remove ambiguous header indicators and make Help the single destination for privacy information and local-data deletion.
+- Codex contributions:
+  - Removed the permanent saved-status dot and privacy shield from the home header.
+  - Removed the home-only privacy query, modal, and deletion state while preserving unrelated local task workflows.
+  - Moved the complete local-storage, voice-processing, planning, rate-limit, and deletion guidance into an accessible `Privacy & data` region on Help.
+  - Preserved the two-step, atomic IndexedDB deletion control with busy, success, error, and safe-cancel states.
+  - Redirected the Settings privacy action to `/help#privacy-data` and updated regression coverage.
+- Human product and design decisions preserved:
+  - Victoria identified the saved-status dot as unexplained and removed both it and the privacy shield.
+  - Victoria selected Help as the single home for privacy/data information and approved the consolidation plan before implementation.
+- Verification:
+  - Home header exposes Help, Settings, and theme controls only; no saved-status dot or privacy shield remains.
+  - Settings navigates to `/help#privacy-data`, where the complete privacy content and deletion control render as an accessible region.
+  - Browser verification entered and safely cancelled the delete confirmation without deleting local data.
+  - Centered desktop Help layout has no horizontal overflow.
+  - 24 test files and 80 tests pass; lint and production build pass; `/help` remains statically generated.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
 ## 2026-07-19 — Settings app version
 
 - Session ID: `TBD` (supporting Settings refinement)

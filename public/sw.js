@@ -1,5 +1,10 @@
-const SHELL_CACHE = "flownee-shell-v1";
-const SHELL_FILES = ["/", "/icon.svg"];
+const SHELL_CACHE = "flownee-shell-v2";
+const SHELL_FILES = [
+  "/",
+  "/icons/flownee-icon-192.png",
+  "/icons/flownee-icon-512.png",
+  "/icons/flownee-maskable-512.png",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -40,7 +45,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (url.pathname === "/icon.svg") {
+  if (url.pathname.startsWith("/icons/")) {
     event.respondWith(
       caches.match(request).then((cached) => cached || fetch(request)),
     );

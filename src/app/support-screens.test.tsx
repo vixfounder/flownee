@@ -16,7 +16,10 @@ describe("support screens", () => {
     expect(markup).toContain("Voice tips");
     expect(markup).toContain("Correcting your flow");
     expect(markup).toContain('href="/diagnostics/recording"');
-    expect(markup).toContain("Your privacy");
+    expect(markup).toContain('id="privacy-data"');
+    expect(markup).toContain("Privacy &amp; data");
+    expect(markup).toContain("You stay in control.");
+    expect(markup).toContain("Delete local data");
   });
 
   it("renders appearance, privacy, AI, and product settings", () => {
@@ -26,7 +29,7 @@ describe("support screens", () => {
     expect(markup).toContain("Appearance");
     expect(markup).toContain('aria-label="Color theme"');
     expect(markup).toContain("Privacy and local data");
-    expect(markup).toContain('href="/?privacy=1"');
+    expect(markup).toContain('href="/help#privacy-data"');
     expect(markup).toContain("AI processing");
     expect(markup).toContain("About Flownee");
     expect(markup).toContain("App version");

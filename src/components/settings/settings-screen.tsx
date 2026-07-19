@@ -56,7 +56,7 @@ export function SettingsScreen({ appVersion }: SettingsScreenProps) {
             Confirmed transcripts, tasks, and plans are stored in this browser. Open the existing controls to review the data boundaries or delete everything locally.
           </p>
           <Button asChild variant="outline" className="mt-4">
-            <Link href="/?privacy=1">Open privacy and data controls</Link>
+            <Link href="/help#privacy-data">Open privacy and data controls</Link>
           </Button>
         </CardContent>
       </Card>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
   Brain,
@@ -38,7 +39,7 @@ import {
 } from "@/lib/audio/voice-recorder";
 import { FlowneeRepository } from "@/lib/storage/database";
 
-type CaptureState =
+export type CaptureState =
   | "idle"
   | "checking"
   | "requesting"
@@ -52,6 +53,81 @@ type CaptureState =
   | "error"
   | "planning-error"
   | "unavailable";
+
+export function shouldShowFlowneeImageMock(state: CaptureState): boolean {
+  return state === "checking" || state === "requesting" || state === "recording";
+}
+
+export const FLOWNEE_INTENTION_IMAGES = [
+  "/images/flownee/intention 1.webp",
+  "/images/flownee/intention 2.webp",
+  "/images/flownee/intention 3.webp",
+  "/images/flownee/intention 4.webp",
+] as const;
+
+export const FLOWNEE_INTENTION_INTERVAL_MS = 2000;
+
+export function nextFlowneeIntentionIndex(currentIndex: number): number {
+  return (currentIndex + 1) % FLOWNEE_INTENTION_IMAGES.length;
+}
+
+function FlowneeIntentionIllustration() {
+  const [activeIntentionIndex, setActiveIntentionIndex] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveIntentionIndex(nextFlowneeIntentionIndex);
+    }, FLOWNEE_INTENTION_INTERVAL_MS);
+
+    return () => window.clearInterval(intervalId);
+  }, [prefersReducedMotion]);
+
+  return (
+    <div
+      aria-label="Flownee surrounded by changing everyday intentions"
+      className="relative mx-auto mt-1 aspect-[8/5] w-full max-w-[365px]"
+      role="img"
+    >
+      <div className="absolute inset-0 scale-[1.12]">
+        <Image
+          alt=""
+          className="object-contain"
+          fill
+          priority
+          sizes="(max-width: 430px) calc(100vw - 40px), 365px"
+          src="/images/flownee/main.webp"
+        />
+        {FLOWNEE_INTENTION_IMAGES.map((src, index) => (
+          <Image
+            alt=""
+            aria-hidden="true"
+            className={`object-contain transition-opacity duration-200 ease-in-out motion-reduce:transition-none ${
+              index === activeIntentionIndex ? "opacity-100" : "opacity-0"
+            }`}
+            fill
+            key={src}
+            priority
+            sizes="(max-width: 430px) calc(100vw - 40px), 365px"
+            src={src}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 type ApiError = {
   error?: {
@@ -419,27 +495,22 @@ export function VoiceCapture({
           <section
             aria-labelledby="voice-capture-title"
             aria-modal="true"
-            className="w-full rounded-t-3xl border bg-background px-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-5 shadow-2xl sm:max-w-[430px] sm:rounded-2xl sm:p-6"
+            className="max-h-[96svh] min-h-[90svh] w-full overflow-y-auto rounded-t-3xl border bg-background px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 shadow-2xl sm:min-h-0 sm:max-w-[430px] sm:rounded-2xl sm:px-6 sm:pb-4 sm:pt-3"
             role="dialog"
           >
             <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                  Add by voice
-                </p>
-                <h2
-                  id="voice-capture-title"
-                  className="mt-1 text-2xl font-semibold tracking-[-0.03em]"
-                >
-                  {state === "review"
-                    ? "Does this look right?"
-                    : state === "interpretation" || state === "committing"
-                      ? "Review what Flownee understood"
+              <h2
+                id="voice-capture-title"
+                className="text-xl font-semibold tracking-[-0.03em]"
+              >
+                {state === "review"
+                  ? "Does this look right?"
+                  : state === "interpretation" || state === "committing"
+                    ? "Review what Flownee understood"
                     : state === "saved"
                       ? "Flow updated"
                       : "Tell Flownee what’s on your mind"}
-                </h2>
-              </div>
+              </h2>
               <Button
                 variant="ghost"
                 size="icon"
@@ -455,22 +526,29 @@ export function VoiceCapture({
               </Button>
             </div>
 
-            <div className="mt-7" aria-live="polite">
+            {shouldShowFlowneeImageMock(state) && (
+              <FlowneeIntentionIllustration />
+            )}
+
+            <div
+              className={shouldShowFlowneeImageMock(state) ? "mt-2" : "mt-6"}
+              aria-live="polite"
+            >
               {state === "checking" && (
-                <div className="flex flex-col items-center py-8 text-center">
+                <div className="flex flex-col items-center py-2 text-center">
                   <LoaderCircle aria-hidden="true" className="size-9 animate-spin text-primary motion-reduce:animate-none" />
-                  <p className="mt-4 font-semibold">Getting voice capture ready</p>
+                  <p className="mt-2 font-semibold">Getting voice capture ready</p>
                   <p className="mt-1 text-sm text-muted-foreground">Your saved tasks remain on this device.</p>
                 </div>
               )}
 
               {state === "requesting" && (
-                <div className="flex flex-col items-center py-8 text-center">
+                <div className="flex flex-col items-center py-2 text-center">
                   <LoaderCircle
                     aria-hidden="true"
                     className="size-9 animate-spin text-primary motion-reduce:animate-none"
                   />
-                  <p className="mt-4 font-semibold">Waiting for microphone access</p>
+                  <p className="mt-2 font-semibold">Waiting for microphone access</p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     Allow access in your browser to start recording.
                   </p>
@@ -478,17 +556,17 @@ export function VoiceCapture({
               )}
 
               {state === "recording" && (
-                <div className="flex flex-col items-center py-6 text-center">
+                <div className="flex flex-col items-center py-1 text-center">
                   <span className="animate-flownee-gradient animate-flownee-glow flex size-20 items-center justify-center rounded-full bg-flownee-gradient p-1">
                     <span className="flex size-full items-center justify-center rounded-full bg-action text-action-foreground">
                       <Mic aria-hidden="true" className="size-8" />
                     </span>
                   </span>
-                  <p className="mt-5 text-lg font-semibold">Listening…</p>
+                  <p className="mt-2 text-lg font-semibold">Listening…</p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     Speak for up to 90 seconds. Nothing is uploaded until you stop.
                   </p>
-                  <div className="mt-6 flex gap-2">
+                  <div className="mt-3 flex gap-2">
                     <Button onClick={stopRecording}>
                       <Square aria-hidden="true" />
                       Stop and transcribe
@@ -692,7 +770,7 @@ export function VoiceCapture({
               )}
             </div>
 
-            <p className="mt-6 border-t pt-4 text-xs leading-5 text-muted-foreground">
+            <p className="mt-2 border-t pt-2 text-xs leading-5 text-muted-foreground">
               Audio is sent to OpenAI only for transcription and is not stored by
               Flownee after a successful transcript.
             </p>

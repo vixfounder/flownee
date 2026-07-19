@@ -5,9 +5,9 @@ import {
   CircleHelp,
   Mic,
   RefreshCcw,
-  ShieldCheck,
 } from "lucide-react";
 
+import { PrivacyDataSection } from "@/components/help/privacy-data-section";
 import { AppPageShell } from "@/components/layout/app-page-shell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -89,15 +89,7 @@ export default function HelpPage() {
         </CardContent>
       </Card>
 
-      <Card tone="scheduled">
-        <CardHeader>
-          <ShieldCheck aria-hidden="true" className="size-5 text-primary" />
-          <CardTitle>Your privacy</CardTitle>
-        </CardHeader>
-        <CardContent className="text-sm leading-6 text-muted-foreground">
-          Tasks and plans stay in this browser. Audio is sent for transcription only after recording stops and is not permanently stored by Flownee.
-        </CardContent>
-      </Card>
+      <PrivacyDataSection />
     </AppPageShell>
   );
 }

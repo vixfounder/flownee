@@ -9,13 +9,11 @@ import {
   Clock3,
   ListTodo,
   MoreHorizontal,
-  ShieldCheck,
   Sparkles,
 } from "lucide-react";
 
 import { NetworkStatus } from "@/components/home/network-status";
 import { TaskActionsDialog } from "@/components/home/task-actions-dialog";
-import { PrivacyDataDialog } from "@/components/home/privacy-data-dialog";
 import { AppHeader } from "@/components/layout/app-header";
 import { VoiceCapture } from "@/components/voice/voice-capture";
 import { Badge } from "@/components/ui/badge";
@@ -43,7 +41,6 @@ import { effortLabel } from "@/lib/effort-options";
 type HomeShellProps = {
   state: HomeState;
   useLocalData?: boolean;
-  initialPrivacyOpen?: boolean;
 };
 
 function EffortBadge({ minutes }: { minutes: number | null }) {
@@ -293,7 +290,6 @@ function SavedItemsCard({ tasks, onManage }: { tasks: Task[]; onManage: (taskId:
 export function HomeShell({
   state: initialState,
   useLocalData = false,
-  initialPrivacyOpen = false,
 }: HomeShellProps) {
   const [state, setState] = useState<HomeState>(
     useLocalData ? { status: "loading" } : initialState,
@@ -303,25 +299,8 @@ export function HomeShell({
   const [actionBusy, setActionBusy] = useState(false);
   const [actionError, setActionError] = useState("");
   const [planningError, setPlanningError] = useState("");
-  const [privacyOpen, setPrivacyOpen] = useState(initialPrivacyOpen);
-  const [privacyBusy, setPrivacyBusy] = useState(false);
-  const [privacyError, setPrivacyError] = useState("");
-  const [dataMessage, setDataMessage] = useState("");
-  const [voiceCaptureKey, setVoiceCaptureKey] = useState(0);
   const replanAttemptRef = useRef(0);
   const replanAbortRef = useRef<AbortController | null>(null);
-
-  function clearPrivacyQuery() {
-    const url = new URL(window.location.href);
-    if (!url.searchParams.has("privacy")) return;
-    url.searchParams.delete("privacy");
-    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
-  }
-
-  function closePrivacy() {
-    setPrivacyOpen(false);
-    clearPrivacyQuery();
-  }
 
   const refreshLocalState = useCallback(async () => {
     if (!useLocalData) return;
@@ -451,33 +430,6 @@ export function HomeShell({
     if (!isUpdating) void refreshLocalState();
   }
 
-  async function deleteAllLocalData() {
-    if (!useLocalData) return;
-    setPrivacyBusy(true);
-    setPrivacyError("");
-    replanAbortRef.current?.abort();
-    replanAttemptRef.current += 1;
-    let repository: FlowneeRepository | null = null;
-    try {
-      repository = await FlowneeRepository.open();
-      await repository.clearAll();
-      const cleared = await repository.loadSnapshot();
-      setSnapshot(cleared);
-      setState(homeStateFromSnapshot(cleared));
-      setSelectedTask(null);
-      setPlanningError("");
-      setActionError("");
-      setVoiceCaptureKey((current) => current + 1);
-      closePrivacy();
-      setDataMessage("All Flownee data stored in this browser was deleted.");
-    } catch {
-      setPrivacyError("Local data could not be deleted. Nothing was partially removed; please try again.");
-    } finally {
-      repository?.close();
-      setPrivacyBusy(false);
-    }
-  }
-
   const savedTasks = snapshot?.tasks
     .filter((task) => task.status !== "active")
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)) ?? [];
@@ -485,29 +437,7 @@ export function HomeShell({
   return (
     <div className="mx-auto min-h-svh max-w-[430px] border-x border-border/70 bg-background text-foreground shadow-[0_0_45px_-28px_rgb(82_90_255_/_0.3)]">
       <NetworkStatus />
-      <AppHeader
-        actions={
-          <div className="flex items-center gap-1">
-            <span
-              className="size-1.5 rounded-full bg-primary"
-              title="Saved on this device"
-            >
-              <span className="sr-only">Saved on this device</span>
-            </span>
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              aria-label="Privacy and data"
-              onClick={() => {
-                setPrivacyError("");
-                setPrivacyOpen(true);
-              }}
-            >
-              <ShieldCheck aria-hidden="true" />
-            </Button>
-          </div>
-        }
-      />
+      <AppHeader />
 
       <main className="mx-auto px-4 pb-40 pt-7 sm:px-6 sm:pt-10">
         <div className="mb-7 sm:mb-9">
@@ -556,12 +486,6 @@ export function HomeShell({
           </p>
         )}
 
-        {dataMessage && (
-          <p className="mt-5 rounded-xl border border-primary/20 bg-secondary/45 p-4 text-sm text-foreground" role="status">
-            {dataMessage}
-          </p>
-        )}
-
         {useLocalData && <SavedItemsCard tasks={savedTasks} onManage={openTask} />}
 
         <div className="mt-6 flex items-start gap-2 text-xs leading-5 text-muted-foreground">
@@ -574,19 +498,9 @@ export function HomeShell({
       </main>
 
       <VoiceCapture
-        key={voiceCaptureKey}
         onFlowChanged={refreshLocalState}
         onPlanningStateChange={handlePlanningStateChange}
       />
-      {privacyOpen && (
-        <PrivacyDataDialog
-          busy={privacyBusy}
-          canDelete={useLocalData}
-          errorMessage={privacyError}
-          onClose={closePrivacy}
-          onDeleteAll={() => void deleteAllLocalData()}
-        />
-      )}
       <TaskActionsDialog
         key={selectedTask?.id ?? "closed"}
         task={selectedTask}
