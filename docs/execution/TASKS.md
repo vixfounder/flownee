@@ -16,7 +16,7 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 ## Done
 
-- [x] Strengthened incremental planning so compatible intentions captured at different times are batched across the complete active-task snapshot. Evidence: each capture is proven to include every active task; GPT-5.6 must compare each new intention against all active tasks, reuse suitable context labels, and place compatible errands consecutively unless priority, deadlines, or dependencies override; the coffee-beans plus milk/fish/green-beans scenario is an executable evaluation fixture; 59 tests, lint, and production build pass.
+- [x] Strengthened incremental planning so compatible intentions captured at different times are batched across the complete active-task snapshot. Evidence: each capture is proven to include every active task; GPT-5.6 must compare each new intention against all active tasks, reuse suitable context labels, and place compatible errands consecutively unless priority, deadlines, or dependencies override; the coffee-beans plus milk/fish/green-beans scenario is an executable evaluation fixture; production deploy `6a5cc8f228d4a4911924b2ee`; 59 tests, lint, and production build pass.
 
 - [x] Fixed production same-origin validation behind Netlify's reverse proxy. Evidence: the public Flownee `Origin` is now compared with the externally visible host and forwarded protocol instead of Netlify's rewritten internal request URL; production deploy `6a5cc5ff68d958941cc7bed1` advances an audio-free same-origin request to normal HTTP 400 validation while an attacker-origin request remains HTTP 403; 57 tests, lint, and production build pass.
 

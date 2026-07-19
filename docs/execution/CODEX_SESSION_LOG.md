@@ -19,6 +19,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
   - A request-construction regression proves that all active tasks and their contexts accompany the new transcript; completed and postponed tasks remain intentionally outside the current execution plan.
   - The evaluation detects both non-adjacent shopping tasks and inconsistent grocery context labels.
   - 15 test files and 59 tests pass; lint and production build pass.
+  - Production deploy `6a5cc8f228d4a4911924b2ee`, built from commit `b35dc53`.
 
 ## 2026-07-19 — Netlify same-origin hotfix
 
@@ -124,7 +125,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
   - Installed browsers: Google Chrome `150.0.7871.125`; Microsoft Edge
     `150.0.4078.83`.
   - Netlify deployment: pass at `https://flownee-build-week.netlify.app`, deploy
-    `6a5cc5ff68d958941cc7bed1` (latest), including same-origin hotfix commit `6c217ae`.
+    `6a5cc8f228d4a4911924b2ee` (latest), including planning-quality commit `b35dc53` and same-origin hotfix commit `6c217ae`.
   - Latest production smoke check: HTTP 200 for `/`, `/manifest.webmanifest`,
     and `/api/ai-status`; Netlify reports the deploy state as `ready` with the
     Next.js server function available.
