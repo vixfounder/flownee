@@ -4,6 +4,20 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-19 — Netlify same-origin hotfix
+
+- Session ID: `TBD` (supporting production-fix session)
+- Objective: Restore production voice and planning requests without weakening cross-site protections.
+- Codex contributions:
+  - Reproduced the production HTTP 403 with an audio-free request carrying the exact public Flownee origin.
+  - Traced the failure to comparing the browser origin with Netlify's proxy-rewritten internal `request.nextUrl.origin`.
+  - Added one shared proxy-aware origin validator for both paid routes.
+- Human input preserved:
+  - Victoria reported the real production error immediately after deployment.
+- Verification:
+  - Public-host/proxy regression, mismatched-origin, and explicit cross-site tests pass.
+  - 14 test files and 57 tests pass; lint and production build pass.
+
 ## 2026-07-19 — mobile-width desktop shell
 
 - Session ID: `TBD` (supporting design session)

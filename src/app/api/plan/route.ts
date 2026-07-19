@@ -11,6 +11,7 @@ import {
   rateLimitHeaders,
   requestClientKey,
 } from "@/lib/server/request-throttle";
+import { isCrossSiteRequest } from "@/lib/server/request-origin";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -54,12 +55,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 
-  const requestOrigin = request.headers.get("origin");
-  const fetchSite = request.headers.get("sec-fetch-site");
-  if (
-    fetchSite === "cross-site" ||
-    (requestOrigin !== null && requestOrigin !== request.nextUrl.origin)
-  ) {
+  if (isCrossSiteRequest(request)) {
     return errorResponse(
       new PlanningError("Cross-site requests are not allowed.", 403, "FORBIDDEN"),
     );
