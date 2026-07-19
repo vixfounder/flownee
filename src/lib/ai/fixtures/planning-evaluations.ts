@@ -13,6 +13,11 @@ export type PlanningEvaluationExpectation = {
   expectedDeadlineSource?: "user-stated";
   expectedExistingTaskRefs: string[];
   expectedPlanStatus: "ready" | "no-action";
+  expectedBatch?: {
+    existingTaskRef: string;
+    newTitleConcepts: string[];
+    sharedContextLabel: string;
+  };
 };
 
 export type PlanningEvaluationFixture = {
@@ -48,6 +53,18 @@ const existingBillTask: PlanningRequest["activeTasks"][number] = {
   estimatedEffortMinutes: 5,
   effortSource: "ai-estimate",
   contexts: ["computer"],
+  dependencies: [],
+  assumptions: [],
+};
+
+const existingCoffeeTask: PlanningRequest["activeTasks"][number] = {
+  id: "task:coffee-beans",
+  title: "Buy coffee beans for the coffee machine",
+  notes: null,
+  statedDeadline: null,
+  estimatedEffortMinutes: 10,
+  effortSource: "ai-estimate",
+  contexts: ["grocery shopping"],
   dependencies: [],
   assumptions: [],
 };
@@ -128,6 +145,28 @@ export const PLANNING_EVALUATION_FIXTURES: PlanningEvaluationFixture[] = [
     },
   },
   {
+    id: "incremental-shopping-batch",
+    purpose: "Batch a later grocery capture with a compatible existing shopping task.",
+    request: baseRequest(
+      "transcript:shopping",
+      "Later, buy milk, fish, and green beans.",
+      [existingCoffeeTask],
+    ),
+    expectation: {
+      minNewTasks: 1,
+      titleConcepts: [["milk"], ["fish"], ["green beans"]],
+      forbiddenTitleTerms: [],
+      deadlinePolicy: "none",
+      expectedExistingTaskRefs: [existingCoffeeTask.id],
+      expectedPlanStatus: "ready",
+      expectedBatch: {
+        existingTaskRef: existingCoffeeTask.id,
+        newTitleConcepts: ["milk", "fish", "green beans"],
+        sharedContextLabel: "grocery shopping",
+      },
+    },
+  },
+  {
     id: "non-actionable-capture",
     purpose: "Avoid manufacturing work from speech that contains no intention.",
     request: baseRequest("transcript:test", "I am just testing the microphone."),
@@ -199,6 +238,36 @@ export function evaluatePlanningFixture(
   }
   if (output.plan.status !== fixture.expectation.expectedPlanStatus) {
     issues.push(`Expected a ${fixture.expectation.expectedPlanStatus} plan.`);
+  }
+  const expectedBatch = fixture.expectation.expectedBatch;
+  if (expectedBatch) {
+    const batchedTask = output.newTasks.find((task) =>
+      expectedBatch.newTitleConcepts.some((concept) =>
+        task.title.toLocaleLowerCase().includes(concept),
+      ),
+    );
+    if (!batchedTask) {
+      issues.push("The compatible newly captured task was not found for batching.");
+    } else {
+      const existingIndex = output.plan.orderedTaskRefs.indexOf(
+        expectedBatch.existingTaskRef,
+      );
+      const newIndex = output.plan.orderedTaskRefs.indexOf(batchedTask.taskRef);
+      if (existingIndex < 0 || newIndex < 0 || Math.abs(existingIndex - newIndex) !== 1) {
+        issues.push("Compatible shopping tasks are not adjacent in the execution order.");
+      }
+      if (
+        !batchedTask.contexts.some(
+          (context) =>
+            context.label.toLocaleLowerCase() ===
+            expectedBatch.sharedContextLabel.toLocaleLowerCase(),
+        )
+      ) {
+        issues.push(
+          `Compatible shopping tasks do not share the ${expectedBatch.sharedContextLabel} context.`,
+        );
+      }
+    }
   }
 
   return issues;

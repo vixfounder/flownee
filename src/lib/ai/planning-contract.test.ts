@@ -196,8 +196,38 @@ describe("planning evaluation fixtures", () => {
     const ids = PLANNING_EVALUATION_FIXTURES.map((fixture) => fixture.id);
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids).toContain("transcript-prompt-injection");
+    expect(ids).toContain("incremental-shopping-batch");
     PLANNING_EVALUATION_FIXTURES.forEach((fixture) =>
       expect(() => assertPlanningRequest(fixture.request)).not.toThrow(),
+    );
+  });
+
+  it("flags compatible shopping tasks that are not batched", () => {
+    const fixture = PLANNING_EVALUATION_FIXTURES.find(
+      (item) => item.id === "incremental-shopping-batch",
+    );
+    expect(fixture).toBeDefined();
+    const badOutput = output();
+    badOutput.newTasks = [
+      {
+        ...badOutput.newTasks[0],
+        taskRef: "new:groceries",
+        title: "Buy milk, fish, and green beans",
+        contexts: [{ label: "errands", source: "ai-inferred" }],
+      },
+      badOutput.newTasks[1],
+    ];
+    badOutput.plan.orderedTaskRefs = [
+      "task:coffee-beans",
+      "new:2",
+      "new:groceries",
+    ];
+
+    expect(evaluatePlanningFixture(fixture!, badOutput)).toEqual(
+      expect.arrayContaining([
+        "Compatible shopping tasks are not adjacent in the execution order.",
+        "Compatible shopping tasks do not share the grocery shopping context.",
+      ]),
     );
   });
 

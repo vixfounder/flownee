@@ -4,6 +4,22 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-19 — cross-capture task batching
+
+- Session ID: `TBD` (supporting planning-quality session)
+- Objective: Group compatible intentions even when they are spoken in separate captures.
+- Codex contributions:
+  - Verified that every capture already sends the complete active-task snapshot to GPT-5.6.
+  - Required an explicit comparison of each new intention with every active task before rebuilding the complete execution order.
+  - Added context-label reuse and adjacency rules for compatible same-place or same-session tasks without merging their records.
+  - Added the reported coffee-beans plus milk/fish/green-beans case as an executable evaluation fixture.
+- Human product decision preserved:
+  - Victoria identified that related shopping intentions captured at different moments should be grouped into one practical errand flow.
+- Verification:
+  - A request-construction regression proves that all active tasks and their contexts accompany the new transcript; completed and postponed tasks remain intentionally outside the current execution plan.
+  - The evaluation detects both non-adjacent shopping tasks and inconsistent grocery context labels.
+  - 15 test files and 59 tests pass; lint and production build pass.
+
 ## 2026-07-19 — Netlify same-origin hotfix
 
 - Session ID: `TBD` (supporting production-fix session)
