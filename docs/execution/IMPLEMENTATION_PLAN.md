@@ -48,7 +48,7 @@ Deliverables:
 
 Acceptance:
 
-- A supported browser records and transcribes a 60–90 second-or-shorter sample.
+- A supported browser records and transcribes a sample up to 30 seconds long.
 - OpenAI credentials are absent from the browser bundle.
 - Failed transcription does not silently lose the temporary recording.
 - Logs contain no audio or transcript content.

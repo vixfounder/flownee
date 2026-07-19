@@ -44,7 +44,7 @@ export function validateAudioFile(file: File): void {
   }
   if (file.size > MAX_TRANSCRIPTION_BYTES) {
     throw new TranscriptionError(
-      "The recording is too large. Keep it under 90 seconds and retry.",
+      "The recording is too large. Keep it under 30 seconds and retry.",
       413,
       "AUDIO_TOO_LARGE",
     );

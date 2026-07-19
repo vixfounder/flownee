@@ -4,6 +4,54 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-19 — matching recommendation actions
+
+- Session ID: `TBD` (supporting home-screen interaction refinement)
+- Objective: Give the `Done` and `Do later` actions the same color and make postponement easier to recognize.
+- Codex contributions:
+  - Applied the same primary action variant to both task-state buttons.
+  - Added the existing clock icon before `Do later` without adding a dependency.
+  - Added component regression coverage for the shared variant and icon.
+- Human product and design decisions preserved:
+  - Victoria selected matching colors for both actions and requested a clock icon for `Do later`.
+- Verification:
+  - Local light and dark browser measurements confirm identical `rgb(82, 90, 255)` backgrounds and white text for both actions.
+  - `Do later` contains the clock icon and the centered app layout has no horizontal overflow.
+  - 28 test files and 85 tests, lint, and production build pass.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
+## 2026-07-19 — 30-second voice-capture limit
+
+- Session ID: `TBD` (supporting voice interaction and cost-control refinement)
+- Objective: Reduce the maximum voice recording from 90 seconds to 30 seconds.
+- Codex contributions:
+  - Changed the browser's actual automatic-stop timeout rather than only changing visible copy.
+  - Updated the recording guidance and oversized-audio recovery message.
+  - Aligned MVP and architecture documentation with the new limit.
+  - Added regression coverage for the default timeout and server guidance.
+- Human product and engineering decisions preserved:
+  - Victoria selected a 30-second maximum and approved applying it to both behavior and messaging.
+- Verification:
+  - Local browser verification finds the exact 30-second recording guidance and no legacy 90-second copy.
+  - The dialog retains equal `597px` client and scroll heights with no internal or horizontal overflow and was closed before transcription or upload.
+  - 27 test files and 84 tests, lint, and production build pass.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
+## 2026-07-19 — capture illustration spacing refinement
+
+- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Objective: Add slightly more breathing room immediately above and below the Flownee illustration.
+- Codex contributions:
+  - Increased title-to-image and image-to-microphone spacing by one `4px` spacing step each.
+  - Preserved all component sizes, content, colors, animation, and recording behavior.
+- Human product and design decisions preserved:
+  - Victoria requested slightly more space on both sides of the illustration, approved the initial `4px` adjustments, and then approved one additional `4px` below the image.
+- Verification:
+  - Local browser measurements confirm both title-to-image and image-to-microphone gaps are exactly `20px`.
+  - At the available `1280x720` viewport, the dialog is approximately `599px` high with equal `597px` client and scroll heights, no internal scrollbar, and no horizontal overflow.
+  - The dialog was closed without transcription or upload; 26 test files and 83 tests, lint, and production build pass.
+  - Commit and production deployment intentionally await separate product-owner approval.
+
 ## 2026-07-19 — compact voice-capture dialog
 
 - Session ID: `TBD` (supporting voice interaction and visual-design refinement)

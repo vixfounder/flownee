@@ -244,7 +244,7 @@ Names may change during implementation; responsibilities should remain separate.
 
 ## Cost controls
 
-- Maximum recording duration: approximately 60–90 seconds.
+- Maximum recording duration: 30 seconds.
 - Compact active-task context; exclude completed history unless required.
 - One GPT-5.6 request per confirmed content/state change where practical.
 - No model call merely for opening the app.

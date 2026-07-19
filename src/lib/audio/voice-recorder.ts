@@ -12,6 +12,8 @@ export class RecordingCancelledError extends Error {
   }
 }
 
+export const DEFAULT_MAX_RECORDING_DURATION_MS = 30_000;
+
 export type VoiceRecordingSession = {
   mimeType: AudioMimeType | null;
   result: Promise<RecordingSample>;
@@ -25,7 +27,7 @@ type StartVoiceRecordingOptions = {
 };
 
 export async function startVoiceRecording({
-  maxDurationMs = 90_000,
+  maxDurationMs = DEFAULT_MAX_RECORDING_DURATION_MS,
   permissionTimeoutMs = 15_000,
 }: StartVoiceRecordingOptions = {}): Promise<VoiceRecordingSession> {
   const capabilities = inspectCurrentBrowser();

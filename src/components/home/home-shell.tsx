@@ -155,7 +155,7 @@ function CompleteRecommendation({ count }: { count: number }) {
   );
 }
 
-function PlanRecommendation({
+export function PlanRecommendation({
   state,
   actionsDisabled,
   onComplete,
@@ -207,9 +207,9 @@ function PlanRecommendation({
         </Button>
         <Button
           disabled={actionsDisabled}
-          variant="outline"
           onClick={() => onPostpone(state.nextTask.id)}
         >
+          <Clock3 aria-hidden="true" />
           Do later
         </Button>
         <Button

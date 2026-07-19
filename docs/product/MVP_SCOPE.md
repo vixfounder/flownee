@@ -27,7 +27,7 @@ Deliver one polished, judge-testable journey that demonstrates Flownee's ability
 
 - One-tap microphone access from the home screen.
 - Start, stop, cancel, retry, and permission-denied states.
-- Approximately 60–90 second maximum recording.
+- 30-second maximum recording.
 - Temporary local recording only until transcription succeeds or the user cancels.
 
 ### Transcript and interpretation

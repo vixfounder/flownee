@@ -30,7 +30,7 @@ describe("transcription server boundary", () => {
       validateAudioFile(
         audioFile("audio/webm", [new Uint8Array(MAX_TRANSCRIPTION_BYTES + 1)]),
       ),
-    ).toThrow("too large");
+    ).toThrow("Keep it under 30 seconds");
     expect(() => validateAudioFile(audioFile("audio/wav"))).toThrow(
       "not supported",
     );

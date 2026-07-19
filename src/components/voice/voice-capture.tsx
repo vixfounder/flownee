@@ -98,7 +98,7 @@ function FlowneeIntentionIllustration() {
   return (
     <div
       aria-label="Flownee surrounded by changing everyday intentions"
-      className="relative mx-auto mt-1 aspect-[8/5] w-full max-w-[365px]"
+      className="relative mx-auto mt-2 aspect-[8/5] w-full max-w-[365px]"
       role="img"
     >
       <div className="absolute inset-0 scale-[1.12]">
@@ -531,7 +531,7 @@ export function VoiceCapture({
             )}
 
             <div
-              className={shouldShowFlowneeImageMock(state) ? "mt-2" : "mt-6"}
+              className={shouldShowFlowneeImageMock(state) ? "mt-4" : "mt-6"}
               aria-live="polite"
             >
               {state === "checking" && (
@@ -564,7 +564,7 @@ export function VoiceCapture({
                   </span>
                   <p className="mt-2 text-lg font-semibold">Listening…</p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Speak for up to 90 seconds. Nothing is uploaded until you stop.
+                    Speak for up to 30 seconds. Nothing is uploaded until you stop.
                   </p>
                   <div className="mt-3 flex gap-2">
                     <Button onClick={stopRecording}>
