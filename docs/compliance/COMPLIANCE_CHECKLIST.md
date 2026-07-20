@@ -20,8 +20,8 @@ Status values: `TODO`, `IN PROGRESS`, `PASS`, `BLOCKED`, `N/A`.
 | Codex is used throughout development | IN PROGRESS | Codex task history; later session log | Team | 2026-07-18 |
 | GPT-5.6 performs central product reasoning | PASS | Protected planning route, strict contract, fixtures, and automated tests | Mike | 2026-07-18 |
 | GPT-4o Transcribe handles voice input | PASS | Protected transcription route, transcript review, and automated tests | Mike | 2026-07-18 |
-| Project is working and non-trivial | PASS | Public deployment, 54 automated tests, production build, and `docs/technical/PLATFORM_TEST_MATRIX.md` | Team | 2026-07-18 |
-| Project installs/runs consistently on intended platforms | IN PROGRESS | `docs/technical/PLATFORM_TEST_MATRIX.md`; Windows Chrome-engine evidence complete, physical Android and other target browsers remain | Mike | 2026-07-18 |
+| Project is working and non-trivial | PASS | Public deployment, 130 automated tests, production build, successful owner-reported physical voice/AI journeys, and `docs/technical/PLATFORM_TEST_MATRIX.md` | Team | 2026-07-20 |
+| Project installs/runs consistently on intended platforms | IN PROGRESS | `docs/technical/PLATFORM_TEST_MATRIX.md`; physical Redmi Note 12 Pro 5G installed-app/Chrome journey and iPhone 17/12/8 Safari journeys pass; Windows Chrome full journey, macOS Chrome, and Windows Edge remain | Mike | 2026-07-20 |
 | Behavior matches demo and written description | TODO | Final cross-check | Team | |
 | Stage One theme and technology gate passes | TODO | Scorecard review | Team | |
 

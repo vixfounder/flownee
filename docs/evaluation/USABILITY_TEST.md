@@ -1,7 +1,7 @@
 # Flownee usability test
 
 Status: **Expert walkthrough complete; representative participant round pending**
-Last updated: 2026-07-18
+Last updated: 2026-07-20
 Production build: https://flownee-build-week.netlify.app
 
 ## Claim boundary
@@ -11,20 +11,34 @@ No representative users were available in this workspace, so the team must not
 claim that "most participants" succeeded yet. The participant table below must
 contain real observed sessions only.
 
+## Product-owner functional verification
+
+On July 20, 2026, the product owner reported successful public-deployment
+testing on iPhone 17, iPhone 12, and iPhone 8 in current Safari, Chrome, and
+Firefox, plus a Redmi Note 12 Pro 5G in installed-app mode and current Chrome
+and Firefox. Scenarios covered microphone recording, transcript and
+interpretation review, live AI interaction and replanning, all available task
+actions, individual edit/delete, delete-all, reload, and reopen persistence.
+No failures were reported. Exact OS and browser versions were not captured.
+
+This is valuable physical-device functional evidence, but it is not a
+representative-user session and does not establish the majority-usability
+threshold below.
+
 ## Confirmed success measures
 
 | Success measure | Walkthrough result | Evidence or remaining test |
 |---|---|---|
-| Voice capture starts with one tap from home | **Pass for discoverability and interaction count** | The first-run screen exposes one prominent button named `Add an intention by voice`; previous real Chrome evidence confirms the button starts recording after permission. A fresh microphone session was not run because it could capture ambient speech. |
+| Voice capture starts with one tap from home | **Functional pass; participant comprehension pending** | The first-run screen exposes one prominent button named `Add an intention by voice`; physical Android and iPhone public-deployment journeys successfully used microphone recording and live transcription. |
 | Capture and confirm a new intention in under 30 seconds | **Not measured** | Time this with every representative participant from first tap through transcript confirmation. |
 | One recording separates multiple intentions correctly | **Not measured in usability session** | Covered by schema fixtures and implementation tests; requires one fictional live participant recording for usability evidence. |
 | No confirmed item is lost if planning fails | **Implementation evidence only** | Automated persistence and failure tests pass; participant recovery comprehension remains untested. |
-| Existing plan appears immediately on open | **Partial** | The first-run local-loading message explains that no AI call is made; automated storage tests cover reload. Repeat with participant-created local data. |
-| **What to do now** updates after additions/status changes | **Implementation evidence only** | Automated state and stale-response tests pass. Observe this in the participant journey. |
+| Existing plan appears immediately on open | **Functional pass; participant comprehension pending** | Automated storage tests pass, and physical-device testing confirmed reload and reopen persistence. |
+| **What to do now** updates after additions/status changes | **Functional pass; participant comprehension pending** | Automated state/stale-response tests pass, and physical-device testing confirmed live AI replanning and all task actions. |
 | Recommendation includes an understandable reason | **Pass for expert comprehension** | The sample makes `Start the dark-clothes wash` prominent and immediately explains that it takes little active time while the machine runs. |
-| Users can correct transcripts, interpretations, and estimates | **Implementation evidence only** | Controls exist and are automated-test covered; the full voice journey was not activated in this session. |
-| Local state survives refresh and reopen | **Implementation evidence only** | IndexedDB tests pass; repeat using participant-created data. |
-| Full journey works on primary browsers | **Open** | See `docs/technical/PLATFORM_TEST_MATRIX.md`; physical Android and other declared browsers remain incomplete. |
+| Users can correct transcripts, interpretations, and estimates | **Functional pass; participant comprehension pending** | Controls are automated-test covered, and physical-device testing exercised review, edit, delete, and all available task actions. |
+| Local state survives refresh and reopen | **Functional pass; participant confirmation pending** | IndexedDB tests pass, and physical Android/iPhone testing confirmed reload and reopen persistence. |
+| Full journey works on primary browsers | **Partial platform pass** | Physical Android Chrome and best-effort iPhone Safari journeys pass; Windows Chrome full-journey, macOS Chrome, and Windows Edge evidence remains open in `docs/technical/PLATFORM_TEST_MATRIX.md`. |
 | Most small-test participants capture an item and understand the next recommendation without help | **Not assessed** | Requires at least three representative sessions; a majority must complete both tasks without help. |
 
 ## Walkthrough setup

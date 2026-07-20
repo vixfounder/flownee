@@ -4,18 +4,21 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 ## Now
 
-- [ ] Complete product-owner local acceptance of `design-v2`; prepare a separate commit and merge plan only when requested and approved.
+- [ ] Prepare README, testing instructions, Codex session evidence, scorecard, demo script, and Devpost draft.
 
 ## Next
 
 - [ ] Run three to five representative participant sessions using `docs/evaluation/USABILITY_TEST.md`, record real outcomes, and calculate the majority threshold.
-- [ ] Prepare README, testing instructions, Codex session evidence, scorecard, demo script, and Devpost draft.
 
 ## Blocked
 
 - Participant-based usability success requires representative humans. The expert walkthrough is complete; participant outcomes must not be invented.
 
 ## Done
+
+- [x] Completed product-owner mobile acceptance of the current public release. Evidence: owner-reported physical testing on iPhone 17, iPhone 12, and iPhone 8 in current Safari, Chrome, and Firefox, plus Redmi Note 12 Pro 5G in installed-app mode and current Chrome/Firefox; microphone recording, transcript and interpretation review, successful live AI interaction/replanning, all task actions, individual edit/delete, delete-all, reload, and reopen persistence worked as expected with no reported failures. Exact OS/browser versions and per-browser MIME diagnostics were not captured, and this is not representative-participant usability evidence.
+
+- [x] Restored standalone TypeScript compatibility for the server error-path tests. Evidence: the three Vitest `toMatchObject` assertions now use `satisfies Partial<...>` instead of unsupported matcher type arguments, preserving compile-time checking without changing runtime expectations; standalone `tsc --noEmit`, 35 test files and 130 tests, lint, and the optimized production build pass.
 
 - [x] Reduced the animated home heading from `18px` to `16px`. Evidence: `YOUR FLOW. WHAT MAKES SENSE NEXT` retains its centered uppercase Hyper Text reveal, medium weight, primary violet color, stable accessible label, and unchanged surrounding layout; local computed styles confirm `16px`, weight `500`, exact center alignment, one-line presentation within the mobile-width app shell, and zero horizontal overflow; 35 test files and 130 tests, lint, TypeScript, and the optimized production build pass. Commit and deployment await separate product-owner approval.
 
@@ -155,7 +158,7 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 ## Build-generated information still required
 
-- Successful live GPT-5.6 fixture results, token use, latency, and final reasoning comparison (the implemented `gpt-5.6-sol`/`medium` call reached OpenAI but returned HTTP 429 on July 18, 2026).
+- Fixture-level GPT-5.6 token use, latency, and final reasoning comparison. Successful live voice-to-AI planning is now product-owner-reported across physical Android and iPhone journeys; the earlier bounded fixture request returned HTTP 429 on July 18, 2026.
 - Supported audio MIME-format results per browser.
 - Codex `/feedback` Session ID from the task where most core functionality is built.
 - Public YouTube demonstration URL.
@@ -163,7 +166,7 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 ## Session handoff
 
-- Current state: The complete local-first product journey is publicly deployed with protected AI routes enabled; all automated and signed-out production smoke gates pass.
-- Next action: Run the prepared five-minute protocol with three to five representative participants and record real results.
-- Known failures: No code failures. A bounded fictional GPT-5.6 request reached the provider but returned HTTP 429; automated provider boundaries and all local gates pass.
-- Uncommitted decisions: Final GPT-5.6 reasoning effort after live fixture evaluation; physical Android audio verification remains deferred.
+- Current state: The complete local-first product journey is publicly deployed; automated gates pass, and product-owner physical Android/iPhone journeys confirm microphone, live AI, task actions, deletion, and persistence behavior.
+- Next action: Finish judge-facing README, testing instructions, Codex evidence, scorecard, demo script, and Devpost draft while scheduling the prepared representative-participant protocol.
+- Known failures: No current code or physical mobile journey failure is known. Windows Chrome full-journey, macOS Chrome, Windows Edge, exact mobile browser versions, per-browser MIME diagnostics, and representative-participant evidence remain open.
+- Uncommitted decisions: Final GPT-5.6 reasoning effort after fixture-level latency/token evaluation.

@@ -73,10 +73,10 @@ describe("GPT-5.6 planning provider", () => {
         request: planningRequestFixture,
         fetchImplementation: vi.fn<typeof fetch>().mockResolvedValue(providerResponse(invalid)),
       }),
-    ).rejects.toMatchObject<Partial<PlanningError>>({
+    ).rejects.toMatchObject({
       code: "PLANNING_SCHEMA_REJECTED",
       retryable: true,
-    });
+    } satisfies Partial<PlanningError>);
   });
 
   it("handles refusal content without attempting to parse it", async () => {

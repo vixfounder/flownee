@@ -4,6 +4,38 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-20 — physical mobile acceptance evidence
+
+- Session ID: `TBD` (supporting release evidence documentation)
+- Objective: Record the product owner's completed public-deployment testing without overstating unavailable version or participant evidence.
+- Product-owner evidence recorded:
+  - iPhone 17, iPhone 12, and iPhone 8 passed in current Safari, Chrome, and Firefox.
+  - Redmi Note 12 Pro 5G passed in installed-app mode and current Chrome and Firefox.
+  - Microphone recording, transcript and interpretation review, successful live AI interaction/replanning, all application actions, individual edit/delete, delete-all, reload, and reopen persistence worked as expected with no reported failures.
+- Claim boundaries preserved:
+  - Exact OS/browser versions and per-browser MIME/Blob diagnostics were not captured and are not inferred.
+  - Product-owner functional acceptance is not represented as independent or representative-participant usability research.
+  - Windows Chrome full-journey, macOS Chrome, Windows Edge, and the representative-participant majority threshold remain open.
+- Documentation updated:
+  - Reconciled the platform matrix, usability evidence, compliance status, active task, build-generated evidence, and session handoff.
+  - No code, product behavior, recording, task data, paid AI request, commit, push, or deployment occurred in this documentation session.
+
+## 2026-07-20 — server-test TypeScript compatibility
+
+- Session ID: `TBD` (supporting verification maintenance)
+- Objective: Fix the three server-test typing errors found by standalone TypeScript verification.
+- Codex contributions:
+  - Replaced unsupported generic arguments on Vitest `toMatchObject` assertions with `satisfies Partial<PlanningError>` and `satisfies Partial<TranscriptionError>` expected-object checks.
+  - Preserved the existing runtime assertions for schema rejection, transcription rate limits, and transcription network failures.
+- Human engineering intent preserved:
+  - Test expectations remain type-checked without weakening strict TypeScript configuration or changing production behavior.
+- Verification:
+  - `tsc --noEmit`: pass.
+  - 35 test files and 130 tests: pass.
+  - ESLint: pass with zero warnings.
+  - Optimized Next.js production build and its TypeScript phase: pass.
+  - No product behavior, recording, task data, paid AI request, commit, push, or deployment occurred.
+
 ## 2026-07-20 — smaller home heading
 
 - Session ID: `TBD` (supporting compact visual hierarchy)

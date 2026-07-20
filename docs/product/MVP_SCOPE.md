@@ -119,7 +119,7 @@ Deliver one polished, judge-testable journey that demonstrates Flownee's ability
 - [ ] Delete-all-local-data removes locally persisted user content.
 - [ ] OpenAI credentials are absent from all browser bundles and repository files.
 - [ ] Critical journey passes on Chrome desktop, Chrome Android, and Edge.
-- [ ] Safari iPhone behavior is documented after best-effort testing.
+- [x] Safari iPhone behavior is documented after best-effort testing.
 - [ ] Public Netlify deployment works without accounts, payment, invitations, or user API keys.
 
 ## Demo slice

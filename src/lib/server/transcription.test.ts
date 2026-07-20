@@ -74,10 +74,10 @@ describe("transcription server boundary", () => {
         ),
         file: audioFile(),
       }),
-    ).rejects.toMatchObject<Partial<TranscriptionError>>({
+    ).rejects.toMatchObject({
       code: "TRANSCRIPTION_RATE_LIMITED",
       retryable: true,
-    });
+    } satisfies Partial<TranscriptionError>);
 
     await expect(
       transcribeAudio({
@@ -87,9 +87,9 @@ describe("transcription server boundary", () => {
         ),
         file: audioFile(),
       }),
-    ).rejects.toMatchObject<Partial<TranscriptionError>>({
+    ).rejects.toMatchObject({
       code: "TRANSCRIPTION_UNAVAILABLE",
       retryable: true,
-    });
+    } satisfies Partial<TranscriptionError>);
   });
 });

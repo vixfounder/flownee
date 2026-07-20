@@ -23,7 +23,8 @@ The diagnostic never uploads or persists the audio sample.
 | Platform | Browser/version | Device/OS | Secure context | Preferred type | Actual Blob type | Bytes/duration | Result | Evidence date |
 |---|---|---|---|---|---|---|---|---|
 | Desktop | Chrome 150 engine (`Chrome/150.0.0.0` UA); installed Google Chrome `150.0.7871.125` | Windows 10, Win64 x64 | Yes, localhost | `audio/webm;codecs=opus` | `audio/webm;codecs=opus` | 47,639 bytes / 3,004 ms / 1 audio track | **Pass** | 2026-07-18 |
-| Android | Current Chrome, exact version pending | Physical Android device, exact model/OS pending | HTTPS required | Provisionally `audio/webm;codecs=opus` | Pending | Pending | **Assumed for development; verification deferred** | — |
+| Android | Current Chrome and Firefox; exact versions not captured | Redmi Note 12 Pro 5G; exact Android version not captured | Yes, public HTTPS deployment | Not captured | Provider-accepted recording; exact type not captured | Not captured | **Functional voice journey pass; diagnostic metrics pending** | 2026-07-20 |
+| iPhone | Current Safari, Chrome, and Firefox; exact versions not captured | iPhone 17, iPhone 12, and iPhone 8; exact iOS versions not captured | Yes, public HTTPS deployment | Not captured | Provider-accepted recording; exact type not captured | Not captured | **Functional voice journey pass; diagnostic metrics pending** | 2026-07-20 |
 
 Desktop `isTypeSupported()` results:
 
@@ -37,13 +38,17 @@ Google Chrome 150 major version, but the physical Google Chrome executable must
 still receive a final smoke test before the cross-platform release gate is
 closed.
 
-## Provisional Android decision
+## Physical mobile result and remaining diagnostic gap
 
-The product owner approved proceeding on the assumption that current Chrome for
-Android will record successfully using the same ordered MIME negotiation. This
-is a development assumption, not test evidence. The physical-device run remains
-mandatory before the final cross-platform release and judging-readiness gates
-can be marked complete.
+Product-owner testing confirms that real microphone recordings on the named
+Android and iPhone devices successfully completed the public transcription and
+planning journey. This replaces the earlier Android development assumption
+with physical functional evidence.
+
+The dedicated no-upload diagnostic was not recorded during those journeys, so
+the exact browser/OS versions, preferred MIME type, actual Blob type, byte
+length, duration, and track count remain unknown. The mobile rows therefore do
+not claim completion of the stricter format-diagnostic procedure above.
 
 ## Candidate order
 
