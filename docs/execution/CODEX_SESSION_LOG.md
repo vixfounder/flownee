@@ -4,6 +4,90 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-20 — sticky shared header
+
+- Session ID: `TBD` (supporting navigation accessibility)
+- Objective: Keep the shared Flownee header visible while users scroll any application page.
+- Codex contributions:
+  - Applied sticky top positioning and a deliberate `z-40` layer to the existing shared header.
+  - Preserved the existing translucent surface, backdrop blur, border, height, logo, navigation, theme control, and page actions.
+  - Kept dialogs and blocking process overlays above the header while allowing the offline banner to scroll away naturally.
+- Human product and design decisions preserved:
+  - Victoria approved consistent sticky behavior across Home, Help, Settings, diagnostics, and Design System.
+  - No page content, navigation behavior, or surrounding layout was changed.
+- Verification:
+  - The header component regression test asserts the shared sticky positioning contract.
+  - Local browser checks on Home, Help, Settings, Design System, and recording diagnostics report `position: sticky`, `top: 0`, `z-index: 40`, and zero horizontal overflow after scrolling; the dark theme also retains the correct dark translucent surface.
+  - 35 test files and 130 tests pass; ESLint passes with zero warnings; the optimized Next.js build and TypeScript phase pass.
+  - No recording, task action, paid AI request, commit, push, merge, or deployment occurred.
+
+## 2026-07-20 — centered heading, matched badges, and action icons
+
+- Session ID: `TBD` (supporting visual consistency and action recognition)
+- Objective: Center the animated home title, make the effort badge match the current-action badge, and add icons to specified text actions.
+- Codex contributions:
+  - Centered the existing uppercase 18px Hyper Text heading without changing its 1600ms reveal, accessible label, or reduced-motion behavior.
+  - Applied the same `important` variant and explicit 28px height to `Do this now` and `About 10′`, preserving their distinct Sparkles and Clock icons.
+  - Added Sparkles to `Confirm and interpret`, X to every visible `Cancel`, List Plus to `Add to my flow`, a motion-safe Loader to its saving state, and Pencil to every `Revise transcript` action.
+- Human product and design decisions preserved:
+  - Victoria selected centered heading alignment, exact badge-style parity, and icon-plus-text treatment for the named actions.
+  - Copy, button variants, event handlers, disabled states, recording, planning, persistence, and task behavior remain unchanged.
+- Verification:
+  - Local sample inspection reports an exact zero-pixel heading center delta, 18px final heading typography, two 28px `important` badges with equal padding, correct final copy, and zero horizontal overflow.
+  - Component regression coverage proves the matched badge classes, centered heading class, List Plus, Pencil, saving Loader with reduced-motion suppression, and X on task-dialog cancellation; source and build validation cover the voice-state actions.
+  - 35 test files and 130 tests pass; ESLint passes with zero warnings; the optimized Next.js build and TypeScript phase pass.
+  - No recording, task action, paid AI request, commit, push, merge, or deployment occurred.
+
+## 2026-07-20 — production slide-to-confirm actions
+
+- Session ID: `TBD` (supporting deliberate task-state changes)
+- Objective: Replace the production `Done` and `Do later` buttons with the approved slide controls after design-system review.
+- Codex contributions:
+  - Reordered the current-action row to `Do later`, `Done`, and the fixed `...` menu, using two equal `minmax(0,1fr)` columns for all space left after the menu and gaps.
+  - Reused the tested slide component with compact production labels, automatic remount across busy/error/task changes, and the existing completion and postponement callbacks.
+  - Retained the five-second Shine Border only on the enabled `Done` slider and preserved its pointer-events-free and reduced-motion behavior.
+- Human product and design decisions preserved:
+  - Victoria selected the slider order, equal remaining-width split, fixed right-side management control, immediate flow refresh without an intermediate confirmation label, and continued Shine Border treatment for `Done`.
+  - The existing blocking update overlay remains the confirmation feedback while task mutation and replanning run.
+- Verification:
+  - Static regression coverage proves the equal-column grid, exact action order, slider tones, compact labels and icons, fixed menu size, enabled-only `Done` shine, and absence of shine when actions are disabled.
+  - Read-only local sample inspection reports `160.2px 160.2px 44px` columns inside the 380.4px action row; live local inspection reports both sliders and the menu enabled, exactly one shine overlay, and zero horizontal overflow. No slider was confirmed and no task data was changed during inspection.
+  - 35 test files and 129 tests pass; ESLint passes with zero warnings; the optimized Next.js build and TypeScript phase pass.
+  - No recording, paid AI request, commit, push, merge, or deployment occurred.
+
+## 2026-07-20 — slide-to-confirm design prototype
+
+- Session ID: `TBD` (supporting safer current-task actions)
+- Objective: Prototype deliberate slide-to-confirm replacements for `Done` and `Do later` in the internal design system before changing production behavior.
+- Codex contributions:
+  - Built one reusable 56px slide control with a shadcn-inspired pill track, circular 48px thumb, live brand-color progress fill, pointer capture, clamped travel, a 75% threshold, reset below threshold or on cancellation, keyboard confirmation, disabled behavior, focus treatment, and reduced-motion-safe transitions.
+  - Added teal `Slide to mark done` and muted-blue `Slide to do later` previews near the top of `/design-system`, plus a local status message and reset control.
+  - Kept the prototype isolated from IndexedDB, task mutation, completion feedback, and AI replanning.
+- Human product and design decisions preserved:
+  - Victoria requested replacing both current task actions with slide confirmation, distinct colors from the Flownee palette, and design-system review before production integration; she selected the cleaner shadcn-inspired visual treatment instead of the initial rectangular version.
+  - Production `Done` and `Do later` remained unchanged during this prototype stage; their later integration is recorded separately above.
+- Verification:
+  - Local inspection reports two 56px controls at 328px each, exact teal and muted-blue handles, readable adaptive tracks in light and dark themes, and zero horizontal overflow.
+  - Enter confirms exactly once, updates `aria-pressed` and the live status, moves the handle to the end, and the reset control restores both previews. Pointer threshold and clamping rules have executable unit coverage; physical touch dragging remains for product-owner review.
+  - 35 test files and 129 tests pass; ESLint passes with zero warnings; the optimized Next.js build and TypeScript phase pass after one transient Google Fonts connection retry.
+  - No task action, recording, paid AI request, commit, push, merge, deployment, or production-button replacement occurred.
+
+## 2026-07-20 — consolidated home heading
+
+- Session ID: `TBD` (supporting home-screen clarity)
+- Objective: Combine the home eyebrow and subheading into one compact page title.
+- Codex contributions:
+  - Replaced the separate `Your flow` label and `What makes sense next` title with one semantic `h1`.
+  - Adapted the official Magic UI Hyper Text component for one calm `1600ms` reveal, no hover replay, stable assistive-technology copy, and a static reduced-motion path.
+  - Added the exact MIT-licensed `motion@12.42.2` dependency and regression coverage for the approved wording, typography, and accessible component structure.
+- Human product and design decisions preserved:
+  - Victoria selected the uppercase copy `YOUR FLOW. WHAT MAKES SENSE NEXT`, a single-line presentation, and a uniform `18px` size for both phrases.
+  - Victoria approved the slower one-time Hyper Text treatment to better express flow; the established medium font weight, primary violet color, surrounding content, home states, task behavior, storage, and AI behavior remain unchanged.
+- Verification:
+  - Local computed styles report `18px`, weight `500`, the primary violet color, exactly one `h1`, and zero horizontal overflow in the centered 430px application shell.
+  - 34 test files and 125 tests pass; ESLint passes with zero warnings; the optimized Next.js production build and TypeScript phase pass.
+  - No recording, task mutation, paid AI request, commit, push, merge, or deployment occurred.
+
 ## 2026-07-20 — automatic post-addition handoff
 
 - Session ID: `TBD` (supporting lower-friction voice capture)

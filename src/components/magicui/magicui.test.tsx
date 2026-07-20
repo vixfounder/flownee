@@ -2,9 +2,29 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import { Confetti } from "@/components/magicui/confetti";
+import { HyperText } from "@/components/magicui/hyper-text";
 import { ShineBorder } from "@/components/magicui/shine-border";
 
 describe("staged Magic UI primitives", () => {
+  it("renders Hyper Text with stable accessible copy", () => {
+    const markup = renderToStaticMarkup(
+      <HyperText
+        animateOnHover={false}
+        as="h1"
+        className="text-lg font-medium text-primary"
+      >
+        YOUR FLOW. WHAT MAKES SENSE NEXT
+      </HyperText>,
+    );
+
+    expect(markup).toContain("<h1");
+    expect(markup).toContain(
+      'aria-label="YOUR FLOW. WHAT MAKES SENSE NEXT"',
+    );
+    expect(markup).toContain('aria-hidden="true"');
+    expect(markup).toContain("text-lg font-medium text-primary");
+  });
+
   it("renders a non-interactive, reduced-motion-safe shine border", () => {
     const markup = renderToStaticMarkup(
       <ShineBorder

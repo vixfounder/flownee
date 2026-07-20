@@ -40,6 +40,8 @@ describe("TaskActionsDialog", () => {
     expect(markup).toContain("☕");
     expect(markup).toContain("Buy coffee beans");
     expect(markup).toContain("break-words");
+    expect(markup).toContain("lucide-x");
+    expect(markup).toContain("Cancel");
     expect(markup).not.toContain("truncate");
   });
 });

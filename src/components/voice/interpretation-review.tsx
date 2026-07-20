@@ -1,6 +1,12 @@
 "use client";
 
-import { CircleAlert, ListChecks } from "lucide-react";
+import {
+  CircleAlert,
+  ListChecks,
+  ListPlus,
+  LoaderCircle,
+  PencilLine,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -154,9 +160,18 @@ export function InterpretationReview({
             hasInvalidDraft
           }
         >
+          {isSaving ? (
+            <LoaderCircle
+              aria-hidden="true"
+              className="animate-spin motion-reduce:animate-none"
+            />
+          ) : (
+            <ListPlus aria-hidden="true" />
+          )}
           {isSaving ? "Saving your flow…" : "Add to my flow"}
         </Button>
         <Button variant="outline" onClick={onReviseTranscript} disabled={isSaving}>
+          <PencilLine aria-hidden="true" />
           Revise transcript
         </Button>
       </div>

@@ -7,7 +7,9 @@ import {
   CircleAlert,
   LoaderCircle,
   Mic,
+  PencilLine,
   RotateCcw,
+  Sparkles,
   Square,
   Trash2,
   X,
@@ -577,6 +579,7 @@ export function VoiceCapture({
                       Stop and transcribe
                     </Button>
                     <Button variant="outline" onClick={discardAndClose}>
+                      <X aria-hidden="true" />
                       Cancel
                     </Button>
                   </div>
@@ -624,6 +627,7 @@ export function VoiceCapture({
                       onClick={() => void confirmTranscript()}
                       disabled={transcript.trim().length === 0}
                     >
+                      <Sparkles aria-hidden="true" />
                       Confirm and interpret
                     </Button>
                     <Button
@@ -701,6 +705,7 @@ export function VoiceCapture({
                         setState("review");
                       }}
                     >
+                      <PencilLine aria-hidden="true" />
                       Revise transcript
                     </Button>
                     <Button variant="ghost" onClick={discardAndClose}>

@@ -140,7 +140,10 @@ export function TaskActionsDialog({
           >
             Save changes
           </Button>
-          <Button variant="ghost" onClick={onClose} disabled={busy}>Cancel</Button>
+          <Button variant="ghost" onClick={onClose} disabled={busy}>
+            <X aria-hidden="true" />
+            Cancel
+          </Button>
           {!confirmDelete ? (
             <Button className="ml-auto" variant="ghost" onClick={() => setConfirmDelete(true)} disabled={busy}>
               <Trash2 aria-hidden="true" /> Delete

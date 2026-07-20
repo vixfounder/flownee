@@ -26,6 +26,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { SlideToConfirm } from "@/components/ui/slide-to-confirm";
 import { Textarea } from "@/components/ui/textarea";
 
 const navigationItems = [
@@ -64,6 +65,8 @@ function DemoSection({
 export function ColorSystemDemo() {
   const [activeNavigation, setActiveNavigation] = useState("today");
   const [completionPreviewTrigger, setCompletionPreviewTrigger] = useState(0);
+  const [slidePreviewVersion, setSlidePreviewVersion] = useState(0);
+  const [slidePreviewMessage, setSlidePreviewMessage] = useState("");
 
   return (
     <main className="min-h-svh bg-background text-foreground">
@@ -102,6 +105,49 @@ export function ColorSystemDemo() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </DemoSection>
+
+            <DemoSection
+              title="Slide to confirm"
+              description="Intentional task actions use distinct brand colors and require a deliberate horizontal gesture. These previews do not change task data."
+            >
+              <div
+                className="grid max-w-2xl gap-4 sm:grid-cols-2"
+                key={slidePreviewVersion}
+              >
+                <SlideToConfirm
+                  confirmedLabel="Marked done"
+                  handleIcon={<Check aria-hidden="true" className="size-5" />}
+                  label="Slide to mark done"
+                  onConfirm={() => setSlidePreviewMessage("Done confirmed")}
+                  tone="done"
+                />
+                <SlideToConfirm
+                  confirmedLabel="Moved to later"
+                  handleIcon={<Clock3 aria-hidden="true" className="size-5" />}
+                  label="Slide to do later"
+                  onConfirm={() => setSlidePreviewMessage("Do later confirmed")}
+                  tone="later"
+                />
+              </div>
+              <div className="mt-4 flex min-h-11 flex-wrap items-center gap-3">
+                <p aria-live="polite" className="text-sm text-muted-foreground">
+                  {slidePreviewMessage ||
+                    "Drag a handle right, or focus a control and press Enter or Space."}
+                </p>
+                {slidePreviewMessage && (
+                  <Button
+                    className="ml-auto"
+                    onClick={() => {
+                      setSlidePreviewMessage("");
+                      setSlidePreviewVersion((current) => current + 1);
+                    }}
+                    variant="outline"
+                  >
+                    Reset examples
+                  </Button>
+                )}
               </div>
             </DemoSection>
 

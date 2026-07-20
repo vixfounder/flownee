@@ -21,6 +21,7 @@ describe("AppHeader", () => {
     expect(markup.match(/data-size="icon-lg"/g)).toHaveLength(3);
     expect(markup).toContain('width="60"');
     expect(markup).toContain('height="17"');
+    expect(markup).toContain("sticky top-0 z-40");
   });
 
   it("renders optional page actions", () => {

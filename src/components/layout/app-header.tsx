@@ -13,7 +13,7 @@ type AppHeaderProps = {
 
 export function AppHeader({ actions, contentClassName }: AppHeaderProps) {
   return (
-    <header className="border-b border-border/70 bg-surface/85 backdrop-blur-lg">
+    <header className="sticky top-0 z-40 border-b border-border/70 bg-surface/85 backdrop-blur-lg">
       <div
         className={cn(
           "mx-auto flex h-16 items-center justify-between gap-1 px-3 min-[360px]:px-4 sm:px-6",

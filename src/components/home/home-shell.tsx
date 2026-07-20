@@ -18,12 +18,14 @@ import {
 
 import { NetworkStatus } from "@/components/home/network-status";
 import { CompletionConfetti } from "@/components/magicui/completion-confetti";
+import { HyperText } from "@/components/magicui/hyper-text";
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { TaskActionsDialog } from "@/components/home/task-actions-dialog";
 import { AppHeader } from "@/components/layout/app-header";
 import { VoiceCapture } from "@/components/voice/voice-capture";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SlideToConfirm } from "@/components/ui/slide-to-confirm";
 import {
   homeStateFromSnapshot,
   type HomeState,
@@ -104,7 +106,7 @@ export function FlowUpdateOverlay({ visible }: { visible: boolean }) {
 
 function EffortBadge({ minutes }: { minutes: number | null }) {
   return (
-    <Badge variant="scheduled" className="gap-1.5 px-2.5 py-1 font-medium">
+    <Badge variant="important" className="h-7 gap-1.5">
       <Clock3 aria-hidden="true" />
       {minutes === null ? "Estimate pending" : `About ${effortLabel(minutes)}`}
     </Badge>
@@ -261,7 +263,7 @@ export function PlanRecommendation({
           className="flex flex-wrap items-center gap-2"
           data-slot="current-recommendation-meta"
         >
-          <Badge variant="important" className="gap-1.5">
+          <Badge variant="important" className="h-7 gap-1.5">
             <Sparkles aria-hidden="true" />
             Do this now
           </Badge>
@@ -295,36 +297,41 @@ export function PlanRecommendation({
         </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-border/80 pt-5">
-        <Button
-          className="relative h-11 overflow-hidden"
+      <div
+        className="mt-5 grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_2.75rem] items-center gap-2 border-t border-border/80 pt-5"
+        data-slot="current-actions"
+      >
+        <SlideToConfirm
+          key={`later-${state.nextTask.id}-${actionsDisabled}`}
           disabled={actionsDisabled}
-          onClick={() => onComplete(state.nextTask.id)}
-        >
-          {!actionsDisabled && (
-            <ShineBorder
-              animation="repeat"
-              borderWidth={1.5}
-              duration={5}
-              shineColor={["#8FD9FB", "#4AB5B5", "#525AFF"]}
-            />
-          )}
-          <Check aria-hidden="true" />
-          Done
-        </Button>
-        <Button
-          className="h-11"
+          handleIcon={<Clock3 aria-hidden="true" className="size-5" />}
+          label="Do later"
+          onConfirm={() => onPostpone(state.nextTask.id)}
+          tone="later"
+        />
+        <SlideToConfirm
+          key={`done-${state.nextTask.id}-${actionsDisabled}`}
+          decoration={
+            !actionsDisabled ? (
+              <ShineBorder
+                animation="repeat"
+                borderWidth={1.5}
+                className="z-30"
+                duration={5}
+                shineColor={["#8FD9FB", "#4AB5B5", "#525AFF"]}
+              />
+            ) : undefined
+          }
           disabled={actionsDisabled}
-          onClick={() => onPostpone(state.nextTask.id)}
-        >
-          <Clock3 aria-hidden="true" />
-          Do later
-        </Button>
+          handleIcon={<Check aria-hidden="true" className="size-5" />}
+          label="Done"
+          onConfirm={() => onComplete(state.nextTask.id)}
+          tone="done"
+        />
         <Button
           disabled={actionsDisabled}
           variant="ghost"
           size="icon-lg"
-          className="ml-auto"
           aria-label="More task actions"
           onClick={() => onManage(state.nextTask.id)}
         >
@@ -541,6 +548,7 @@ export function CleanDoneDialog({
             Confirm clean done
           </Button>
           <Button disabled={busy} onClick={onClose} variant="outline">
+            <X aria-hidden="true" />
             Cancel
           </Button>
         </div>
@@ -762,10 +770,14 @@ export function HomeShell({
 
       <main className="mx-auto px-4 pb-[calc(10rem+env(safe-area-inset-bottom))] pt-7 sm:px-6 sm:pt-10">
         <div className="mb-7 sm:mb-9">
-          <p className="text-sm font-medium text-primary">Your flow</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
-            What makes sense next
-          </h1>
+          <HyperText
+            animateOnHover={false}
+            as="h1"
+            className="text-center text-lg font-medium text-primary"
+            duration={1600}
+          >
+            YOUR FLOW. WHAT MAKES SENSE NEXT
+          </HyperText>
         </div>
 
         <div className="grid items-start gap-5">

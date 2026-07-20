@@ -5,12 +5,12 @@ import { InterpretationReview } from "@/components/voice/interpretation-review";
 import { planningOutputFixture } from "@/lib/ai/fixtures/planning-test-fixture";
 import { createInterpretationDrafts } from "@/lib/ai/planning-commit";
 
-function renderReview(output = planningOutputFixture) {
+function renderReview(output = planningOutputFixture, isSaving = false) {
   return renderToStaticMarkup(
     <InterpretationReview
       drafts={createInterpretationDrafts(output)}
       output={output}
-      isSaving={false}
+      isSaving={isSaving}
       errorMessage=""
       onChange={() => undefined}
       onConfirm={() => undefined}
@@ -28,6 +28,8 @@ describe("InterpretationReview", () => {
     expect(markup).toContain('aria-label="Intention 1 action"');
     expect(markup).toContain("Choose time effort");
     expect(markup).toContain("Add to my flow");
+    expect(markup).toContain("lucide-list-plus");
+    expect(markup).toContain("lucide-pencil-line");
     expect(markup).not.toContain(">Action<");
     expect(markup).not.toContain("Choose one");
     expect(markup).not.toContain("Time effort");
@@ -37,6 +39,15 @@ describe("InterpretationReview", () => {
     expect(markup).not.toContain("Notes");
     expect(markup).not.toContain("Assumptions");
     expect(markup).not.toContain("Add and update my flow");
+  });
+
+  it("uses a motion-safe loader while saving", () => {
+    const markup = renderReview(planningOutputFixture, true);
+
+    expect(markup).toContain("Saving your flow");
+    expect(markup).toContain("lucide-loader-circle");
+    expect(markup).toContain("motion-reduce:animate-none");
+    expect(markup).not.toContain("lucide-list-plus");
   });
 
   it("blocks an important uncertainty without exposing assumption controls", () => {

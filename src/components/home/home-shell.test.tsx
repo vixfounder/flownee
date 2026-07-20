@@ -34,7 +34,7 @@ function savedTask(id: string, title: string, status: TaskStatus): Task {
 }
 
 describe("home recommendation actions", () => {
-  it("uses matching primary buttons and a clock for Do later", () => {
+  it("orders equal-width Do later and Done sliders before the task menu", () => {
     const markup = renderToStaticMarkup(
       <PlanRecommendation
         state={sampleHomeState}
@@ -49,18 +49,32 @@ describe("home recommendation actions", () => {
     );
     const doneButton = buttons.find((button) => button.includes("Done"));
     const laterButton = buttons.find((button) => button.includes("Do later"));
+    const menuButton = buttons.find((button) =>
+      button.includes('aria-label="More task actions"'),
+    );
 
-    expect(doneButton).toContain('data-variant="default"');
-    expect(doneButton).toContain('data-size="default"');
-    expect(doneButton).toContain("h-11");
+    expect(markup).toContain('data-slot="current-actions"');
+    expect(markup).toContain(
+      "grid-cols-[minmax(0,1fr)_minmax(0,1fr)_2.75rem]",
+    );
+    expect(laterButton).toContain('data-slot="slide-to-confirm"');
+    expect(laterButton).toContain('data-tone="later"');
+    expect(laterButton).toContain('aria-label="Do later"');
+    expect(laterButton).toContain("lucide-clock-3");
+    expect(laterButton).not.toContain("animate-flownee-shine-repeat");
+    expect(doneButton).toContain('data-slot="slide-to-confirm"');
+    expect(doneButton).toContain('data-tone="done"');
+    expect(doneButton).toContain('aria-label="Done"');
     expect(doneButton).toContain("animate-flownee-shine-repeat");
     expect(doneButton).toContain('aria-hidden="true"');
     expect(doneButton).toContain("pointer-events-none");
-    expect(laterButton).toContain('data-variant="default"');
-    expect(laterButton).toContain('data-size="default"');
-    expect(laterButton).toContain("h-11");
-    expect(laterButton).toContain("lucide-clock-3");
-    expect(markup).toContain('data-size="icon-lg"');
+    expect(menuButton).toContain('data-size="icon-lg"');
+    expect(markup.indexOf('aria-label="Do later"')).toBeLessThan(
+      markup.indexOf('aria-label="Done"'),
+    );
+    expect(markup.indexOf('aria-label="Done"')).toBeLessThan(
+      markup.indexOf('aria-label="More task actions"'),
+    );
   });
 
   it("does not render the completion shine when actions are disabled", () => {
@@ -95,6 +109,9 @@ describe("home recommendation actions", () => {
       /data-slot="current-recommendation-meta"[\s\S]*Do this now[\s\S]*About 10′/,
     );
     expect(markup).toContain('aria-labelledby="current-intention-title"');
+    expect(
+      markup.match(/data-variant="important"[^>]*h-7[^>]*>/g),
+    ).toHaveLength(2);
     expect(markup).toContain('<h2 id="current-intention-title"');
     expect(markup).not.toContain('data-slot="card"');
     expect(markup).not.toContain("border-l-2");
@@ -250,7 +267,12 @@ describe("home accessibility frame", () => {
     );
 
     expect(markup).toContain("<h1");
-    expect(markup).toContain("What makes sense next");
+    expect(markup).toContain("<h1");
+    expect(markup).toContain("text-center text-lg font-medium text-primary");
+    expect(markup).toContain(
+      'aria-label="YOUR FLOW. WHAT MAKES SENSE NEXT"',
+    );
+    expect(markup).toContain("YOUR FLOW. WHAT MAKES SENSE NEXT");
     expect(markup).toContain("lucide-info");
     expect(markup).toContain("border-t border-border/80 pt-4");
     expect(markup).toContain(
