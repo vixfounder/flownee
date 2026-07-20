@@ -4,6 +4,40 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 
 The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
 
+## 2026-07-20 — judge-ready README
+
+- Session ID: `TBD` (supporting submission documentation)
+- Objective: Replace the scaffold README with a complete, evidence-backed project narrative for judges and developers.
+- Codex contributions:
+  - Documented the product problem, value proposition, public paths, implemented experience, protected AI workflow, strict GPT-5.6 contract, local-first reliability, privacy boundaries, technology, setup, environment, verification, and repository structure.
+  - Synthesized the dated implementation record into explicit sections describing where Codex accelerated the work and which consequential decisions remained human-owned.
+  - Linked the public testing guide and detailed evidence documents while preserving incomplete platform and evaluation claim boundaries.
+- Human product and engineering decisions preserved:
+  - Product direction, scope, models, technology, privacy model, design approvals, release acceptance, research claims, and final submission ownership remain attributed to Victoria and Mike.
+  - Missing `/feedback`, video, and Devpost artifacts were not represented as available README links.
+- Verification:
+  - Every relative README link resolves to an existing repository file.
+  - Required setup, AI, testing, Codex-collaboration, human-decision, license, and deployment topics are present.
+  - `git diff --check`: pass.
+  - No code, product behavior, recording, task data, paid AI request, commit, push, or deployment occurred.
+
+## 2026-07-20 — judge-facing testing instructions
+
+- Session ID: `TBD` (supporting submission documentation)
+- Objective: Provide a self-contained, truthful path for judges to test the public product without an account, API key, or private data.
+- Codex contributions:
+  - Created root `TESTING_INSTRUCTIONS.md` with a fictional multi-intention voice script and observable expectations for transcript review, interpretation, confirmation, planning, task actions, persistence, and local-data deletion.
+  - Documented safe recovery, offline, permission, privacy, and non-deterministic AI behavior.
+  - Identified URL-driven sample states as read-only and separated physical-device functional evidence from unrecorded exact versions and MIME diagnostics.
+  - Linked the guide from README and reconciled the task and compliance evidence.
+- Human product and testing evidence preserved:
+  - The guide reflects the product owner's successful Android/iPhone public-deployment journeys and does not convert those checks into representative-user research.
+  - Judges are instructed to use fictional information and delete local test data only after completing the other checks.
+- Verification:
+  - Every named action and state was checked against the current components and documented product boundaries.
+  - Markdown diff validation passes.
+  - No code, product behavior, recording, task data, paid AI request, commit, push, or deployment occurred.
+
 ## 2026-07-20 — physical mobile acceptance evidence
 
 - Session ID: `TBD` (supporting release evidence documentation)

@@ -17,7 +17,7 @@ Status values: `TODO`, `IN PROGRESS`, `PASS`, `BLOCKED`, `N/A`.
 
 | Requirement | Status | Evidence | Owner | Last verified |
 |---|---|---|---|---|
-| Codex is used throughout development | IN PROGRESS | Codex task history; later session log | Team | 2026-07-18 |
+| Codex is used throughout development | PASS | `README.md` collaboration narrative and dated `docs/execution/CODEX_SESSION_LOG.md` implementation evidence | Team | 2026-07-20 |
 | GPT-5.6 performs central product reasoning | PASS | Protected planning route, strict contract, fixtures, and automated tests | Mike | 2026-07-18 |
 | GPT-4o Transcribe handles voice input | PASS | Protected transcription route, transcript review, and automated tests | Mike | 2026-07-18 |
 | Project is working and non-trivial | PASS | Public deployment, 130 automated tests, production build, successful owner-reported physical voice/AI journeys, and `docs/technical/PLATFORM_TEST_MATRIX.md` | Team | 2026-07-20 |
@@ -33,12 +33,12 @@ Status values: `TODO`, `IN PROGRESS`, `PASS`, `BLOCKED`, `N/A`.
 | MIT License is included | PASS | `LICENSE` | Mike | 2026-07-18 |
 | No secrets or private user data are committed | PASS | Placeholder-only `.env.example`; scoped secret scan | Mike | 2026-07-18 |
 | README has setup and run instructions | PASS | `README.md`; clean lockfile verification | Mike | 2026-07-18 |
-| README includes sample data when needed | TODO | README/sample fixture | Mike | |
-| README documents Codex acceleration and human decisions | TODO | `README.md` | Team | |
+| README includes sample data when needed | PASS | `README.md` links `TESTING_INSTRUCTIONS.md`, which provides a fictional multi-intention voice script and read-only sample URLs | Mike | 2026-07-20 |
+| README documents Codex acceleration and human decisions | PASS | `README.md` sections `How the team collaborated with Codex` and `Decisions made by humans` | Team | 2026-07-20 |
 | Public Netlify deployment is available | PASS | https://flownee-build-week.netlify.app; deploy `6a5be6cc5715099f9535f7b8` | Mike | 2026-07-18 |
 | Judges need no account, payment, invitation, or API key | PASS | Signed-out HTTPS checks returned 200 for the app, demo, PWA assets, diagnostic, and AI status | Team | 2026-07-18 |
 | Judge access remains active through judging | TODO | Hosting/API budget check | Mike | |
-| Testing instructions reproduce critical journey | TODO | `TESTING_INSTRUCTIONS.md` | Team | |
+| Testing instructions reproduce critical journey | PASS | `TESTING_INSTRUCTIONS.md`: public setup, fictional multi-intention voice path, interpretation, task actions, persistence, delete-all, recovery, privacy, and read-only previews | Team | 2026-07-20 |
 
 ## Submission
 

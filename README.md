@@ -1,54 +1,204 @@
 # Flownee
 
-Flownee is a calm, voice-first AI productivity assistant that turns spoken everyday intentions into a continuously updated answer to: **What should I do now?**
+**From what is on your mind to what makes sense next.**
 
-Flownee is being built from scratch for the OpenAI Build Week **Apps for Your Life** track.
+Flownee is a calm, voice-first personal productivity PWA that turns spoken
+everyday intentions into a continuously updated answer to:
+**What should I do now?**
 
-## Current status
+It was built from scratch for the OpenAI Build Week **Apps for Your Life**
+track. Flownee is account-free, local-first, installable, and designed for
+busy people who want guidance without maintaining another complicated
+productivity system.
 
-The voice-to-plan journey, local task actions, privacy controls, and protected
-AI routes are implemented. The default home screen shows the truthful
-first-run empty state; fictional state previews remain available locally at
-`/?demo=sample`, `/?demo=updating`, `/?demo=complete`, and `/?demo=loading`.
-Product implementation remains in progress; see
-[`docs/execution/TASKS.md`](docs/execution/TASKS.md).
+## Try Flownee
 
-Public deployment: [flownee-build-week.netlify.app](https://flownee-build-week.netlify.app)
+- Public application:
+  [flownee-build-week.netlify.app](https://flownee-build-week.netlify.app)
+- Judge testing guide and fictional input:
+  [`TESTING_INSTRUCTIONS.md`](TESTING_INSTRUCTIONS.md)
+- Read-only fictional previews:
+  [sample plan](https://flownee-build-week.netlify.app/?demo=sample),
+  [updating](https://flownee-build-week.netlify.app/?demo=updating),
+  [all complete](https://flownee-build-week.netlify.app/?demo=complete), and
+  [loading](https://flownee-build-week.netlify.app/?demo=loading)
 
-## Technology baseline
+No account, payment, invitation, user API key, or preloaded personal data is
+required. The fictional previews do not create or change local tasks; their
+task actions are intentionally disabled.
 
-- Next.js and TypeScript
-- Tailwind CSS with shadcn/ui-compatible primitives
-- Native IndexedDB for account-free local persistence
-- Vitest
-- ESLint
-- pnpm
-- Netlify production deployment
+## The problem
 
-AI workflow:
+Small personal, household, family, shopping, social, and administrative
+intentions are easy to remember at inconvenient moments and easy to forget
+later. They are often too informal for a calendar, while manually categorizing
+and prioritizing them in a traditional task manager creates more work.
 
-- GPT-4o Transcribe converts bounded temporary voice recordings to editable text through a protected server route.
-- GPT-5.6 extracts structured intentions and updates the execution flow.
+Flownee reduces both kinds of friction:
 
-## Local setup
+1. Capture naturally by voice.
+2. Review what was heard and how it was interpreted.
+3. Let GPT-5.6 reason across the complete active set.
+4. See one explained recommendation and a practical remaining order.
+5. Complete, postpone, edit, or delete items and let the flow update.
 
-Prerequisites:
+## Core experience
+
+- One-tap voice capture from the home screen.
+- Editable GPT-4o Transcribe transcript before interpretation.
+- Multiple intentions extracted from one recording.
+- Editable titles and effort estimates before saving.
+- Visible separation between user-stated facts, AI estimates, and assumptions.
+- One prominent **Do this now** action with effort and a concise reason.
+- Ordered **Next items in your current flow**.
+- Complete, postpone, restore, edit, delete, clean-completed, and delete-all
+  controls.
+- Immediate local updates followed by automatic GPT-5.6 replanning.
+- Last valid recommendation preserved during replanning or provider failure.
+- IndexedDB persistence across refresh, close, reopen, and PWA use.
+- Light and dark themes, responsive mobile-first UI, keyboard-accessible
+  non-capture controls, reduced-motion handling, and installable PWA metadata.
+
+## How the AI workflow works
+
+```text
+Microphone
+  -> temporary browser audio Blob
+  -> protected /api/transcribe route
+  -> GPT-4o Transcribe
+  -> editable transcript
+  -> protected /api/plan route
+  -> GPT-5.6 structured extraction and planning
+  -> interpretation review
+  -> atomic IndexedDB task + plan commit
+  -> updated Do this now recommendation
+```
+
+### GPT-4o Transcribe
+
+Audio is uploaded only after the user stops recording. The protected server
+route validates the file type and size, applies a timeout and request limit,
+and sends the recording to `gpt-4o-transcribe`. Flownee releases the temporary
+audio after successful transcription and does not store recordings in its
+durable local schema.
+
+### GPT-5.6
+
+The planning route uses `gpt-5.6-sol` with medium reasoning through the
+Responses API. Strict Structured Outputs and a second semantic validation layer
+require GPT-5.6 to return:
+
+- extracted intentions with one visual emoji cue each;
+- explicit effort and deadline provenance;
+- visible assumptions and essential clarifications;
+- a complete order containing every active task exactly once;
+- one explained next action; and
+- genuine parallel-work groups where appropriate.
+
+A capture request includes only the confirmed transcript and a compact snapshot
+of active tasks. A later replan includes active tasks but no transcript and is
+not allowed to create new tasks. Completed history and unrelated local data are
+excluded.
+
+## Reliability and local-first design
+
+Flownee treats AI as a fallible planning dependency, not as the source of truth
+for user data.
+
+- Confirmed transcripts can be saved independently of later planning.
+- Task changes are committed locally before replanning begins.
+- A monotonically increasing task revision rejects stale model responses.
+- Invalid, incomplete, or inconsistent model output cannot replace a valid
+  plan.
+- A provisional local plan keeps the interface usable during replanning.
+- Network or model failure never deletes a confirmed item or the previous
+  valid plan.
+- Opening the app loads from IndexedDB and does not call GPT-5.6 unless relevant
+  task state changed.
+
+## Privacy and operational boundaries
+
+- No account or server-side task database.
+- Confirmed transcripts, tasks, statuses, preferences, and plans remain in the
+  current browser's IndexedDB.
+- Audio is not retained after successful transcription by default.
+- OpenAI credentials are server-only and never use a `NEXT_PUBLIC_` variable.
+- Paid routes enforce same-origin browser requests, input limits, provider
+  timeouts, configurable best-effort throttling, and an emergency feature
+  switch.
+- Application logs exclude recordings, full transcripts, personal task
+  contents, and secrets.
+- The Help screen provides a two-step control that atomically deletes all local
+  Flownee content.
+
+Tasks do not synchronize between devices, browser applications, or browser
+profiles. OpenAI processing requires a network connection; saved local content
+remains available offline.
+
+## Technology
+
+| Area | Implementation |
+|---|---|
+| Application | Next.js 16, React 19, TypeScript 6 |
+| Interface | Tailwind CSS 4 and shadcn/ui-compatible primitives |
+| Local persistence | Native IndexedDB with runtime record validation |
+| Voice capture | Browser `MediaRecorder` with MIME negotiation |
+| Transcription | GPT-4o Transcribe through a protected Next.js route |
+| Reasoning | GPT-5.6 Responses API with strict Structured Outputs |
+| PWA | Web manifest, owned icons, and API-bypassing service worker |
+| Testing | Vitest, fake-indexeddb, component/contract/route tests |
+| Hosting | Netlify |
+| Package manager | pnpm 11 with a frozen lockfile |
+
+Supabase, accounts, calendar integration, push notifications, background
+listening, multi-device synchronization, routine learning, and location-aware
+recommendations are deliberately outside the MVP.
+
+## Local development
+
+### Prerequisites
 
 - Node.js 20.9 or newer
 - pnpm 11
+- An OpenAI API key only when exercising the live AI routes
+
+### Install and run
 
 ```bash
 pnpm install --frozen-lockfile
+```
+
+macOS/Linux:
+
+```bash
+cp .env.example .env.local
+pnpm dev
+```
+
+Windows PowerShell:
+
+```powershell
 Copy-Item .env.example .env.local
 pnpm dev
 ```
 
-Do not place a real OpenAI key in a committed file. Set `OPENAI_API_KEY` and
-`AI_FEATURES_ENABLED=true` only in `.env.local` or the deployment environment.
-Set it to `false` to stop both paid AI routes immediately while preserving the
-local experience. Optional `AI_RATE_LIMIT_WINDOW_SECONDS`,
-`AI_TRANSCRIBE_RATE_LIMIT`, and `AI_PLAN_RATE_LIMIT` values control the
-best-effort per-client limits described in `.env.example`.
+Open [http://localhost:3000](http://localhost:3000).
+
+### Environment variables
+
+| Variable | Purpose | Default example |
+|---|---|---|
+| `OPENAI_API_KEY` | Server-only OpenAI credential | empty |
+| `AI_FEATURES_ENABLED` | Emergency switch for both paid routes | `false` |
+| `AI_RATE_LIMIT_WINDOW_SECONDS` | Per-instance throttle window | `600` |
+| `AI_TRANSCRIBE_RATE_LIMIT` | Transcription requests per client/window | `6` |
+| `AI_PLAN_RATE_LIMIT` | Planning requests per client/window | `20` |
+| `NEXT_PUBLIC_APP_ENV` | Non-secret deployment label | `development` |
+
+Set `OPENAI_API_KEY` and `AI_FEATURES_ENABLED=true` only in `.env.local` or the
+deployment environment. Never commit a real key. With AI disabled, the local
+shell, stored flow, task management, and fictional previews remain available;
+new transcription and planning are intentionally paused.
 
 ## Verification
 
@@ -58,15 +208,110 @@ pnpm test
 pnpm build
 ```
 
-## Project documentation
+The current automated baseline is 35 test files and 130 passing tests. Coverage
+includes IndexedDB transactions, stale-plan rejection, structured-output
+contracts, provider boundaries, route validation, throttling, task actions,
+home states, voice-state rendering, PWA metadata, and UI behavior.
 
-- Product brief: [`docs/product/PROJECT_BRIEF.md`](docs/product/PROJECT_BRIEF.md)
-- MVP scope: [`docs/product/MVP_SCOPE.md`](docs/product/MVP_SCOPE.md)
-- Architecture: [`docs/technical/ARCHITECTURE.md`](docs/technical/ARCHITECTURE.md)
-- Supported-platform evidence: [`docs/technical/PLATFORM_TEST_MATRIX.md`](docs/technical/PLATFORM_TEST_MATRIX.md)
-- Implementation plan: [`docs/execution/IMPLEMENTATION_PLAN.md`](docs/execution/IMPLEMENTATION_PLAN.md)
-- Hackathon rules: [`docs/compliance/HACKATHON_RULES.md`](docs/compliance/HACKATHON_RULES.md)
+For the complete manual public journey, expected results, recovery checks,
+fictional voice input, and delete-all procedure, follow
+[`TESTING_INSTRUCTIONS.md`](TESTING_INSTRUCTIONS.md).
+
+## Platform evidence
+
+Product-owner testing completed the public voice/AI journey, task actions,
+individual editing/deletion, delete-all, reload, and reopen checks on:
+
+- Redmi Note 12 Pro 5G in installed-app mode and current Chrome and Firefox.
+- iPhone 17, iPhone 12, and iPhone 8 in current Safari, Chrome, and Firefox.
+
+Windows Chrome-engine recording and responsive evidence is also documented.
+Exact mobile OS/browser versions and per-browser MIME diagnostics were not
+captured; Windows Chrome full-journey, macOS Chrome, and Windows Edge evidence
+remain open. See
+[`docs/technical/PLATFORM_TEST_MATRIX.md`](docs/technical/PLATFORM_TEST_MATRIX.md)
+and
+[`docs/technical/AUDIO_COMPATIBILITY.md`](docs/technical/AUDIO_COMPATIBILITY.md)
+for the precise claim boundaries.
+
+## How the team collaborated with Codex
+
+Codex was used throughout product definition, architecture, implementation,
+testing, debugging, documentation, and release preparation. Under human
+direction, Codex accelerated work by:
+
+- translating the product brief and hackathon rules into a scoped execution
+  plan and persistent repository guidance;
+- implementing and testing the native IndexedDB schema, atomic repositories,
+  task revisions, provisional plans, and stale-response protection;
+- defining strict GPT-5.6 request/output contracts, prompts, semantic
+  validation, and executable evaluation fixtures;
+- building protected transcription and planning routes with safe provider
+  error handling, timeouts, input limits, throttling, and feature controls;
+- implementing the responsive voice, review, task-management, recovery,
+  privacy, PWA, and accessibility states;
+- diagnosing production same-origin behavior behind Netlify's reverse proxy;
+- expanding automated coverage and repeatedly running lint, tests, TypeScript,
+  production builds, browser checks, and deployment smoke checks; and
+- maintaining dated task evidence, decision history, platform limitations, and
+  judge-facing documentation.
+
+Codex did not independently choose the product direction or approve releases.
+Material changes were reviewed against explicit product-owner decisions, and
+uncertain or unavailable evidence was recorded as such rather than invented.
+The detailed collaboration record is in
+[`docs/execution/CODEX_SESSION_LOG.md`](docs/execution/CODEX_SESSION_LOG.md).
+
+## Decisions made by humans
+
+Victoria and Mike retained ownership of the consequential product,
+engineering, design, testing, and submission decisions, including:
+
+- choosing the busy-adult problem, **Apps for Your Life** track, value
+  proposition, research claim boundaries, and voice-first product direction;
+- requiring voice-only capture with editable text review rather than adding a
+  competing text-entry workflow;
+- choosing account-free local persistence, no permanent audio retention, and
+  no calendar, account, synchronization, reminder, routine-learning, or
+  location scope for the MVP;
+- selecting GPT-4o Transcribe, GPT-5.6, Next.js, TypeScript, Tailwind,
+  shadcn/ui conventions, IndexedDB, Netlify, and the server-only API boundary;
+- defining the calm, concise, non-judgmental tone and approving the brand,
+  responsive layout, interaction hierarchy, effort options, animations, and
+  final mobile experience;
+- approving API-budget controls, model-quality assumptions, staged design
+  gates, dependencies, assets, and every material release decision; and
+- conducting physical-device product acceptance and owning the final
+  usability, rights, compliance, video, and Devpost claims.
+
+## Repository map
+
+```text
+src/app/                  Next.js pages, manifest, and protected API routes
+src/components/home/      Recommendation, task actions, and saved-item flow
+src/components/voice/     Recording, transcript, and interpretation journey
+src/lib/ai/               GPT-5.6 contracts, prompt, validation, and fixtures
+src/lib/audio/            MediaRecorder capability and recording logic
+src/lib/server/           OpenAI boundaries, origin checks, and throttling
+src/lib/storage/          IndexedDB schema and atomic repository
+public/                   PWA assets and service worker
+docs/                     Product, architecture, execution, evaluation, and compliance evidence
+```
+
+## Documentation
+
+- [Project brief](docs/product/PROJECT_BRIEF.md)
+- [MVP scope](docs/product/MVP_SCOPE.md)
+- [Architecture](docs/technical/ARCHITECTURE.md)
+- [Platform test matrix](docs/technical/PLATFORM_TEST_MATRIX.md)
+- [Audio compatibility evidence](docs/technical/AUDIO_COMPATIBILITY.md)
+- [Implementation plan](docs/execution/IMPLEMENTATION_PLAN.md)
+- [Current tasks and handoff](docs/execution/TASKS.md)
+- [Codex session log](docs/execution/CODEX_SESSION_LOG.md)
+- [Usability-test protocol](docs/evaluation/USABILITY_TEST.md)
+- [Compliance checklist](docs/compliance/COMPLIANCE_CHECKLIST.md)
+- [Hackathon rules baseline](docs/compliance/HACKATHON_RULES.md)
 
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+Flownee is released under the [MIT License](LICENSE).

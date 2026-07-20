@@ -4,7 +4,7 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 ## Now
 
-- [ ] Prepare README, testing instructions, Codex session evidence, scorecard, demo script, and Devpost draft.
+- [ ] Prepare the final Codex session evidence, scorecard, demo script, and Devpost draft.
 
 ## Next
 
@@ -15,6 +15,10 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 - Participant-based usability success requires representative humans. The expert walkthrough is complete; participant outcomes must not be invented.
 
 ## Done
+
+- [x] Finalized the judge-ready README. Evidence: the README now explains the problem and product, live and read-only demo paths, complete feature set, GPT-4o Transcribe/GPT-5.6 workflow, strict planning contract, local-first reliability and privacy boundaries, technology stack, cross-platform setup, environment variables, automated/manual verification, honestly bounded platform evidence, detailed Codex acceleration, explicit human decisions, repository map, documentation index, and MIT license; all relative targets and required submission topics validate, `git diff --check` passes, and the README sample-data and Codex-narrative compliance gates are PASS.
+
+- [x] Added judge-facing testing instructions for the public deployment. Evidence: root `TESTING_INSTRUCTIONS.md` covers account-free setup, a fictional two-intention voice journey, transcript and interpretation review, non-deterministic AI expectations, task completion/postponement/restoration/edit/delete, automatic replanning, reload/reopen persistence, two-step delete-all, read-only demo URLs, recovery/privacy behavior, and honestly bounded physical-device evidence; README links the guide and the compliance testing-instructions gate is PASS; Markdown diff validation passes.
 
 - [x] Completed product-owner mobile acceptance of the current public release. Evidence: owner-reported physical testing on iPhone 17, iPhone 12, and iPhone 8 in current Safari, Chrome, and Firefox, plus Redmi Note 12 Pro 5G in installed-app mode and current Chrome/Firefox; microphone recording, transcript and interpretation review, successful live AI interaction/replanning, all task actions, individual edit/delete, delete-all, reload, and reopen persistence worked as expected with no reported failures. Exact OS/browser versions and per-browser MIME diagnostics were not captured, and this is not representative-participant usability evidence.
 
