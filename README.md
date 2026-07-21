@@ -201,6 +201,7 @@ remains available offline.
 |---|---|
 | Application | Next.js 16, React 19, TypeScript 6 |
 | Interface | Tailwind CSS 4 and shadcn/ui-compatible primitives |
+| Typography | Locally vendored Plus Jakarta Sans variable WOFF2 under SIL OFL 1.1 |
 | Local persistence | Native IndexedDB with runtime record validation |
 | Voice capture | Browser `MediaRecorder` with MIME negotiation |
 | Transcription | GPT-4o Transcribe through a protected Next.js route |

@@ -5,6 +5,24 @@ Use this file to preserve evidence of Codex contributions and human judgment. Do
 The selected `/feedback` Session ID for the project task where the majority of
 core functionality was built is `019f709a-b5fb-7230-bf41-4c4508f7051f`.
 
+## 2026-07-21 — Offline-safe local font build
+
+- Objective: Remove the production build's Google Fonts network dependency without changing Flownee's approved typography.
+- Codex contributions:
+  - Traced the dependency to `next/font/google` downloading Plus Jakarta Sans during `next build`.
+  - Selected the official full variable WOFF2, pinned it to upstream commit `18d1cd2f7ea10481919d2f05c1f7064b7307fc26`, and recorded its SHA-256 provenance.
+  - Added the exact upstream SIL Open Font License 1.1 text beside the font.
+  - Switched the root layout to `next/font/local` while preserving the existing CSS variable, normal style, display strategy, and 200–800 weight range.
+  - Documented the locally vendored typeface in the README and compliance evidence.
+- Human engineering and design decision preserved:
+  - The product owner requested removal of the build-time network dependency while retaining Plus Jakarta Sans and the current visual design.
+- Verification:
+  - Deleted the generated `.next` directory before verification, then completed a clean optimized build without network escalation and with telemetry disabled.
+  - Source and fresh build contain no `next/font/google`, `fonts.googleapis`, or `fonts.gstatic` references.
+  - The fresh build contains one 60,612-byte Plus Jakarta Sans variable WOFF2.
+  - 35 test files and 133 tests, ESLint, standalone TypeScript validation, and the optimized production build pass.
+  - No application behavior, AI request, user data, deployment, commit, or push changed.
+
 ## 2026-07-21 — Post-submission checklist reconciliation
 
 - Objective: Reconcile project records after the successful Devpost submission and final MVP testing.

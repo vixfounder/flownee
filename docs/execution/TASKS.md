@@ -16,6 +16,8 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 ## Done
 
+- [x] Removed the production build's Google Fonts network dependency while preserving Plus Jakarta Sans. Evidence: the official full variable WOFF2 and SIL OFL 1.1 license are pinned to upstream commit `18d1cd2f7ea10481919d2f05c1f7064b7307fc26`; `next/font/local` preserves the existing CSS variable, normal style, and 200–800 range; a clean build after deleting `.next` succeeds without network escalation; source and fresh build contain no `next/font/google`, `fonts.googleapis`, or `fonts.gstatic` references; the bundled output contains the expected single 60,612-byte font; 35 test files with 133 tests, lint, standalone TypeScript validation, and the optimized production build pass.
+
 - [x] Added technical architecture diagram to the repository and README. Evidence: matching PNG and SVG assets under `docs/technical/`; the README displays the PNG and links to the scalable SVG; the diagram shows local IndexedDB state, temporary audio handling, protected Netlify routes, server-only credentials, GPT-4o Transcribe, GPT-5.6 structured planning, and last-valid-plan recovery.
 
 - [x] Submitted Flownee to OpenAI Build Week before the deadline. Evidence: public Devpost entry at https://devpost.com/software/flownee; team submission confirmation; public page independently returned HTTP 200 on 2026-07-21.

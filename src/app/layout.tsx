@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import type { ReactNode } from "react";
 
 import { PwaRegister } from "@/components/pwa-register";
@@ -7,10 +7,12 @@ import { FLOWNEE_THEME_STORAGE_KEY } from "@/lib/theme";
 
 import "./globals.css";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const plusJakartaSans = localFont({
   display: "swap",
-  subsets: ["latin"],
+  src: "./fonts/PlusJakartaSans-Variable.woff2",
+  style: "normal",
   variable: "--font-plus-jakarta-sans",
+  weight: "200 800",
 });
 
 export const metadata: Metadata = {

@@ -61,7 +61,7 @@ Status values: `TODO`, `IN PROGRESS`, `PASS`, `BLOCKED`, `N/A`.
 
 | Requirement | Status | Evidence | Owner | Last verified |
 |---|---|---|---|---|
-| Dependencies and assets have compatible licenses | PASS | Permissive direct-dependency review, recorded Magic UI/font/runtime licenses, repository-owned product assets, team final rights confirmation, frozen-lockfile install, and clean `pnpm audit --prod` | Mike | 2026-07-21 |
+| Dependencies and assets have compatible licenses | PASS | Permissive direct-dependency review; pinned official Plus Jakarta Sans WOFF2 with bundled SIL OFL 1.1 license and checksum provenance; recorded Magic UI/runtime licenses; repository-owned product assets; team final rights confirmation; frozen-lockfile install; clean `pnpm audit --prod` | Mike | 2026-07-21 |
 | OpenAI and other service terms are followed | PASS | Victoria and Mike final declaration | Team | 2026-07-21 |
 | Originality and team ownership are confirmed | PASS | Team final ownership and rights confirmation; repository history shows work created during the submission period | Team | 2026-07-21 |
 | No unauthorized trademarks, music, images, or data are used | PASS | Team final media and asset rights confirmation | Victoria | 2026-07-21 |
