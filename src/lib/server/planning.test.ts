@@ -17,7 +17,7 @@ function providerResponse(output: unknown = planningOutputFixture): Response {
     JSON.stringify({
       id: "resp_1",
       status: "completed",
-      model: "gpt-5.6-sol",
+      model: "gpt-5.6-luna",
       output: [
         {
           type: "message",
@@ -42,7 +42,7 @@ describe("GPT-5.6 planning provider", () => {
 
     expect(result).toEqual({
       output: planningOutputFixture,
-      model: "gpt-5.6-sol",
+      model: "gpt-5.6-luna",
       providerRequestId: "req_plan_1",
       usage: { inputTokens: 100, outputTokens: 50, totalTokens: 150 },
     });
@@ -50,7 +50,7 @@ describe("GPT-5.6 planning provider", () => {
     expect(url).toBe("https://api.openai.com/v1/responses");
     const body = JSON.parse(String(init?.body));
     expect(body).toMatchObject({
-      model: "gpt-5.6-sol",
+      model: "gpt-5.6-luna",
       instructions: FLOWNEE_PLANNING_INSTRUCTIONS,
       reasoning: { effort: "medium" },
       store: false,
@@ -83,7 +83,7 @@ describe("GPT-5.6 planning provider", () => {
     const refusal = new Response(
       JSON.stringify({
         status: "completed",
-        model: "gpt-5.6-sol",
+        model: "gpt-5.6-luna",
         output: [{ type: "message", content: [{ type: "refusal", refusal: "No" }] }],
       }),
       { status: 200 },

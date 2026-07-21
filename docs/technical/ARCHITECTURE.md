@@ -133,7 +133,7 @@ TypeScript types, strict JSON Schemas, a lean developer prompt, semantic runtime
 validation, and executable evaluation fixtures.
 
 - Endpoint contract: Responses API with strict `text.format` Structured Outputs.
-- Model baseline: explicit `gpt-5.6-sol` with `medium` reasoning. This
+- Model baseline: explicit `gpt-5.6-luna` with `medium` reasoning. This
   quality-first configuration must be measured against the fixtures before any
   lower-effort or lower-cost family tier is adopted.
 - Input operation: `capture` includes one confirmed transcript and may extract
@@ -172,7 +172,7 @@ The implemented routes keep transcription and planning responsibilities separate
 ### `POST /api/plan`
 
 - Implemented as a Node.js Next.js route using the Responses API with the
-  explicit `gpt-5.6-sol` model, `medium` reasoning, low text verbosity, strict
+  explicit `gpt-5.6-luna` model, `medium` reasoning, low text verbosity, strict
   Structured Outputs, a 5,000-token output ceiling, and a 55-second timeout.
 - Accepts only same-origin JSON requests up to 128 KiB and validates the complete
   compact task snapshot before provider access.
@@ -298,7 +298,7 @@ The implemented routes keep transcription and planning responsibilities separate
 
 ## Post-MVP operational considerations
 
-- Keep the current `gpt-5.6-sol`/`medium` baseline unless fixture-level quality,
+- Keep the current `gpt-5.6-luna`/`medium` baseline unless fixture-level quality,
   latency, and token evidence supports a change.
 - Continue recording exact browser audio MIME results as optional compatibility
   evidence; the implemented upload boundary accepts WebM, MP4, and Ogg up to

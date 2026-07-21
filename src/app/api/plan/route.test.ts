@@ -27,7 +27,7 @@ function providerResponse(): Response {
   return new Response(
     JSON.stringify({
       status: "completed",
-      model: "gpt-5.6-sol",
+      model: "gpt-5.6-luna",
       output: [
         {
           type: "message",

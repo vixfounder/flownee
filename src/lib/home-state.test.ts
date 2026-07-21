@@ -58,7 +58,7 @@ describe("homeStateFromSnapshot", () => {
         nextReason: "It is quick and meaningful.",
         generatedAt: "2026-07-18T18:00:00.000Z",
         basedOnRevision: 1,
-        model: "gpt-5.6-sol",
+        model: "gpt-5.6-luna",
       },
     });
 

@@ -3,7 +3,7 @@ import { isEffortOption, type EffortMinutes } from "@/lib/effort-options";
 import { isSingleIntentionEmoji } from "@/lib/intention-emoji";
 
 export const FLOWNEE_PLANNING_SCHEMA_VERSION = 2 as const;
-export const FLOWNEE_PLANNING_MODEL = "gpt-5.6-sol" as const;
+export const FLOWNEE_PLANNING_MODEL = "gpt-5.6-luna" as const;
 export const FLOWNEE_PLANNING_REASONING_EFFORT = "medium" as const;
 
 export type ExistingTaskInput = {

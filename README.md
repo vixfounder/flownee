@@ -144,7 +144,7 @@ durable local schema.
 
 ### GPT-5.6
 
-The planning route uses `gpt-5.6-sol` with medium reasoning through the
+The planning route uses `gpt-5.6-luna` with medium reasoning through the
 Responses API. Strict Structured Outputs and a second semantic validation layer
 require GPT-5.6 to return:
 

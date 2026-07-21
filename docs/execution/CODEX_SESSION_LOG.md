@@ -1271,7 +1271,7 @@ core functionality was built is `019f709a-b5fb-7230-bf41-4c4508f7051f`.
 - Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (candidate core-functionality session; reassess after the planning route and review UI are complete)
 - Objective: Define the strict boundary between confirmed voice captures, GPT-5.6 reasoning, and Flownee's local execution plan.
 - Codex contributions:
-  - Checked current official GPT-5.6 model and Structured Outputs guidance and selected the explicit `gpt-5.6-sol` Responses baseline with `medium` reasoning.
+  - Checked current official GPT-5.6 model and Structured Outputs guidance and selected the explicit `gpt-5.6-luna` Responses baseline with `medium` reasoning.
   - Implemented matching versioned TypeScript and JSON Schemas for compact active-task input and provenance-rich planning output.
   - Added semantic validation beyond JSON shape: complete plan coverage, stable/unique references, next-item consistency, dependency validity, deadline provenance, and explicit empty-plan behavior.
   - Added a lean planning prompt and six executable evaluation fixtures covering mixed household tasks, passing ideas, explicit deadlines, incremental replanning, non-actionable speech, and transcript prompt injection.
