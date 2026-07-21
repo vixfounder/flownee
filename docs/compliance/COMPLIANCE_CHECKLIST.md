@@ -21,15 +21,15 @@ Status values: `TODO`, `IN PROGRESS`, `PASS`, `BLOCKED`, `N/A`.
 | GPT-5.6 performs central product reasoning | PASS | Protected planning route, strict contract, fixtures, and automated tests | Mike | 2026-07-18 |
 | GPT-4o Transcribe handles voice input | PASS | Protected transcription route, transcript review, and automated tests | Mike | 2026-07-18 |
 | Project is working and non-trivial | PASS | Public deployment, 130 automated tests, production build, successful owner-reported physical voice/AI journeys, and `docs/technical/PLATFORM_TEST_MATRIX.md` | Team | 2026-07-20 |
-| Project installs/runs consistently on intended platforms | IN PROGRESS | `docs/technical/PLATFORM_TEST_MATRIX.md`; physical Redmi Note 12 Pro 5G installed-app/Chrome journey and iPhone 17/12/8 Safari journeys pass; Windows Chrome full journey, macOS Chrome, and Windows Edge remain | Mike | 2026-07-20 |
-| Behavior matches demo and written description | TODO | Final cross-check | Team | |
+| Project installs/runs consistently on intended platforms | PASS | Responsive web/PWA with no proprietary hardware or special installation requirements; named physical mobile and Windows Chrome-engine evidence in `docs/technical/PLATFORM_TEST_MATRIX.md`; team final acceptance confirmation for every platform represented in the submission | Mike | 2026-07-21 |
+| Behavior matches demo and written description | PASS | Team final cross-check; public application, fictional sample, AI-status route, and public video verified | Team | 2026-07-21 |
 | Stage One theme and technology gate passes | PASS | Direct Apps for Your Life fit, substantive Codex use, central GPT-5.6 reasoning, and working non-trivial public product verified against the official criteria | Team | 2026-07-20 |
 
 ## Repository and testing
 
 | Requirement | Status | Evidence | Owner | Last verified |
 |---|---|---|---|---|
-| Public GitHub repository exists | PASS | https://github.com/landofcash/flownee; visibility verified public | Mike | 2026-07-18 |
+| Public GitHub repository exists | PASS | https://github.com/vixfounder/flownee; visibility verified public | Mike | 2026-07-21 |
 | MIT License is included | PASS | `LICENSE` | Mike | 2026-07-18 |
 | No secrets or private user data are committed | PASS | Placeholder-only `.env.example`; scoped secret scan | Mike | 2026-07-18 |
 | README has setup and run instructions | PASS | `README.md`; clean lockfile verification | Mike | 2026-07-18 |
@@ -37,34 +37,34 @@ Status values: `TODO`, `IN PROGRESS`, `PASS`, `BLOCKED`, `N/A`.
 | README documents Codex acceleration and human decisions | PASS | `README.md` sections `How the team collaborated with Codex` and `Decisions made by humans` | Team | 2026-07-20 |
 | Public Netlify deployment is available | PASS | https://flownee-build-week.netlify.app; deploy `6a5be6cc5715099f9535f7b8` | Mike | 2026-07-18 |
 | Judges need no account, payment, invitation, or API key | PASS | Signed-out HTTPS checks returned 200 for the app, demo, PWA assets, diagnostic, and AI status | Team | 2026-07-18 |
-| Judge access remains active through judging | TODO | Hosting/API budget check | Mike | |
+| Judge access remains active through judging | PASS | Account-free public deployment; team added API credits for judge-period use and confirmed availability plan | Mike | 2026-07-21 |
 | Testing instructions reproduce critical journey | PASS | `TESTING_INSTRUCTIONS.md`: public setup, fictional multi-intention voice path, interpretation, task actions, persistence, delete-all, recovery, privacy, and read-only previews | Team | 2026-07-20 |
 
 ## Submission
 
 | Requirement | Status | Evidence | Owner | Last verified |
 |---|---|---|---|---|
-| Project description explains features and operation | TODO | Devpost draft | Victoria | |
-| Correct category selected | TODO | Devpost draft | Victoria | |
-| Public YouTube video is under three minutes | TODO | Video URL and duration | Victoria | |
-| Video demonstrates working project | TODO | Final video review | Team | |
-| Video audio explains Codex and GPT-5.6 use | TODO | Final video review | Team | |
-| Video media and trademarks are authorized | TODO | Rights audit | Victoria | |
-| Majority-core-functionality `/feedback` Session ID recorded | TODO | Session ID | Team | |
-| Repository URL included | TODO | Devpost draft | Victoria | |
-| Deployment and testing access included | TODO | Devpost draft | Victoria | |
-| All submission materials are in English | TODO | Language review | Victoria | |
-| Every URL passes a signed-out test | TODO | Link audit | Team | |
+| Project description explains features and operation | PASS | Completed Devpost draft; team confirmation | Victoria | 2026-07-21 |
+| Correct category selected | PASS | Apps for Your Life selected in completed Devpost draft | Victoria | 2026-07-21 |
+| Public YouTube video is under three minutes | PASS | https://youtu.be/xpT-oI0Lh4M; signed-out browser verification measured 2:36 | Victoria | 2026-07-21 |
+| Video demonstrates working project | PASS | Final video completed and team-confirmed; public playback verified | Team | 2026-07-21 |
+| Video audio explains Codex and GPT-5.6 use | PASS | Final technical narration and team confirmation | Team | 2026-07-21 |
+| Video media and trademarks are authorized | PASS | Team final rights confirmation: no unauthorized copyrighted or trademarked content | Victoria | 2026-07-21 |
+| Majority-core-functionality `/feedback` Session ID recorded | PASS | `019f709a-b5fb-7230-bf41-4c4508f7051f` | Team | 2026-07-21 |
+| Repository URL included | PASS | Completed Devpost draft; https://github.com/vixfounder/flownee | Victoria | 2026-07-21 |
+| Deployment and testing access included | PASS | Completed Devpost draft; public deployment and testing guide | Victoria | 2026-07-21 |
+| All submission materials are in English | PASS | Team final language review; public video title/description and repository materials are English | Victoria | 2026-07-21 |
+| Every URL passes a signed-out test | PASS | Team signed-out link audit plus independent public app, sample, AI-status, and YouTube checks | Team | 2026-07-21 |
 | Submission completed before July 21, 5:00 PM PT | TODO | Devpost confirmation | Victoria | |
 
 ## IP, privacy, and operational safety
 
 | Requirement | Status | Evidence | Owner | Last verified |
 |---|---|---|---|---|
-| Dependencies and assets have compatible licenses | IN PROGRESS | Direct dependencies selected; full final dependency/asset audit remains | Mike | 2026-07-18 |
+| Dependencies and assets have compatible licenses | PASS | Permissive direct-dependency review, recorded Magic UI/font/runtime licenses, repository-owned product assets, and team final rights confirmation | Mike | 2026-07-21 |
 | OpenAI and other service terms are followed | TODO | Terms review | Team | |
-| Originality and team ownership are confirmed | TODO | Final declaration | Team | |
-| No unauthorized trademarks, music, images, or data are used | TODO | Rights audit | Victoria | |
+| Originality and team ownership are confirmed | PASS | Team final ownership and rights confirmation; repository history shows work created during the submission period | Team | 2026-07-21 |
+| No unauthorized trademarks, music, images, or data are used | PASS | Team final media and asset rights confirmation | Victoria | 2026-07-21 |
 | Audio is not intentionally retained after transcription | PASS | Temporary Blob lifecycle and privacy panel; mocked route/browser verification | Mike | 2026-07-18 |
 | Logs exclude recordings, transcripts, task content, and secrets | PASS | Server/client implementation review; provider tests verify credential exclusion | Mike | 2026-07-18 |
 | Delete-all-local-data control works | PASS | Atomic repository test and browser two-step deletion verification | Mike | 2026-07-18 |

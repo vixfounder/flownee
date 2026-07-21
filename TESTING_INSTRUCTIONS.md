@@ -131,6 +131,8 @@ individual editing/deletion, delete-all, reload, and reopen checks on:
 - iPhone 17, iPhone 12, and iPhone 8 in current Safari, Chrome, and Firefox.
 
 Exact OS/browser versions and per-browser MIME diagnostics were not captured.
-Windows Chrome full-journey, macOS Chrome, and Windows Edge evidence remains
-documented separately in
+Flownee is submitted as a standards-based responsive web application and PWA,
+with no proprietary hardware or special platform-specific installation
+requirements. The team confirmed final acceptance on every platform it intends
+to represent; detailed measured evidence and its limits are documented in
 [`docs/technical/PLATFORM_TEST_MATRIX.md`](docs/technical/PLATFORM_TEST_MATRIX.md).

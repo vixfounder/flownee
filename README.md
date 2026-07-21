@@ -15,6 +15,8 @@ productivity system.
 
 - Public application:
   [flownee-build-week.netlify.app](https://flownee-build-week.netlify.app)
+- Public demonstration video (2 minutes 36 seconds):
+  [Flownee - Your Flow. What Makes Sense Next.](https://youtu.be/xpT-oI0Lh4M)
 - Judge testing guide and fictional input:
   [`TESTING_INSTRUCTIONS.md`](TESTING_INSTRUCTIONS.md)
 - Read-only fictional previews:
@@ -26,6 +28,10 @@ productivity system.
 No account, payment, invitation, user API key, or preloaded personal data is
 required. The fictional previews do not create or change local tasks; their
 task actions are intentionally disabled.
+
+The Codex `/feedback` Session ID for the project task where the majority of
+core functionality was built is
+`019f709a-b5fb-7230-bf41-4c4508f7051f`.
 
 ## The problem
 
@@ -219,16 +225,22 @@ fictional voice input, and delete-all procedure, follow
 
 ## Platform evidence
 
+Flownee is submitted as a responsive web application and installable PWA for
+current mainstream smartphone and desktop browsers. It requires no proprietary
+hardware, account, browser extension, or platform-specific installation path.
+
 Product-owner testing completed the public voice/AI journey, task actions,
-individual editing/deletion, delete-all, reload, and reopen checks on:
+individual editing/deletion, delete-all, reload, and reopen checks on the
+physical mobile platforms used for final acceptance:
 
 - Redmi Note 12 Pro 5G in installed-app mode and current Chrome and Firefox.
 - iPhone 17, iPhone 12, and iPhone 8 in current Safari, Chrome, and Firefox.
 
-Windows Chrome-engine recording and responsive evidence is also documented.
-Exact mobile OS/browser versions and per-browser MIME diagnostics were not
-captured; Windows Chrome full-journey, macOS Chrome, and Windows Edge evidence
-remain open. See
+Windows Chrome-engine recording, IndexedDB, and responsive evidence is also
+documented. The team confirmed final acceptance on every platform it intends to
+represent in the submission; it does not claim exhaustive certification of
+every browser/version combination. Exact mobile OS/browser versions and
+per-browser MIME diagnostics were not captured. See
 [`docs/technical/PLATFORM_TEST_MATRIX.md`](docs/technical/PLATFORM_TEST_MATRIX.md)
 and
 [`docs/technical/AUDIO_COMPATIBILITY.md`](docs/technical/AUDIO_COMPATIBILITY.md)

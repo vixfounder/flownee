@@ -38,7 +38,7 @@ threshold below.
 | Recommendation includes an understandable reason | **Pass for expert comprehension** | The sample makes `Start the dark-clothes wash` prominent and immediately explains that it takes little active time while the machine runs. |
 | Users can correct transcripts, interpretations, and estimates | **Functional pass; participant comprehension pending** | Controls are automated-test covered, and physical-device testing exercised review, edit, delete, and all available task actions. |
 | Local state survives refresh and reopen | **Functional pass; participant confirmation pending** | IndexedDB tests pass, and physical Android/iPhone testing confirmed reload and reopen persistence. |
-| Full journey works on primary browsers | **Partial platform pass** | Physical Android Chrome and best-effort iPhone Safari journeys pass; Windows Chrome full-journey, macOS Chrome, and Windows Edge evidence remains open in `docs/technical/PLATFORM_TEST_MATRIX.md`. |
+| Full journey works on intended platforms | **Functional pass; participant confirmation pending** | Flownee is submitted as a responsive web/PWA with no proprietary hardware or special installation path. Physical Android/iPhone journeys, Windows Chrome-engine evidence, and team final intended-platform acceptance are recorded in `docs/technical/PLATFORM_TEST_MATRIX.md`; this is not exhaustive browser/version certification. |
 | Most small-test participants capture an item and understand the next recommendation without help | **Not assessed** | Requires at least three representative sessions; a majority must complete both tasks without help. |
 
 ## Walkthrough setup

@@ -4,7 +4,7 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 ## Now
 
-- [ ] Prepare the final Codex session evidence, demo script, and Devpost draft.
+- [ ] Submit the completed Devpost draft before the deadline and preserve the confirmation URL and timestamp.
 
 ## Next
 
@@ -15,6 +15,8 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 - Participant-based usability success requires representative humans. The expert walkthrough is complete; participant outcomes must not be invented.
 
 ## Done
+
+- [x] Completed the final submission-evidence package. Evidence: Codex `/feedback` Session ID `019f709a-b5fb-7230-bf41-4c4508f7051f`; public 2:36 YouTube demonstration at `https://youtu.be/xpT-oI0Lh4M`; completed Devpost draft; team-confirmed intended-platform acceptance, media/asset rights, judge-period API credits, and signed-out URL audit; independent signed-out checks confirmed the public application, fictional sample, enabled AI-status route, and YouTube playback page.
 
 - [x] Finalized the judge-ready README. Evidence: the README now explains the problem and product, live and read-only demo paths, complete feature set, GPT-4o Transcribe/GPT-5.6 workflow, strict planning contract, local-first reliability and privacy boundaries, technology stack, cross-platform setup, environment variables, automated/manual verification, honestly bounded platform evidence, detailed Codex acceleration, explicit human decisions, repository map, documentation index, and MIT license; all relative targets and required submission topics validate, `git diff --check` passes, and the README sample-data and Codex-narrative compliance gates are PASS.
 
@@ -138,7 +140,7 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 - [x] Conducted an expert usability walkthrough against the confirmed success measures and prepared the representative test protocol. Evidence: public first-run and fictional sample inspected in an isolated Chrome 150-compatible browser at `390x844`; single `64x64` voice control visible 16 px above the viewport bottom; no horizontal overflow; next action and reason understandable; no microphone/provider use; read-only sample-control ambiguity documented. This is not participant research, so the majority-participant measure remains open.
 
-- [x] Deployed Flownee publicly to Netlify and ran the available supported-platform matrix. Evidence: production URL `https://flownee-build-week.netlify.app`; latest ready deploy `6a5cc2dff6f76e3dde4de76e` from repository commit `f417def`; signed-out HTTP 200 for home, manifest, and AI-status routes after the latest deployment; earlier full smoke coverage includes the fictional demo, service worker, icon, and recording diagnostic; AI status enabled; both paid routes reject untrusted origins with HTTP 403 before provider use; Windows Chrome-engine recording/layout evidence documented. Physical Android, macOS Chrome, Edge journey, and Safari checks remain explicitly deferred or unavailable and are not represented as passes.
+- [x] Deployed Flownee publicly to Netlify and ran the available supported-platform matrix. Evidence: production URL `https://flownee-build-week.netlify.app`; signed-out smoke coverage includes the home, fictional sample, manifest, service worker, icons, recording diagnostic, and enabled AI-status route; both paid routes reject untrusted origins with HTTP 403 before provider use; physical Android/iPhone journeys and Windows Chrome-engine recording/layout evidence are documented; the team completed final acceptance on every platform represented in the submission without claiming exhaustive browser/version certification.
 
 - [x] Added the privacy notice, atomic delete-all-local-data control, request limits, throttling, and emergency kill switch. Evidence: responsive privacy/data panel with precise local/OpenAI data boundaries and two-step deletion; `/api/ai-status` preflight before microphone permission; authoritative paid-route switch checks; configurable per-client fixed-window limits with HTTP 429, `Retry-After`, and provider-call prevention; 54 passing tests, lint, production build, and browser verification of the mobile dialog and empty-origin deletion with no overflow or console errors. No live provider call was made.
 
@@ -153,24 +155,22 @@ Keep exactly one implementation task under **Now**. Move completed items to **Do
 
 - [x] Implemented the responsive local-first PWA shell and home-screen states. Evidence: empty, saved-plan, updating, all-complete, loading, and browser-offline UI paths; fictional demo fixtures; install manifest, owned SVG icon, API-bypassing service worker; responsive browser checks at 1440×900 and 390×844 with no horizontal overflow or console errors; 6 unit tests, lint, and production build passing.
 - [x] Scaffolded the shadcn/ui foundation without expanding product scope. Evidence: `components.json`, semantic Tailwind v4 theme tokens, tested `cn` utility, Button/Card/Badge primitives, permissive-license dependency review, and passing peer, lint, unit-test, and production-build checks.
-- [x] Completed Milestone 0 — repository and compliance baseline. Evidence: public `main` repository at https://github.com/landofcash/flownee, commit `34af729`, clean dependency install, and passing peer, lint, test, build, and credential-scan checks.
+- [x] Completed Milestone 0 — repository and compliance baseline. Evidence: public `main` repository now at https://github.com/vixfounder/flownee, initial commit `34af729`, clean dependency install, and passing peer, lint, test, build, and credential-scan checks.
 - [x] Confirmed project idea, audience, problem evidence, value proposition, MVP, architecture direction, team, platform, privacy model, success measures, and repository strategy. Evidence: product discovery conversation completed July 18, 2026.
 - [x] Created the minimum pre-development Markdown documentation set. Evidence: files under `docs/` plus root `AGENTS.md`.
 - [x] Initialized the local Git repository on `main`. Evidence: local `.git` metadata created July 18, 2026.
 - [x] Established the Next.js TypeScript baseline with Tailwind CSS, ESLint, Vitest, pnpm lockfile, MIT License, safe `.env.example`, and setup README. Evidence: `pnpm lint`, `pnpm test`, and `pnpm build` all pass.
-- [x] Connected the verified public GitHub repository. Evidence: https://github.com/landofcash/flownee.
+- [x] Connected the verified public GitHub repository. Evidence: https://github.com/vixfounder/flownee.
 
 ## Build-generated information still required
 
 - Fixture-level GPT-5.6 token use, latency, and final reasoning comparison. Successful live voice-to-AI planning is now product-owner-reported across physical Android and iPhone journeys; the earlier bounded fixture request returned HTTP 429 on July 18, 2026.
 - Supported audio MIME-format results per browser.
-- Codex `/feedback` Session ID from the task where most core functionality is built.
-- Public YouTube demonstration URL.
 - Devpost submission URL and confirmation timestamp.
 
 ## Session handoff
 
-- Current state: The complete local-first product journey is publicly deployed; automated gates pass, and product-owner physical Android/iPhone journeys confirm microphone, live AI, task actions, deletion, and persistence behavior.
-- Next action: Finish judge-facing README, testing instructions, Codex evidence, scorecard, demo script, and Devpost draft while scheduling the prepared representative-participant protocol.
-- Known failures: No current code or physical mobile journey failure is known. Windows Chrome full-journey, macOS Chrome, Windows Edge, exact mobile browser versions, per-browser MIME diagnostics, and representative-participant evidence remain open.
+- Current state: The complete local-first product journey is publicly deployed; automated gates pass; the Codex Session ID, public 2:36 video, completed Devpost draft, intended-platform acceptance, rights confirmation, judge-period credits, and signed-out URL audit are recorded.
+- Next action: Submit the completed Devpost draft before July 21, 2026 at 5:00 PM PT and preserve its confirmation URL and timestamp.
+- Known failures: No current code or intended-platform acceptance failure is known. Exact mobile browser versions, exhaustive per-browser MIME diagnostics, fixture-level model-performance measurements, and representative-participant evidence remain open and are not overstated.
 - Uncommitted decisions: Final GPT-5.6 reasoning effort after fixture-level latency/token evaluation.

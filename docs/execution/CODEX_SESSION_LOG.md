@@ -2,11 +2,28 @@
 
 Use this file to preserve evidence of Codex contributions and human judgment. Do not record secrets, personal task content, raw recordings, or private transcripts.
 
-The `/feedback` Session ID required by the hackathon must come from the project task where most core functionality is built. A baseline or documentation session should not be presented as that session unless it genuinely contains the majority of core functionality.
+The selected `/feedback` Session ID for the project task where the majority of
+core functionality was built is `019f709a-b5fb-7230-bf41-4c4508f7051f`.
+
+## 2026-07-21 — final submission evidence reconciliation
+
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f`
+- Objective: Reconcile the repository documentation with the team-confirmed final submission package.
+- Codex contributions:
+  - Independently verified the public YouTube playback page, English title, signed-out accessibility, and 2:36 duration.
+  - Recorded the majority-core-functionality Session ID, video URL, completed Devpost draft, intended-platform acceptance, rights confirmation, judge-period API credits, and signed-out URL audit.
+  - Corrected the public GitHub repository reference from the former owner to `vixfounder/flownee` and removed stale unsupported-platform wording.
+- Human product and submission decisions preserved:
+  - Victoria and Mike confirmed the intended web/PWA platform scope, final media and asset rights, judge-period credit availability, completed Devpost draft, and signed-out URL audit.
+  - Final Devpost submission remains a human-controlled action; its confirmation URL and timestamp must not be invented.
+- Verification:
+  - Public application, fictional sample, AI-status route, GitHub repository visibility, and public YouTube page were independently checked during the final audit.
+  - YouTube duration: 2 minutes 36 seconds.
+  - No application code, provider request, task data, deployment, commit, or push occurred.
 
 ## 2026-07-20 — judge-ready README
 
-- Session ID: `TBD` (supporting submission documentation)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting submission documentation)
 - Objective: Replace the scaffold README with a complete, evidence-backed project narrative for judges and developers.
 - Codex contributions:
   - Documented the product problem, value proposition, public paths, implemented experience, protected AI workflow, strict GPT-5.6 contract, local-first reliability, privacy boundaries, technology, setup, environment, verification, and repository structure.
@@ -23,7 +40,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — judge-facing testing instructions
 
-- Session ID: `TBD` (supporting submission documentation)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting submission documentation)
 - Objective: Provide a self-contained, truthful path for judges to test the public product without an account, API key, or private data.
 - Codex contributions:
   - Created root `TESTING_INSTRUCTIONS.md` with a fictional multi-intention voice script and observable expectations for transcript review, interpretation, confirmation, planning, task actions, persistence, and local-data deletion.
@@ -40,7 +57,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — physical mobile acceptance evidence
 
-- Session ID: `TBD` (supporting release evidence documentation)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting release evidence documentation)
 - Objective: Record the product owner's completed public-deployment testing without overstating unavailable version or participant evidence.
 - Product-owner evidence recorded:
   - iPhone 17, iPhone 12, and iPhone 8 passed in current Safari, Chrome, and Firefox.
@@ -49,14 +66,14 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 - Claim boundaries preserved:
   - Exact OS/browser versions and per-browser MIME/Blob diagnostics were not captured and are not inferred.
   - Product-owner functional acceptance is not represented as independent or representative-participant usability research.
-  - Windows Chrome full-journey, macOS Chrome, Windows Edge, and the representative-participant majority threshold remain open.
+  - At the time of this evidence entry, additional named desktop-browser checks and the representative-participant majority threshold remained open; the platform wording was later superseded by the final intended-platform acceptance recorded on July 21.
 - Documentation updated:
   - Reconciled the platform matrix, usability evidence, compliance status, active task, build-generated evidence, and session handoff.
   - No code, product behavior, recording, task data, paid AI request, commit, push, or deployment occurred in this documentation session.
 
 ## 2026-07-20 — server-test TypeScript compatibility
 
-- Session ID: `TBD` (supporting verification maintenance)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting verification maintenance)
 - Objective: Fix the three server-test typing errors found by standalone TypeScript verification.
 - Codex contributions:
   - Replaced unsupported generic arguments on Vitest `toMatchObject` assertions with `satisfies Partial<PlanningError>` and `satisfies Partial<TranscriptionError>` expected-object checks.
@@ -72,7 +89,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — smaller home heading
 
-- Session ID: `TBD` (supporting compact visual hierarchy)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting compact visual hierarchy)
 - Objective: Make the animated home heading slightly smaller without changing its behavior or layout.
 - Codex contributions:
   - Reduced `YOUR FLOW. WHAT MAKES SENSE NEXT` from `18px` to `16px` through the existing Tailwind typography scale.
@@ -87,7 +104,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — sticky shared header
 
-- Session ID: `TBD` (supporting navigation accessibility)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting navigation accessibility)
 - Objective: Keep the shared Flownee header visible while users scroll any application page.
 - Codex contributions:
   - Applied sticky top positioning and a deliberate `z-40` layer to the existing shared header.
@@ -104,7 +121,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — centered heading, matched badges, and action icons
 
-- Session ID: `TBD` (supporting visual consistency and action recognition)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting visual consistency and action recognition)
 - Objective: Center the animated home title, make the effort badge match the current-action badge, and add icons to specified text actions.
 - Codex contributions:
   - Centered the existing uppercase 18px Hyper Text heading without changing its 1600ms reveal, accessible label, or reduced-motion behavior.
@@ -121,7 +138,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — production slide-to-confirm actions
 
-- Session ID: `TBD` (supporting deliberate task-state changes)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting deliberate task-state changes)
 - Objective: Replace the production `Done` and `Do later` buttons with the approved slide controls after design-system review.
 - Codex contributions:
   - Reordered the current-action row to `Do later`, `Done`, and the fixed `...` menu, using two equal `minmax(0,1fr)` columns for all space left after the menu and gaps.
@@ -138,7 +155,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — slide-to-confirm design prototype
 
-- Session ID: `TBD` (supporting safer current-task actions)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting safer current-task actions)
 - Objective: Prototype deliberate slide-to-confirm replacements for `Done` and `Do later` in the internal design system before changing production behavior.
 - Codex contributions:
   - Built one reusable 56px slide control with a shadcn-inspired pill track, circular 48px thumb, live brand-color progress fill, pointer capture, clamped travel, a 75% threshold, reset below threshold or on cancellation, keyboard confirmation, disabled behavior, focus treatment, and reduced-motion-safe transitions.
@@ -155,7 +172,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — consolidated home heading
 
-- Session ID: `TBD` (supporting home-screen clarity)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting home-screen clarity)
 - Objective: Combine the home eyebrow and subheading into one compact page title.
 - Codex contributions:
   - Replaced the separate `Your flow` label and `What makes sense next` title with one semantic `h1`.
@@ -171,7 +188,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — automatic post-addition handoff
 
-- Session ID: `TBD` (supporting lower-friction voice capture)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting lower-friction voice capture)
 - Objective: Omit the `Flow updated` success screen after adding intentions and return automatically to the refreshed home flow.
 - Codex contributions:
   - Removed the `saved` capture state, its message state, icon, title, explanatory copy, and extra `Done` action.
@@ -188,7 +205,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — postponed-first saved-item grouping
 
-- Session ID: `TBD` (supporting predictable task scanning)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting predictable task scanning)
 - Objective: Show postponed intentions before completed intentions in the inactive-task list.
 - Codex contributions:
   - Added a stable display-only grouping that concatenates postponed tasks followed by completed tasks.
@@ -204,7 +221,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — explicit postponed/completed heading
 
-- Session ID: `TBD` (supporting content clarity and consistent terminology)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting content clarity and consistent terminology)
 - Objective: Replace the generic `Saved items` label with an explicit description and remove redundant explanatory copy.
 - Codex contributions:
   - Renamed the home section and clean-done dialog eyebrow to `Postponed and completed items`.
@@ -219,7 +236,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — consolidated upcoming-list heading
 
-- Session ID: `TBD` (supporting mobile scanning and content clarity)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile scanning and content clarity)
 - Objective: Replace the `Up next` heading and redundant item-count subtitle with one descriptive heading.
 - Codex contributions:
   - Renamed the section to `Next items in your current flow`.
@@ -234,7 +251,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — aligned current-action labels
 
-- Session ID: `TBD` (supporting mobile scanning and recommendation clarity)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile scanning and recommendation clarity)
 - Objective: Place the current recommendation’s action-status and time-effort labels next to each other.
 - Codex contributions:
   - Moved the existing `EffortBadge` directly after `Do this now` in one wrapping metadata row.
@@ -249,7 +266,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — compact Up next effort cue
 
-- Session ID: `TBD` (supporting mobile scanning and interface clarity)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile scanning and interface clarity)
 - Objective: Replace the repeated visible `Estimated` word in `Up next` with a recognizable clock icon.
 - Codex contributions:
   - Reused the existing `Clock3` icon in every upcoming task row and retained the unchanged formatted effort value.
@@ -265,7 +282,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — capture-artwork cache invalidation
 
-- Session ID: `TBD` (supporting product-owner-directed visual refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting product-owner-directed visual refinement)
 - Objective: Ensure the latest edited capture artwork is unmistakably loaded locally instead of a cached optimized response.
 - Codex contributions:
   - Preserved `main-brain.png` and created an exact binary copy at `main-brain-v2.png`.
@@ -280,7 +297,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — supplied main-brain capture artwork
 
-- Session ID: `TBD` (supporting product-owner-directed visual refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting product-owner-directed visual refinement)
 - Objective: Use the supplied `main-brain.png` as the fixed Flownee illustration in the initial voice-capture dialog.
 - Codex contributions:
   - Verified the supplied asset is a `1240x773` RGBA PNG with real transparency and an aspect ratio aligned with the existing illustration frame.
@@ -295,7 +312,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — transparent, evenly colored capture illustration
 
-- Session ID: `TBD` (supporting product-owner-directed visual refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting product-owner-directed visual refinement)
 - Objective: Replace the initial voice-capture base artwork with the supplied second Flownee brain, remove its opaque background, and make the blue fill visually even.
 - Codex contributions:
   - Preserved the original `public/images/flownee/main 2.png` and attempted a non-destructive chroma extraction; rejected that intermediate because it retained a visible colored fringe.
@@ -313,7 +330,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 repeating Shine Border refinement
 
-- Session ID: `TBD` (supporting mobile usability and restrained interface polish)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile usability and restrained interface polish)
 - Objective: Make the approved Shine Border discoverable without turning it into continuous visual noise.
 - Codex contributions:
   - Added a reusable repeating Shine Border mode with a five-second CSS cycle: approximately 2.5 seconds of movement followed by approximately 2.5 seconds fully invisible.
@@ -329,7 +346,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 2 final audit
 
-- Session ID: `TBD` (supporting mobile usability and restrained interface polish)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile usability and restrained interface polish)
 - Objective: Close Gate 2 with auditable reduced-motion, accessibility, performance, responsive, and regression evidence.
 - Codex contributions:
   - Introduced a small internal persistence-feedback seam and executable tests proving successful ordering, failure suppression, non-completion suppression, and exactly-once queue release without changing product behavior.
@@ -348,7 +365,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 2 completion feedback
 
-- Session ID: `TBD` (supporting restrained interface polish)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting restrained interface polish)
 - Objective: Add brief, reliable completion feedback without changing task behavior or exposing user data during verification.
 - Codex contributions:
   - Connected the staged Magic UI Confetti primitive to a success-only completion queue after IndexedDB mutation and snapshot reload.
@@ -367,7 +384,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 2 restrained Shine Border
 
-- Session ID: `TBD` (supporting restrained interface polish)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting restrained interface polish)
 - Objective: Apply the approved Shine Border treatment without changing product behavior or expanding the MVP.
 - Codex contributions:
   - Extended the staged Magic UI Shine Border with an explicit single-pass mode while preserving its original looping default for reusable reference use.
@@ -385,7 +402,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 2 Magic UI foundation
 
-- Session ID: `TBD` (supporting restrained interface polish)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting restrained interface polish)
 - Objective: Stage the smallest auditable Magic UI foundation without activating any new product effect.
 - Codex contributions:
   - Retrieved the current official Magic UI registry definitions for Shine Border and Confetti and adapted only those two source primitives into the repository.
@@ -403,7 +420,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 1 accessibility finish
 
-- Session ID: `TBD` (supporting mobile usability redesign)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile usability redesign)
 - Objective: Finish Gate 1 with clear privacy presentation, safe fixed-action clearance, robust small-screen behavior, and consistent accessibility foundations.
 - Codex contributions:
   - Refined the unchanged home privacy statement with a thin divider and recognizable information icon instead of the generic dot symbol.
@@ -423,7 +440,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 1 supporting sections
 
-- Session ID: `TBD` (supporting mobile usability redesign)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile usability redesign)
 - Objective: Remove the remaining home-dashboard card treatment from Up next, Saved items, and empty/loading/completed states while preserving functionality.
 - Codex contributions:
   - Converted Up next and Saved items into labelled semantic sections with transparent backgrounds, thin separators, and unboxed list rows.
@@ -441,7 +458,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 1 open recommendation
 
-- Session ID: `TBD` (supporting mobile usability redesign)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile usability redesign)
 - Objective: Replace the card-based current recommendation with an open, continuous mobile section without changing its content or behavior.
 - Codex contributions:
   - Replaced the recommendation card composition with a semantic labelled section using whitespace and thin dividers; the product-owner refinement removed the initial left accent and its compensating padding.
@@ -459,7 +476,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 1 mobile header
 
-- Session ID: `TBD` (supporting mobile usability redesign)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile usability redesign)
 - Objective: Rebalance the shared mobile header and make every utility control an accessible 44px touch target without changing navigation behavior.
 - Codex contributions:
   - Increased the Help, Settings, and light/dark controls to exact `44x44px` interactive targets while keeping their existing visual icon sizes.
@@ -476,7 +493,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — design-v2 Gate 1 typography foundation
 
-- Session ID: `TBD` (supporting mobile usability redesign)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting mobile usability redesign)
 - Objective: Establish the approved Plus Jakarta Sans typography foundation without changing Flownee functionality or component layout.
 - Codex contributions:
   - Captured responsive before/after measurements at 320, 360, 390, and 430px and retained local screenshot evidence for comparison.
@@ -496,7 +513,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-20 — AI-selected intention emoji
 
-- Session ID: `TBD` (supporting AI interpretation and visual scanning)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting AI interpretation and visual scanning)
 - Objective: Have GPT-5.6 return one fitting emoji for each extracted intention and display it beside that intention throughout Flownee.
 - Codex contributions:
   - Upgraded the strict planning contract to version 2 with one required emoji per new intention and concise model guidance.
@@ -515,7 +532,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — Clean done confirmation modal
 
-- Session ID: `TBD` (supporting destructive-action clarity)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting destructive-action clarity)
 - Objective: Present `Clean done` confirmation as a consistent Flownee modal instead of an inline panel.
 - Codex contributions:
   - Replaced the saved-card inline confirmation with the established mobile bottom-sheet and centered-desktop dialog pattern.
@@ -533,7 +550,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — blocking flow-update progress
 
-- Session ID: `TBD` (supporting task-action feedback and replanning safety)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting task-action feedback and replanning safety)
 - Objective: Make the post-action flow update unmistakable and prevent interaction until it settles.
 - Codex contributions:
   - Added a full-viewport, focused, accessible modal progress overlay with Flownee processing animation and explicit saved/update language.
@@ -553,7 +570,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — saved-items bulk controls
 
-- Session ID: `TBD` (supporting local-first task-state management)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting local-first task-state management)
 - Objective: Add bulk controls beneath `Saved items` for removing completed history and restoring postponed work.
 - Codex contributions:
   - Added matching primary `Clean done` and `Restore for later` controls with status-aware disabled states.
@@ -572,7 +589,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — completed saved-item treatment
 
-- Session ID: `TBD` (supporting home-screen state clarity)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting home-screen state clarity)
 - Objective: Make completed intentions visibly distinct in the saved-items list.
 - Codex contributions:
   - Added a muted line-through treatment only to completed task titles.
@@ -588,7 +605,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — matching recommendation actions
 
-- Session ID: `TBD` (supporting home-screen interaction refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting home-screen interaction refinement)
 - Objective: Give the `Done` and `Do later` actions the same color and make postponement easier to recognize.
 - Codex contributions:
   - Applied the same primary action variant to both task-state buttons.
@@ -604,7 +621,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — 30-second voice-capture limit
 
-- Session ID: `TBD` (supporting voice interaction and cost-control refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting voice interaction and cost-control refinement)
 - Objective: Reduce the maximum voice recording from 90 seconds to 30 seconds.
 - Codex contributions:
   - Changed the browser's actual automatic-stop timeout rather than only changing visible copy.
@@ -621,7 +638,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — capture illustration spacing refinement
 
-- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting voice interaction and visual-design refinement)
 - Objective: Add slightly more breathing room immediately above and below the Flownee illustration.
 - Codex contributions:
   - Increased title-to-image and image-to-microphone spacing by one `4px` spacing step each.
@@ -636,7 +653,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — compact voice-capture dialog
 
-- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting voice interaction and visual-design refinement)
 - Objective: Fit the complete initial recording experience in the available viewport without an internal scrollbar.
 - Codex contributions:
   - Removed unused square layout space around the landscape illustration without reducing its rendered width.
@@ -653,7 +670,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — Flownee illustration timing refinement
 
-- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting voice interaction and visual-design refinement)
 - Objective: Simplify the layered illustration and slow the changing intention details.
 - Codex contributions:
   - Removed the circular background, border, inset shadow, and circular clipping without changing artwork alignment or size.
@@ -669,7 +686,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — layered Flownee intention illustration
 
-- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting voice interaction and visual-design refinement)
 - Objective: Replace the temporary capture-screen mock with the approved Flownee artwork and rotating intention details.
 - Codex contributions:
   - Inspected the five supplied WebP assets and confirmed that the four intention images are transparent, aligned overlays for the fixed main illustration.
@@ -688,7 +705,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — initial voice-capture image mock
 
-- Session ID: `TBD` (supporting voice interaction and visual-design refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting voice interaction and visual-design refinement)
 - Objective: Simplify the initial capture hierarchy and reserve a prominent location for a future Flownee image.
 - Codex contributions:
   - Removed the modal-only `Add by voice` eyebrow without changing the fixed bottom entry action.
@@ -708,7 +725,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — installed-app icon alignment
 
-- Session ID: `TBD` (supporting brand and PWA refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting brand and PWA refinement)
 - Objective: Make the installed desktop/PWA icon use the same approved Flownee artwork as the shared header.
 - Codex contributions:
   - Identified the legacy `/icon.svg` as the installed-app source while the header used `/flownee-mark-v2.png`.
@@ -729,7 +746,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — Help privacy consolidation and header simplification
 
-- Session ID: `TBD` (supporting navigation and privacy refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting navigation and privacy refinement)
 - Objective: Remove ambiguous header indicators and make Help the single destination for privacy information and local-data deletion.
 - Codex contributions:
   - Removed the permanent saved-status dot and privacy shield from the home header.
@@ -750,7 +767,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — Settings app version
 
-- Session ID: `TBD` (supporting Settings refinement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting Settings refinement)
 - Objective: Show the current application version in the About Flownee section.
 - Codex contributions:
   - Passed the repository version from the server-rendered Settings route into the client Settings screen.
@@ -766,7 +783,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — Help and Settings screens
 
-- Session ID: `TBD` (supporting navigation and product-guidance session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting navigation and product-guidance session)
 - Objective: Add focused Help and Settings destinations and make them accessible from every shared header.
 - Codex contributions:
   - Added active, accessible Help and Settings icon links to the shared header while preserving the privacy and theme controls.
@@ -790,7 +807,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — interpretation-review label refinement
 
-- Session ID: `TBD` (supporting interaction-design session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting interaction-design session)
 - Objective: Remove the remaining redundant labels and provenance badges from the simplified interpretation review.
 - Codex contributions:
   - Renamed each review card from `Item N` to `Intention N`.
@@ -810,7 +827,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — simplified interpretation review
 
-- Session ID: `TBD` (supporting interaction-design session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting interaction-design session)
 - Objective: Reduce the post-interpretation review to the few decisions that require user attention.
 - Codex contributions:
   - Removed the optional-notes editor while preserving automatic AI-generated notes through the existing commit path.
@@ -831,7 +848,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — second approved wave-logo replacement
 
-- Session ID: `TBD` (supporting brand-integration session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting brand-integration session)
 - Objective: Replace the shared Flownee mark with the newly supplied blue/cyan/violet wave while preserving its exact artwork on both themes.
 - Codex contributions:
   - Confirmed that the `1536x1024` source was an opaque RGB image with a subtly varying near-white background.
@@ -852,7 +869,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — persistent header theme switch
 
-- Session ID: `TBD` (supporting interaction and accessibility session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting interaction and accessibility session)
 - Objective: Make light and dark modes directly selectable from every app header using compact sun and moon icons.
 - Codex contributions:
   - Added one reusable header theme control backed by the document theme as an external React store.
@@ -874,7 +891,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — approved wave-logo integration
 
-- Session ID: `TBD` (supporting brand-integration session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting brand-integration session)
 - Objective: Integrate the supplied Flownee wave mark into the shared application identity without changing the installed PWA icon.
 - Codex contributions:
   - Inspected the source PNG's alpha channel and visible pixel bounds before implementation.
@@ -894,7 +911,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — Flownee color system
 
-- Session ID: `TBD` (supporting product-design and frontend-system session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting product-design and frontend-system session)
 - Objective: Integrate a calm, functional violet/teal/blue brand palette without sacrificing readability or over-coloring the product.
 - Codex contributions:
   - Centralized raw brand, neutral, semantic, component, gradient, overlay, light-mode, and dark-mode tokens and exposed them through Tailwind v4.
@@ -919,7 +936,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — discrete time-effort controls
 
-- Session ID: `TBD` (supporting product and interaction-design session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting product and interaction-design session)
 - Objective: Replace arbitrary minute entry with consistent, low-friction effort categories selected by AI and adjustable by the user.
 - Codex contributions:
   - Added the approved `5`, `10`, `15`, `30`, `60`, and `120` minute contract, presented consistently as `5′`, `10′`, `15′`, `30′`, `60′`, and `120′+`.
@@ -939,7 +956,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — shared application header
 
-- Session ID: `TBD` (supporting design session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting design session)
 - Objective: Give every rendered Flownee page a consistent header with the product logo.
 - Codex contributions:
   - Extracted a reusable application-header component with the owned Flownee SVG logo and linked wordmark.
@@ -955,7 +972,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — cross-capture task batching
 
-- Session ID: `TBD` (supporting planning-quality session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting planning-quality session)
 - Objective: Group compatible intentions even when they are spoken in separate captures.
 - Codex contributions:
   - Verified that every capture already sends the complete active-task snapshot to GPT-5.6.
@@ -972,7 +989,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — Netlify same-origin hotfix
 
-- Session ID: `TBD` (supporting production-fix session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting production-fix session)
 - Objective: Restore production voice and planning requests without weakening cross-site protections.
 - Codex contributions:
   - Reproduced the production HTTP 403 with an audio-free request carrying the exact public Flownee origin.
@@ -987,7 +1004,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — mobile-width desktop shell
 
-- Session ID: `TBD` (supporting design session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting design session)
 - Objective: Make the desktop presentation retain Flownee's focused mobile-app proportions.
 - Codex contributions:
   - Capped the application shell at `430px` and centered it in wider viewports.
@@ -1003,7 +1020,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-19 — enlarged bottom voice action
 
-- Session ID: `TBD` (supporting design and usability session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting design and usability session)
 - Objective: Replace the small circular recording control with a more forgiving, permanently accessible bottom action.
 - Codex contributions:
   - Converted the fixed footer into one large, full-width mobile call-to-action with a constrained desktop width.
@@ -1029,7 +1046,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — expert usability walkthrough and participant protocol
 
-- Session ID: `TBD` (supporting evaluation session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting evaluation session)
 - Objective: Evaluate the public first-run and recommendation experience
   against the confirmed success measures without inventing participant data.
 - Codex contributions:
@@ -1053,7 +1070,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — deployment and supported-platform verification
 
-- Session ID: `TBD` (supporting deployment/test session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting deployment/test session)
 - Objective: Publish Flownee to Netlify and run the declared platform matrix.
 - Codex contributions:
   - Verified the local HTTP surface for the home, fictional demo, manifest,
@@ -1086,7 +1103,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — privacy, deletion, and public API safeguards
 
-- Session ID: `TBD` (supporting implementation session; compare with the core voice/planning sessions before selecting `/feedback` evidence)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (supporting implementation session; compare with the core voice/planning sessions before selecting `/feedback` evidence)
 - Objective: Make Flownee’s data boundaries understandable and protect the public, sponsor-funded AI routes from accidental or abusive use.
 - Codex contributions:
   - Added a responsive privacy/data panel describing browser storage, temporary audio handling, planning inputs, request throttling, and deletion limits.
@@ -1107,7 +1124,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — task actions and stale-response protection
 
-- Session ID: `TBD` (reassess this task together with the interpretation/replanning task for the majority-core-functionality requirement)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (reassess this task together with the interpretation/replanning task for the majority-core-functionality requirement)
 - Objective: Let users manage every captured item while keeping local state immediate and preventing delayed GPT-5.6 responses from undoing newer decisions.
 - Codex contributions:
   - Added atomic complete, postpone, restore, edit, and delete mutations with task-revision increments, inactive-dependency cleanup, and valid provisional plans.
@@ -1128,7 +1145,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — interpretation review and automatic replanning
 
-- Session ID: `TBD` (strong candidate for the majority-core-functionality session; reassess after task actions)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (strong candidate for the majority-core-functionality session; reassess after task actions)
 - Objective: Connect confirmed transcripts to protected GPT-5.6 reasoning, human interpretation review, and an atomically updated local execution flow.
 - Codex contributions:
   - Verified the current Responses, GPT-5.6, reasoning, Structured Outputs, incomplete-output, and refusal contracts against official OpenAI documentation.
@@ -1149,7 +1166,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — GPT-5.6 planning contract and evaluation baseline
 
-- Session ID: `TBD` (candidate core-functionality session; reassess after the planning route and review UI are complete)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (candidate core-functionality session; reassess after the planning route and review UI are complete)
 - Objective: Define the strict boundary between confirmed voice captures, GPT-5.6 reasoning, and Flownee's local execution plan.
 - Codex contributions:
   - Checked current official GPT-5.6 model and Structured Outputs guidance and selected the explicit `gpt-5.6-sol` Responses baseline with `medium` reasoning.
@@ -1169,7 +1186,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — protected transcription and transcript review
 
-- Session ID: `TBD` (candidate core-functionality session; reassess after GPT-5.6 planning is implemented)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (candidate core-functionality session; reassess after GPT-5.6 planning is implemented)
 - Objective: Connect Flownee's one-tap voice capture to a protected GPT-4o Transcribe boundary and user-controlled transcript confirmation.
 - Codex contributions:
   - Verified the current `gpt-4o-transcribe` transcription endpoint, multipart input, JSON response, and accepted audio containers against official OpenAI documentation.
@@ -1190,7 +1207,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — audio compatibility diagnostic and desktop proof
 
-- Session ID: `TBD` (not yet confirmed as the majority-core-functionality session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (not yet confirmed as the majority-core-functionality session)
 - Objective: Measure real MediaRecorder support and Blob output on the available desktop Chrome engine, and prepare the identical proof path for Android.
 - Codex contributions:
   - Implemented ordered audio MIME detection and WebM/Opus preference with MP4 and Ogg fallbacks measured independently.
@@ -1216,7 +1233,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — native IndexedDB schemas and repositories
 
-- Session ID: `TBD` (not yet confirmed as the majority-core-functionality session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (not yet confirmed as the majority-core-functionality session)
 - Objective: Define and test durable local schemas for confirmed transcripts, tasks, execution plans, and task revisions.
 - Codex contributions:
   - Implemented a versioned native IndexedDB database with indexed stores for transcripts, tasks, plans, and metadata.
@@ -1237,7 +1254,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — responsive local-first PWA shell
 
-- Session ID: `TBD` (not yet confirmed as the majority-core-functionality session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (not yet confirmed as the majority-core-functionality session)
 - Objective: Implement Flownee's responsive application shell and the home-screen states required before local persistence and voice capture are connected.
 - Codex contributions:
   - Built state-driven empty, loading, saved-plan, updating, all-complete, and offline presentations.
@@ -1261,7 +1278,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — shadcn/ui foundation
 
-- Session ID: `TBD` (not expected to be the majority-core-functionality session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (not expected to be the majority-core-functionality session)
 - Objective: Establish reusable UI conventions for Flownee without beginning new MVP functionality.
 - Codex contributions:
   - Verified the current shadcn/ui Tailwind v4 and React conventions.
@@ -1281,7 +1298,7 @@ The `/feedback` Session ID required by the hackathon must come from the project 
 
 ## 2026-07-18 — Product definition and repository baseline
 
-- Session ID: `TBD` (not expected to be the majority-core-functionality session)
+- Session ID: `019f709a-b5fb-7230-bf41-4c4508f7051f` (not expected to be the majority-core-functionality session)
 - Objective: Define Flownee and establish a clean Next.js TypeScript repository baseline.
 - Codex contributions:
   - Converted the official rules and confirmed product decisions into persistent repository guidance.
@@ -1308,4 +1325,4 @@ The `/feedback` Session ID required by the hackathon must come from the project 
   - `pnpm test`: 1 test passed.
   - `pnpm build`: pass; `/` and `/_not-found` generated successfully.
 - Public repository:
-  - https://github.com/landofcash/flownee
+  - Initially created under `landofcash/flownee`; the active public repository was later transferred to https://github.com/vixfounder/flownee.
